@@ -1,0 +1,304 @@
+/* Entrance: the real storefront photo fills the screen; the door swings open on its right-hand hinge
+   and the view walks through it into the homepage. Door position is measured on the 1500x2000 photo:
+   door slab x 632-917, y 742-1378. */
+.entrance { display: none; }
+
+.js .entrance {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  background: var(--ink);
+}
+.js .entrance::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: url("img/storefront-film.jpg") center / cover no-repeat;
+  filter: blur(28px) brightness(.45);
+}
+.js.entrance-open { overflow: hidden; }
+.entrance.is-gone { display: none; }
+
+/* The photo covers the screen like a background, but as one box so the door stays in place on it. */
+.storefront {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* phones: fills the screen; wide screens: the whole storefront, centred, with a blurred copy behind */
+  width: max(min(100vw, 86dvh), 75dvh);
+  aspect-ratio: 3 / 4;
+  max-width: none;
+  translate: -50% -50%;
+  background: url("img/storefront-film.jpg") center / 100% 100% no-repeat;
+  perspective: 1400px;
+  transform-origin: 51.6% 53%;
+}
+
+/* What is behind the door: the warm shop light. */
+.doorway {
+  position: absolute;
+  left: 42.13%; top: 37.1%; width: 19%; height: 31.8%;
+  display: grid;
+  place-items: center;
+  /* the inside of the shop, seen through the open door */
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 45%, rgb(242 208 138 / .25), rgb(14 13 11 / .35) 100%),
+    url("img/inside.jpg") center / cover no-repeat;
+  filter: brightness(.85);
+  transition: filter 1.6s;
+  overflow: hidden;
+}
+.doorway-name {
+  display: none; /* the inside photo now shows through the door instead of a name */
+  font-family: var(--f-display);
+  font-size: clamp(.7rem, 2.2vw, 1.2rem);
+  color: var(--ink);
+  text-align: center;
+  letter-spacing: .06em;
+  opacity: 0;
+}
+
+/* The door itself: a cut-out of the same photo, hinged on the right. */
+.door-panel {
+  position: absolute;
+  left: 42.13%; top: 37.1%; width: 19%; height: 31.8%;
+  background: url("img/storefront-film.jpg") 52.016% 54.399% / 526.3% 314.47% no-repeat;
+  transform-origin: 100% 50%;
+  backface-visibility: hidden;
+  box-shadow: 0 0 0 rgb(0 0 0 / 0);
+}
+
+.door-hotspot {
+  position: absolute;
+  left: 39.3%; top: 34.75%; width: 24.7%; height: 35.25%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.door-hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 6% 9%;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px rgb(242 208 138 / .0), 0 0 28px 6px rgb(242 208 138 / .0);
+}
+.door-hotspot:hover::after,
+.door-hotspot:focus-visible::after { box-shadow: 0 0 0 2px rgb(242 208 138 / .9), 0 0 36px 10px rgb(242 208 138 / .45); }
+.door-hotspot:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+
+.entrance-hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  translate: -50% 0;
+  margin: 0;
+  pointer-events: none;
+}
+.entrance-hint span {
+  display: inline-block;
+  font-family: var(--f-body);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 12px 20px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / .7);
+}
+
+.entrance-skip {
+  position: absolute;
+  top: calc(16px + env(safe-area-inset-top, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  font: 600 var(--t-sm) / 1 var(--f-body);
+  color: var(--bone);
+  background: rgb(14 13 11 / .6);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.entrance-skip:hover { background: rgb(14 13 11 / .85); }
+.entrance-skip:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .door-hotspot::after { animation: door-glow 2.4s ease-in-out infinite; }
+  .entrance-hint span { animation: hint-bob 2.4s ease-in-out infinite; }
+  .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) both; }
+}
+@keyframes door-glow {
+  0%, 100% { box-shadow: 0 0 0 2px rgb(242 208 138 / .15), 0 0 20px 4px rgb(242 208 138 / .1); }
+  50% { box-shadow: 0 0 0 2px rgb(242 208 138 / .7), 0 0 34px 10px rgb(242 208 138 / .35); }
+}
+@keyframes hint-bob { 50% { translate: 0 -4px; } }
+@keyframes arrive { from { scale: 1.06; filter: brightness(.6); } }
+
+/* Opening sequence, driven by classes from entrance.js */
+.entrance.is-opening .door-hotspot::after,
+.entrance.is-opening .entrance-hint span { animation: none; opacity: 0; }
+.entrance.is-opening .door-hotspot { outline: none; cursor: default; }
+.entrance.is-opening .entrance-hint,
+.entrance.is-opening .entrance-skip { opacity: 0; transition: opacity .3s; }
+.entrance.is-opening .door-panel {
+  transform: rotateY(-100deg);
+  box-shadow: -30px 0 40px rgb(0 0 0 / .45);
+  transition: transform 1.1s cubic-bezier(.55, .05, .25, 1), box-shadow 1.1s;
+}
+.entrance.is-opening .doorway-name { opacity: 1; transition: opacity .6s .5s; }
+/* a slow walk through the open door: the doorway grows until its light fills the screen */
+.entrance.is-walking .storefront {
+  scale: 4;
+  transition: scale 2s cubic-bezier(.45, 0, .25, 1);
+}
+.entrance.is-walking .doorway-name { opacity: 0; transition: opacity .6s; }
+.entrance.is-walking .doorway { filter: none; }
+.entrance.is-walking { opacity: 0; transition: opacity .5s 1.6s; }
+
+.entrance.is-skipping { opacity: 0; transition: opacity .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .entrance.is-opening .door-panel { transition-duration: .01s; }
+  .entrance.is-walking .storefront { scale: 1; transition: none; }
+  .entrance.is-walking { transition: opacity .3s; }
+}
+
+/* ---------- Movie treatment ----------
+   The door photo is colour-graded like a film still (img/storefront-film.jpg: teal shadows, warm light,
+   vignette). On top: cinema bars, two layers of drifting film grain (the coarse + fine grain recipe from
+   21st.dev's Interactive Blur Reveal shader, done in CSS), a slow push-in, and an opening title that
+   blurs into focus letter by letter (adapted from 21st.dev's "Text Reveal"). */
+:root { --bar: clamp(26px, 8dvh, 84px); }
+
+.film-bars { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.film-bars::before, .film-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--bar);
+  background: #000;
+}
+.film-bars::before { top: 0; transform-origin: top; }
+.film-bars::after { bottom: 0; transform-origin: bottom; }
+
+.film-grain { position: absolute; inset: -60px; pointer-events: none; z-index: 2; mix-blend-mode: overlay; }
+.film-grain::before, .film-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.film-grain::before { background-size: 260px 260px; opacity: .28; }
+.film-grain::after { background-size: 120px 120px; opacity: .2; }
+
+.film-title {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  top: calc(var(--bar) + 4dvh);
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding-inline: 16px;
+  text-align: center;
+  color: var(--bone);
+  text-shadow: 0 2px 18px rgb(0 0 0 / .7);
+  pointer-events: none;
+}
+.film-name {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: clamp(2.3rem, 9vw, 5.2rem);
+  line-height: 1;
+  letter-spacing: .01em;
+}
+.film-name .char { display: inline-block; white-space: pre; }
+.film-credit {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: clamp(.95rem, 2.6vw, 1.25rem);
+  color: var(--gold-2);
+}
+
+/* the tap hint reads like a film subtitle instead of a button */
+.entrance-hint { bottom: calc(var(--bar) + 18px); }
+.entrance-hint span {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  text-transform: none;
+  letter-spacing: .02em;
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 3.6vw, 1.4rem);
+  color: #fff3c9;
+  text-shadow: 0 2px 6px rgb(0 0 0 / .9), 0 0 2px rgb(0 0 0 / .9);
+}
+/* Skip sits inside the top cinema bar */
+.entrance-skip {
+  z-index: 5;
+  top: calc(env(safe-area-inset-top, 0px) + max(4px, (var(--bar) - 36px) / 2));
+  padding: 9px 14px;
+  background: none;
+  border-color: rgb(237 230 218 / .35);
+  backdrop-filter: none;
+}
+.door-hotspot { z-index: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .film-bars::before, .film-bars::after { animation: bars-in 1.4s cubic-bezier(.7, 0, .2, 1) both; }
+  .film-grain::before { animation: grain 0.9s steps(6) infinite; }
+  .film-grain::after { animation: grain 0.6s steps(5) infinite reverse; }
+  .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) both, push 16s cubic-bezier(.2, .4, .3, 1) .4s both; }
+  .film-name .char {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(40%) scale(1.1);
+    animation: cinematic-reveal 1s cubic-bezier(.16, 1, .3, 1) forwards;
+    animation-delay: calc(.5s + .06s * var(--index));
+  }
+  .film-credit { animation: credit-in 1.2s ease 1.7s both; }
+  .entrance-hint span { animation: credit-in 1s ease 2.6s both, hint-bob 2.4s ease-in-out 3.6s infinite; }
+}
+/* bars start closed over the whole frame and open like a film starting (transform only) */
+@keyframes bars-in { from { transform: scaleY(6.3); } }
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-22px, 14px); } 40% { transform: translate(16px, -20px); }
+  60% { transform: translate(-12px, -8px); } 80% { transform: translate(20px, 18px); } 100% { transform: translate(0, 0); }
+}
+@keyframes push { from { transform: scale(1); } to { transform: scale(1.06); } }
+@keyframes cinematic-reveal {
+  0% { opacity: 0; filter: blur(12px); transform: translateY(40%) scale(1.1); }
+  50% { opacity: .7; filter: blur(4px); }
+  100% { opacity: 1; filter: blur(0); transform: none; }
+}
+@keyframes credit-in { from { opacity: 0; filter: blur(6px); } }
+
+/* when the door opens the titles clear and the bars pull back, like the film starting */
+.entrance.is-opening .film-title { opacity: 0; filter: blur(8px); transition: opacity .6s, filter .6s; }
+.entrance.is-walking .film-bars::before, .entrance.is-walking .film-bars::after { transform: scaleY(0); transition: transform 1.4s cubic-bezier(.6, 0, .3, 1); }
+
+/* touch: no double-tap zoom delay or grey tap flash on the door */
+.door-hotspot, .entrance-skip { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* Jean (2026-11-03): only the image at the door, no text. The title, address and tap hint are hidden;
+   the door's soft glow is the only cue. Skip stays for keyboard users but only shows when focused. */
+.film-title, .entrance-hint { display: none; }
+.entrance-skip:not(:focus-visible) {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  border: 0;
+}
