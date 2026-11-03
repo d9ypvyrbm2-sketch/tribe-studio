@@ -132,7 +132,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .door-hotspot::after { animation: door-glow 2.4s ease-in-out infinite; }
   .entrance-hint span { animation: hint-bob 2.4s ease-in-out infinite; }
-  .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) both; }
+  .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) backwards; }
 }
 @keyframes door-glow {
   0%, 100% { box-shadow: 0 0 0 2px rgb(242 208 138 / .15), 0 0 20px 4px rgb(242 208 138 / .1); }
@@ -260,7 +260,7 @@
   .film-bars::before, .film-bars::after { animation: bars-in 1.4s cubic-bezier(.7, 0, .2, 1) both; }
   .film-grain::before { animation: grain 0.9s steps(6) infinite; }
   .film-grain::after { animation: grain 0.6s steps(5) infinite reverse; }
-  .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) both, push 16s cubic-bezier(.2, .4, .3, 1) .4s both; }
+  .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) backwards, push 16s cubic-bezier(.2, .4, .3, 1) .4s both; }
   .film-name .char {
     opacity: 0;
     filter: blur(12px);
