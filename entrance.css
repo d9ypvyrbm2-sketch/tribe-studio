@@ -269,7 +269,7 @@
     animation-delay: calc(.5s + .06s * var(--index));
   }
   .film-credit { animation: credit-in 1.2s ease 1.7s both; }
-  .entrance-hint span { animation: credit-in 1s ease 2.6s both, hint-bob 2.4s ease-in-out 3.6s infinite; }
+  .entrance-hint span { animation: credit-in 1s ease .8s both, hint-bob 2.4s ease-in-out 1.8s infinite; }
 }
 /* bars start closed over the whole frame and open like a film starting (transform only) */
 @keyframes bars-in { from { transform: scaleY(6.3); } }
@@ -294,7 +294,7 @@
 
 /* Jean (2026-11-03): only the image at the door, no text. The title, address and tap hint are hidden;
    the door's soft glow is the only cue. Skip stays for keyboard users but only shows when focused. */
-.film-title, .entrance-hint { display: none; }
+.film-title { display: none; }
 .entrance-skip:not(:focus-visible) {
   position: absolute !important;
   width: 1px; height: 1px;

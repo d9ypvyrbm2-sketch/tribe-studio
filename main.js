@@ -99,7 +99,7 @@
     "footer.test": "Sitio de prueba: no es el sitio oficial de The Tribe Studio y no está afiliado con la barbería ni con Booksy.",
     "entrance.title": "Bienvenido a The Tribe Studio",
     "entrance.door": "Abre la puerta y entra a The Tribe Studio",
-    "entrance.hint": "Toca la puerta para entrar",
+    "entrance.hint": "Toca la puerta",
     "entrance.skip": "Saltar",
     "shop.label": "Dentro de The Tribe Studio",
     "shop.hint": "Toca una silla",
