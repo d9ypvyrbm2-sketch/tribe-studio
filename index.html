@@ -3,21 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Tribe Studio 1 Maverick | Barbershop in East Boston</title>
-  <meta name="description" data-i18n-attr="content:meta.desc" content="Barbershop at 55 Chelsea St, East Boston. Haircuts, beard, line ups and hair color. Rated 5.0 on Booksy from 424 reviews. Book online on Booksy.">
-  <!-- TEST SITE: keep out of search engines until Jean approves publishing -->
-  <meta name="robots" content="noindex, nofollow">
+  <title>The Tribe Studio | Barbershop in East Boston, MA</title>
+  <meta name="description" data-i18n-attr="content:meta.desc" content="Discover The Tribe Studio in East Boston. Professional men’s haircuts, skin fades, beard grooming and styling. Explore our barbers and book your appointment online.">
+  <!-- Public production site: open to search engines. (Was "noindex, nofollow" while this was a test site.) -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://d9ypvyrbm2-sketch.github.io/tribe-studio/">
+  <!-- Google Search Console: paste the owner's verification tag here, exactly as Search Console gives it, e.g.
+       <meta name="google-site-verification" content="TOKEN_FROM_SEARCH_CONSOLE">
+       No token is added until the owner creates the property in their own Google account. -->
   <meta name="theme-color" content="#0e0d0b">
   <meta name="color-scheme" content="dark">
 
-  <!-- Open Graph (link previews). og:url and og:image are left out until there is a real address and an owner-approved photo. -->
+  <!-- Open Graph (link previews) -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="The Tribe Studio 1 Maverick">
-  <meta property="og:title" content="The Tribe Studio 1 Maverick | Barbershop in East Boston">
-  <meta property="og:description" data-i18n-attr="content:meta.desc" content="Barbershop at 55 Chelsea St, East Boston. Haircuts, beard, line ups and hair color. Rated 5.0 on Booksy from 424 reviews. Book online on Booksy.">
+  <meta property="og:site_name" content="The Tribe Studio">
+  <meta property="og:url" content="https://d9ypvyrbm2-sketch.github.io/tribe-studio/">
+  <meta property="og:title" content="The Tribe Studio | Barbershop in East Boston, MA">
+  <meta property="og:description" data-i18n-attr="content:meta.desc" content="Discover The Tribe Studio in East Boston. Professional men’s haircuts, skin fades, beard grooming and styling. Explore our barbers and book your appointment online.">
+  <meta property="og:image" content="https://d9ypvyrbm2-sketch.github.io/tribe-studio/img/storefront.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1600">
+  <meta property="og:image:alt" content="The Tribe Studio storefront at 55 Chelsea St, East Boston, with a barber pole by the door">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="es_US">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0d0b'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23c9a35c'%3ET%3C/text%3E%3C/svg%3E">
 
@@ -29,18 +38,29 @@
   <link rel="stylesheet" href="entrance.css">
   <!-- Mark JavaScript as on before the page paints, so the entrance shows without a flash of the homepage. -->
   <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js");</script>
-  <link rel="preload" as="image" href="img/storefront-film.jpg">
-  <link rel="preload" as="image" href="img/inside.jpg">
+  <link rel="preload" as="image" href="img/tribe-studio-storefront-entrance-film.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="img/tribe-studio-barbershop-interior-east-boston.webp" type="image/webp">
   <link rel="stylesheet" href="shop.css">
 
-  <!-- Structured data. schema.org has no "BarberShop" type; HairSalon (a LocalBusiness) is the closest valid type.
-       aggregateRating is deliberately NOT included: Google's review-snippet rules say not to copy ratings from other websites (Booksy). -->
+  <!-- Structured data (validated with schema.org vocabulary; see SEO-REPORT.md).
+       schema.org has no "BarberShop" type, so HairSalon (a LocalBusiness subtype Google supports) is the most specific valid type.
+       No geo coordinates: none have been verified yet. No aggregateRating or reviews: the 5.0 rating is Booksy's, and
+       Google's review-snippet rules forbid marking up ratings collected on another site. Hours and prices match the page and Booksy. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HairSalon",
-    "name": "The Tribe Studio 1 Maverick",
-    "description": "Barbershop in East Boston offering haircuts, haircut and beard, line ups and hair color.",
+    "@id": "https://d9ypvyrbm2-sketch.github.io/tribe-studio/#business",
+    "name": "The Tribe Studio",
+    "alternateName": "The Tribe Studio 1 Maverick",
+    "description": "Barbershop at 55 Chelsea St in East Boston, near Logan Airport. Men's haircuts and fades, haircut and beard grooming, line ups, VIP service and hair color, by six barbers. Book online on Booksy.",
+    "url": "https://d9ypvyrbm2-sketch.github.io/tribe-studio/",
+    "telephone": "+1-857-334-9508",
+    "image": [
+      "https://d9ypvyrbm2-sketch.github.io/tribe-studio/img/storefront.jpg",
+      "https://d9ypvyrbm2-sketch.github.io/tribe-studio/img/inside.jpg",
+      "https://d9ypvyrbm2-sketch.github.io/tribe-studio/img/station-barbers.jpg"
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "55 Chelsea St",
@@ -50,19 +70,139 @@
       "addressCountry": "US"
     },
     "hasMap": "https://www.google.com/maps/search/?api=1&query=55+Chelsea+St+East+Boston+MA+02128",
+    "areaServed": [
+      {
+        "@type": "Place",
+        "name": "East Boston, MA"
+      },
+      {
+        "@type": "City",
+        "name": "Boston"
+      }
+    ],
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "21:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "18:00" }
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "10:00",
+        "closes": "18:00"
+      }
     ],
     "priceRange": "$25–$150+",
-    "availableLanguage": ["English", "Spanish"],
+    "currenciesAccepted": "USD",
+    "knowsLanguage": [
+      "en",
+      "es"
+    ],
     "sameAs": [
       "https://www.instagram.com/thetribestudiobarbershop/",
       "https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston"
     ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services and prices",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Haircut",
+            "description": "Includes steam and a hair wash. With Keven, Dumar Gomez, Jean Carlos, Santi Vélez or Kevin Tabares."
+          },
+          "price": "40.00",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Haircut with Andres",
+            "description": "Includes facial steam and styling."
+          },
+          "price": "60.00",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Haircut & Beard",
+            "description": "Includes beard steam, a wash and a facial."
+          },
+          "price": "50.00",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Haircut & Beard with Andres",
+            "description": "Includes steamed beard, facial cleansing and styling."
+          },
+          "price": "70.00",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "VIP"
+          },
+          "price": "70.00",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Line up",
+            "description": "Edge-up and outline."
+          },
+          "price": "25.00",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Hair color",
+            "description": "For men and women."
+          },
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "150.00",
+            "priceCurrency": "USD"
+          }
+        }
+      ]
+    },
     "potentialAction": {
       "@type": "ReserveAction",
-      "target": "https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston"
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston",
+        "actionPlatform": [
+          "https://schema.org/DesktopWebPlatform",
+          "https://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": "Barbershop appointment"
+      }
     }
   }
   </script>
@@ -161,7 +301,7 @@
   <!-- Chair stations: tapping a chair moves the camera onto it, then that chair's own photo fills the screen
        with its information floating over it (shop.js). Prices, names and hours match the sections below. -->
   <div class="station" id="station-barbers" data-chair="barbers" role="dialog" aria-modal="true" aria-labelledby="st-barbers-title" hidden>
-    <div class="station-photo" style="--photo: url('img/station-barbers.jpg'); --pos: 60% 50%;"></div>
+    <div class="station-photo" style="--photo: url('img/tribe-studio-barber-chair-station.webp'); --pos: 60% 50%;"></div>
     <button type="button" class="station-back" data-i18n="shop.back">Back to the shop</button>
     <div class="station-air station-air-top">
       <p class="air-kicker" data-i18n="barbers.kicker">The tribe</p>
@@ -179,7 +319,7 @@
   </div>
 
   <div class="station" id="station-visit" data-chair="visit" role="dialog" aria-modal="true" aria-labelledby="st-visit-title" hidden>
-    <div class="station-photo" style="--photo: url('img/station-visit.jpg'); --pos: 55% 50%;"></div>
+    <div class="station-photo" style="--photo: url('img/tribe-studio-barber-chair-by-door.webp'); --pos: 55% 50%;"></div>
     <button type="button" class="station-back" data-i18n="shop.back">Back to the shop</button>
     <div class="station-air station-air-top">
       <p class="air-kicker" data-i18n="chair.visit">Hours &amp; directions</p>
@@ -202,7 +342,7 @@
   </div>
 
   <div class="station" id="station-services" data-chair="services" role="dialog" aria-modal="true" aria-labelledby="st-services-title" hidden>
-    <div class="station-photo" style="--photo: url('img/station-services.jpg'); --pos: 35% 50%;"></div>
+    <div class="station-photo" style="--photo: url('img/tribe-studio-barber-station-tools.webp'); --pos: 35% 50%;"></div>
     <button type="button" class="station-back" data-i18n="shop.back">Back to the shop</button>
     <div class="station-air station-air-top">
       <p class="air-kicker" data-i18n="services.kicker">The menu</p>
@@ -222,10 +362,10 @@
   </div>
 
   <div class="station" id="station-booksy" data-chair="booksy" role="dialog" aria-modal="true" aria-labelledby="st-booksy-title" hidden>
-    <div class="station-photo" style="--photo: url('img/inside.jpg'); --pos: 78% 70%; --zoom: 260%;"></div>
+    <div class="station-photo" style="--photo: url('img/tribe-studio-barbershop-interior-east-boston.webp'); --pos: 78% 70%; --zoom: 260%;"></div>
     <button type="button" class="station-back" data-i18n="shop.back">Back to the shop</button>
     <div class="station-air station-air-top">
-      <p class="air-kicker"><span aria-hidden="true">★</span> 5.0 <span data-i18n="rating.short">on Booksy · 424 reviews</span></p>
+      <p class="air-kicker"><span aria-hidden="true">★</span> 5.0 <span data-i18n="rating.short">on Booksy · 456 reviews</span></p>
       <h2 class="air-title air-title-big" id="st-booksy-title" data-i18n="booksy.title">Your chair is waiting</h2>
       <p class="air-text" data-i18n="booksy.text">Pick your service, your barber and your time on Booksy. It takes about a minute.</p>
       <a class="air-link air-link-big" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span data-i18n="cta.bookBooksy">Book on Booksy</span> →</a>
@@ -272,12 +412,12 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span data-i18n="hero.eyebrow">Barbershop · 55 Chelsea St, East Boston</span></p>
+          <p class="eyebrow"><span data-i18n="hero.eyebrow">Barbershop in East Boston · 55 Chelsea St</span></p>
           <h1 id="hero-title" class="hero-title">
             <span class="hero-name">The Tribe Studio</span>
             <span class="hero-line" data-i18n="hero.title">Sharp cuts. Clean lines. Your chair is waiting.</span>
           </h1>
-          <p class="hero-lede" data-i18n="hero.lede">Haircuts, beard work, line ups and color by six barbers, open seven days a week. Pick your barber and your time on Booksy.</p>
+          <p class="hero-lede" data-i18n="hero.lede">Men’s haircuts, skin and taper fades, beard grooming, line ups and color by six East Boston barbers, open seven days a week and a short drive from Logan Airport. Pick your barber and your time on Booksy.</p>
           <div class="hero-ctas">
             <a class="btn btn-gold btn-lg" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
               <span data-i18n="cta.bookBooksy">Book on Booksy</span>
@@ -289,7 +429,7 @@
             <span class="stars" aria-hidden="true">
               <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
             </span>
-            <span class="rating-text"><strong>5.0</strong> <span data-i18n="rating.short">on Booksy · 424 reviews</span></span>
+            <span class="rating-text"><strong>5.0</strong> <span data-i18n="rating.short">on Booksy · 456 reviews</span></span>
           </a>
         </div>
 
@@ -309,8 +449,8 @@
             <svg><use href="#i-comb"/></svg>
           </div>
         </div>
-        <figure class="photo-slot hero-photo">
-          <figcaption><span class="photo-label" data-i18n="photo.here">Shop photo here</span><span class="photo-hint" data-i18n="photo.hintHero">Owner's photo of the shop or chair</span></figcaption>
+        <figure class="photo-slot hero-photo has-photo">
+          <img src="img/tribe-studio-barbershop-interior-east-boston-800w.webp" srcset="img/tribe-studio-barbershop-interior-east-boston-480w.webp 480w, img/tribe-studio-barbershop-interior-east-boston-800w.webp 800w, img/tribe-studio-barbershop-interior-east-boston.webp 1086w" sizes="(max-width: 1100px) 86vw, 300px" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async" alt="Inside The Tribe Studio barbershop in East Boston: black and gold barber chairs under a hexagon light ceiling" data-i18n-attr="alt:alt.interior">
         </figure>
       </div>
     </section>
@@ -331,7 +471,7 @@
         <header class="section-head">
           <p class="kicker" data-i18n="services.kicker">The menu</p>
           <h2 id="services-title" class="section-title" data-i18n="services.title">Services &amp; prices</h2>
-          <p class="section-lede" data-i18n="services.lede">Prices and times as listed on Booksy. Times depend on your barber.</p>
+          <p class="section-lede" data-i18n="services.lede">Men’s haircuts and fades, beard grooming, line ups and color in East Boston. Prices and times as listed on Booksy. Times depend on your barber.</p>
         </header>
 
         <ol class="menu-list">
@@ -416,7 +556,7 @@
         <header class="section-head">
           <p class="kicker" data-i18n="barbers.kicker">The tribe</p>
           <h2 id="barbers-title" class="section-title" data-i18n="barbers.title">Meet the barbers</h2>
-          <p class="section-lede" data-i18n="barbers.lede">Six barbers. Choose yours when you book.</p>
+          <p class="section-lede" data-i18n="barbers.lede">Six East Boston barbers. Choose yours when you book.</p>
         </header>
 
         <ul class="barber-grid">
@@ -469,7 +609,7 @@
           <span class="stars stars-lg" aria-hidden="true">
             <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
           </span>
-          <p class="score-sub" data-i18n="reviews.count">424 reviews on Booksy</p>
+          <p class="score-sub" data-i18n="reviews.count">456 reviews on Booksy</p>
         </div>
         <div class="reviews-copy reveal">
           <p class="kicker" data-i18n="reviews.kicker">Reviews</p>
@@ -487,14 +627,14 @@
     <section class="section section-alt" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
         <header class="section-head">
-          <p class="kicker">Instagram</p>
-          <h2 id="gallery-title" class="section-title" data-i18n="gallery.title">Fresh cuts, every day</h2>
-          <p class="section-lede" data-i18n="gallery.lede">See the latest work on our Instagram.</p>
+          <p class="kicker" data-i18n="gallery.kicker">Gallery</p>
+          <h2 id="gallery-title" class="section-title" data-i18n="gallery.title">Inside the shop</h2>
+          <p class="section-lede" data-i18n="gallery.lede">Real photos of The Tribe Studio at 55 Chelsea St. For the latest cuts, see our Instagram.</p>
         </header>
         <div class="gallery">
-          <figure class="photo-slot reveal"><figcaption><span class="photo-label" data-i18n="photo.here">Shop photo here</span><span class="photo-hint" data-i18n="photo.hintCut">A finished haircut</span></figcaption></figure>
-          <figure class="photo-slot reveal"><figcaption><span class="photo-label" data-i18n="photo.here">Shop photo here</span><span class="photo-hint" data-i18n="photo.hintInside">Inside the shop</span></figcaption></figure>
-          <figure class="photo-slot reveal"><figcaption><span class="photo-label" data-i18n="photo.here">Shop photo here</span><span class="photo-hint" data-i18n="photo.hintTools">Chairs and tools</span></figcaption></figure>
+          <figure class="photo-slot has-photo reveal"><img src="img/tribe-studio-storefront-55-chelsea-st-800w.webp" srcset="img/tribe-studio-storefront-55-chelsea-st-480w.webp 480w, img/tribe-studio-storefront-55-chelsea-st-800w.webp 800w, img/tribe-studio-storefront-55-chelsea-st.webp 1200w" sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="The Tribe Studio storefront at 55 Chelsea St, East Boston, with a barber pole beside the door" data-i18n-attr="alt:alt.storefront"></figure>
+          <figure class="photo-slot has-photo reveal"><img src="img/tribe-studio-barber-chair-station-800w.webp" srcset="img/tribe-studio-barber-chair-station-480w.webp 480w, img/tribe-studio-barber-chair-station-800w.webp 800w, img/tribe-studio-barber-chair-station.webp 1200w" sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="A black and gold barber chair at one of the stations inside The Tribe Studio" data-i18n-attr="alt:alt.station"></figure>
+          <figure class="photo-slot has-photo reveal"><img src="img/tribe-studio-barber-station-tools-800w.webp" srcset="img/tribe-studio-barber-station-tools-480w.webp 480w, img/tribe-studio-barber-station-tools-800w.webp 800w, img/tribe-studio-barber-station-tools.webp 1200w" sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="A barber at work behind a station of clippers and products at The Tribe Studio" data-i18n-attr="alt:alt.tools"></figure>
         </div>
         <div class="section-cta">
           <a class="btn btn-ghost btn-lg" href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
@@ -521,6 +661,7 @@
               <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
             </a>
             <a class="btn btn-ghost" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab" data-i18n="cta.book">Book now</a>
+            <a class="btn btn-ghost" href="tel:+18573349508" data-track="phone"><span data-i18n="cta.call">Call</span>&nbsp;(857) 334-9508</a>
           </div>
         </div>
 
@@ -579,8 +720,8 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div>
-        <p class="footer-brand">The Tribe Studio 1 Maverick</p>
-        <p class="footer-addr">55 Chelsea St, East Boston, MA 02128</p>
+        <p class="footer-brand">The Tribe Studio <span class="footer-sub">1 Maverick</span></p>
+        <p class="footer-addr">55 Chelsea St, East Boston, MA 02128 · <a href="tel:+18573349508" data-track="phone">(857) 334-9508</a></p>
       </div>
       <ul class="footer-links">
         <li><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Booksy</a></li>
@@ -588,13 +729,12 @@
         <li><a href="https://www.google.com/maps/search/?api=1&amp;query=55+Chelsea+St+East+Boston+MA+02128" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Google Maps</a></li>
         <li><a href="#top" data-i18n="footer.top">Back to top</a></li>
       </ul>
-      <p class="test-note" data-i18n="footer.test">Test site — not the official website of The Tribe Studio, and not affiliated with the shop or with Booksy.</p>
     </div>
   </footer>
 
   <!-- Sticky booking bar (phones only) -->
   <div class="mobile-bar">
-    <span class="mobile-bar-rating"><svg aria-hidden="true"><use href="#i-star"/></svg> <strong>5.0</strong> <span data-i18n="rating.mobile">· 424 reviews</span></span>
+    <span class="mobile-bar-rating"><svg aria-hidden="true"><use href="#i-star"/></svg> <strong>5.0</strong> <span data-i18n="rating.mobile">· 456 on Booksy</span></span>
     <a class="btn btn-gold" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab" data-i18n="cta.book">Book now</a>
   </div>
 

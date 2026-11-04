@@ -15,8 +15,8 @@
   content: "";
   position: absolute;
   inset: -40px;
-  background: url("img/inside.jpg") center / cover no-repeat;
-  filter: blur(28px) brightness(.4);
+  background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / cover no-repeat;
+  filter: blur(28px) brightness(.6);
 }
 .js.shop-open { overflow: hidden; }
 .shop.is-away { display: none; }
@@ -29,7 +29,7 @@
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
-  background: url("img/inside.jpg") center / 100% 100% no-repeat;
+  background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / 100% 100% no-repeat;
   transition: scale 1s cubic-bezier(.5, 0, .25, 1);
 }
 .shop.is-focused .shop-scene { scale: 2.4; }
@@ -94,15 +94,29 @@
 .shop-top {
   top: 0;
   padding-block: calc(14px + env(safe-area-inset-top, 0px)) 28px;
-  background: linear-gradient(rgb(14 13 11 / .85), transparent);
+  background: linear-gradient(rgb(14 13 11 / .6), transparent);
+  justify-content: center;
+}
+.shop-top .lang-switch {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  top: calc(14px + env(safe-area-inset-top, 0px));
 }
 .shop-bottom {
   bottom: 0;
   padding-block: 28px calc(18px + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(transparent, rgb(14 13 11 / .9));
+  background: linear-gradient(transparent, rgb(14 13 11 / .7));
 }
 .shop.is-focused .shop-top, .shop.is-focused .shop-bottom { opacity: 0; pointer-events: none; }
-.shop-name { font-family: var(--f-display); font-size: 1.35rem; color: var(--bone); }
+.shop-name {
+  font-family: var(--f-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold-2, var(--gold));
+  text-align: center;
+  text-shadow: 0 2px 4px rgb(0 0 0 / .9), 0 0 22px rgb(0 0 0 / .85);
+}
+@media (max-width: 480px) { .shop-name { font-size: 1.25rem; } }
 .shop-hint {
   margin: 0;
   font: 600 var(--t-sm) / 1.2 var(--f-body);
@@ -284,3 +298,22 @@
 
 /* touch: no double-tap zoom delay or grey tap flash on chairs and controls */
 .chair, .shop-more, .station-back, .air-link { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* Soft glow on the white headings (homepage and chair screens) */
+.hero-name,
+.section-title,
+.final-title,
+.air-title,
+.score-num {
+  text-shadow:
+    0 0 6px rgb(255 244 226 / .35),
+    0 0 18px rgb(255 236 205 / .22),
+    0 0 36px rgb(237 230 218 / .12);
+}
+.air-title {
+  text-shadow:
+    0 2px 4px rgb(0 0 0 / .75),
+    0 0 6px rgb(255 244 226 / .4),
+    0 0 20px rgb(255 236 205 / .25),
+    0 0 40px rgb(237 230 218 / .14);
+}

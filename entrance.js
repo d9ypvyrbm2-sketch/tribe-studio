@@ -1,4 +1,4 @@
-/* The Tribe Studio test site: storefront entrance.
+/* The Tribe Studio: storefront entrance.
    Click (or press Enter on) the door: it swings open, the view walks through, and the homepage appears.
    A link straight to a section (#services, #visit...) skips the entrance. */
 (function () {
