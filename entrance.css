@@ -15,7 +15,7 @@
   content: "";
   position: absolute;
   inset: -40px;
-  background: url("img/storefront-film.jpg") center / cover no-repeat;
+  background: url("img/tribe-studio-storefront-entrance-film.webp") center / cover no-repeat;
   filter: blur(28px) brightness(.45);
 }
 .js.entrance-open { overflow: hidden; }
@@ -31,7 +31,7 @@
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
-  background: url("img/storefront-film.jpg") center / 100% 100% no-repeat;
+  background: url("img/tribe-studio-storefront-entrance-film.webp") center / 100% 100% no-repeat;
   perspective: 1400px;
   transform-origin: 51.6% 53%;
 }
@@ -45,7 +45,7 @@
   /* the inside of the shop, seen through the open door */
   background:
     radial-gradient(ellipse 90% 70% at 50% 45%, rgb(242 208 138 / .25), rgb(14 13 11 / .35) 100%),
-    url("img/inside.jpg") center / cover no-repeat;
+    url("img/tribe-studio-barbershop-interior-east-boston.webp") center / cover no-repeat;
   filter: brightness(.85);
   transition: filter 1.6s;
   overflow: hidden;
@@ -64,7 +64,7 @@
 .door-panel {
   position: absolute;
   left: 42.13%; top: 37.1%; width: 19%; height: 31.8%;
-  background: url("img/storefront-film.jpg") 52.016% 54.399% / 526.3% 314.47% no-repeat;
+  background: url("img/tribe-studio-storefront-entrance-film.webp") 52.016% 54.399% / 526.3% 314.47% no-repeat;
   transform-origin: 100% 50%;
   backface-visibility: hidden;
   box-shadow: 0 0 0 rgb(0 0 0 / 0);
@@ -171,7 +171,7 @@
 }
 
 /* ---------- Movie treatment ----------
-   The door photo is colour-graded like a film still (img/storefront-film.jpg: teal shadows, warm light,
+   The door photo is colour-graded like a film still (img/tribe-studio-storefront-entrance-film.webp: teal shadows, warm light,
    vignette). On top: cinema bars, two layers of drifting film grain (the coarse + fine grain recipe from
    21st.dev's Interactive Blur Reveal shader, done in CSS), a slow push-in, and an opening title that
    blurs into focus letter by letter (adapted from 21st.dev's "Text Reveal"). */

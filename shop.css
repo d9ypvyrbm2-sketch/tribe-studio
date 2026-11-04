@@ -15,7 +15,7 @@
   content: "";
   position: absolute;
   inset: -40px;
-  background: url("img/inside.jpg") center / cover no-repeat;
+  background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / cover no-repeat;
   filter: blur(28px) brightness(.4);
 }
 .js.shop-open { overflow: hidden; }
@@ -29,7 +29,7 @@
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
-  background: url("img/inside.jpg") center / 100% 100% no-repeat;
+  background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / 100% 100% no-repeat;
   transition: scale 1s cubic-bezier(.5, 0, .25, 1);
 }
 .shop.is-focused .shop-scene { scale: 2.4; }

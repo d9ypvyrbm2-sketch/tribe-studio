@@ -1,4 +1,4 @@
-/* The Tribe Studio test site: inside the shop (the homepage).
+/* The Tribe Studio: inside the shop (the homepage).
    Each chair opens one part of the site. Tap a chair: the camera moves onto it, then that chair's own
    photo fills the screen with its information floating over it. "Back to the shop" reverses the move. */
 (function () {

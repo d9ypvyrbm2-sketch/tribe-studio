@@ -1,0 +1,8 @@
+# The Tribe Studio — https://d9ypvyrbm2-sketch.github.io/tribe-studio/
+# Note: on a GitHub Pages project site, crawlers only read robots.txt at the host root
+# (https://d9ypvyrbm2-sketch.github.io/robots.txt). This file takes effect if the site moves
+# to its own domain; until then, submit the sitemap in Google Search Console directly.
+User-agent: *
+Allow: /
+
+Sitemap: https://d9ypvyrbm2-sketch.github.io/tribe-studio/sitemap.xml
