@@ -298,3 +298,22 @@
 
 /* touch: no double-tap zoom delay or grey tap flash on chairs and controls */
 .chair, .shop-more, .station-back, .air-link { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* Soft glow on the white headings (homepage and chair screens) */
+.hero-name,
+.section-title,
+.final-title,
+.air-title,
+.score-num {
+  text-shadow:
+    0 0 6px rgb(255 244 226 / .35),
+    0 0 18px rgb(255 236 205 / .22),
+    0 0 36px rgb(237 230 218 / .12);
+}
+.air-title {
+  text-shadow:
+    0 2px 4px rgb(0 0 0 / .75),
+    0 0 6px rgb(255 244 226 / .4),
+    0 0 20px rgb(255 236 205 / .25),
+    0 0 40px rgb(237 230 218 / .14);
+}
