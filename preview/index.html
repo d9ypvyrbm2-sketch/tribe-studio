@@ -41,7 +41,8 @@
   <link rel="preload" as="image" href="img/tribe-studio-doorway-view.webp" type="image/webp">
   <link rel="stylesheet" href="shop.css">
   <link rel="stylesheet" href="../assistant/tribe-assistant.css">
-  <link rel="stylesheet" href="home-theme.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800&family=Inter:wght@400;600&display=swap">
+  <link rel="stylesheet" href="figma-site.css">
 
   <!-- Structured data (validated with schema.org vocabulary; see SEO-REPORT.md).
        schema.org has no "BarberShop" type, so HairSalon (a LocalBusiness subtype Google supports) is the most specific valid type.
@@ -376,368 +377,230 @@
   <a class="skip-link" href="#main" data-i18n="skip">Skip to main content</a>
   <span id="newtab" class="visually-hidden" data-i18n="newtab">(opens in a new tab)</span>
 
-  <header class="site-header" id="top">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" data-i18n-attr="aria-label:brand.label" aria-label="The Tribe Studio 1 Maverick, home">
-        <span class="brand-mark" aria-hidden="true">T</span>
-        <span class="brand-text"><span class="brand-name">The Tribe Studio</span><span class="brand-sub">1 Maverick · East Boston</span></span>
-      </a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="menu-bars" aria-hidden="true"></span>
-        <span data-i18n="nav.menu">Menu</span>
-      </button>
-
-      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
-        <ul>
-          <li><a href="#inside" id="nav-inside" data-i18n="nav.inside">Inside the shop</a></li>
-          <li><a href="#services" data-i18n="nav.services">Services</a></li>
-          <li><a href="#barbers" data-i18n="nav.barbers">Barbers</a></li>
-          <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
-          <li><a href="#visit" data-i18n="nav.visit">Visit</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <div class="lang-switch" role="group" aria-label="Language / Idioma">
-          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="true">EN</button>
-          <button type="button" class="lang-btn" data-lang="es" lang="es" aria-pressed="false">ES</button>
-        </div>
-        <a class="btn btn-gold btn-sm header-book" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab" data-i18n="cta.book">Book now</a>
-      </div>
-    </div>
+  <!-- Full site: built from Jean's Figma design "The Tribe Studio 1 Maverick — Homepage" (2026-11-05) -->
+  <header class="site-header fx-nav" id="top" lang="en">
+    <a class="fx-brand" href="#main">
+      <span class="fx-brand-name">THE TRIBE STUDIO</span>
+      <span class="fx-brand-sub">1 MAVERICK / EAST BOSTON</span>
+    </a>
+    <nav class="fx-links" aria-label="Main">
+      <a href="#inside" id="nav-inside">Inside the shop</a>
+      <a href="#services">Services</a>
+      <a href="#studio">The studio</a>
+      <a href="#work">Our work</a>
+      <a href="#barbers">The barbers</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="fx-btn fx-btn-lime fx-nav-book" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span>Book on Booksy</span><span class="fx-arrow" aria-hidden="true">↗</span></a>
   </header>
 
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span data-i18n="hero.eyebrow">Barbershop in East Boston · 55 Chelsea St</span></p>
-          <h1 id="hero-title" class="hero-title">
-            <span class="hero-name">The Tribe Studio</span>
-            <span class="hero-line" data-i18n="hero.title">Sharp cuts. Clean lines. Your chair is waiting.</span>
-          </h1>
-          <p class="hero-lede" data-i18n="hero.lede">Come in, sit back and feel at home. Six East Boston barbers for cuts, fades, beards, line ups and color, open seven days and minutes from Logan Airport. Pick your barber and your time on Booksy.</p>
-          <div class="hero-ctas">
-            <a class="btn btn-gold btn-lg" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-              <span data-i18n="cta.bookBooksy">Book on Booksy</span>
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-            <a class="btn btn-ghost btn-lg" href="#services" data-i18n="cta.seePrices">See services &amp; prices</a>
-          </div>
-          <a class="rating-chip" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-            <span class="stars" aria-hidden="true">
-              <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
-            </span>
-            <span class="rating-text"><strong>5.0</strong> <span data-i18n="rating.short">on Booksy · 456 reviews</span></span>
-          </a>
+  <main id="main" class="fx" lang="en">
+    <!-- Hero -->
+    <section class="fx-dark fx-hero" aria-labelledby="fx-hero-title">
+      <div class="fx-hero-top">
+        <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>East Boston. Individual style.</p>
+        <p class="fx-hero-addr">55 CHELSEA ST / EAST BOSTON, MA</p>
+      </div>
+      <div class="fx-hero-grid">
+        <div class="fx-hero-copy">
+          <h1 id="fx-hero-title" class="fx-hero-title">YOUR CUT.<br>YOUR TRIBE.</h1>
+          <span class="fx-rule" aria-hidden="true"></span>
+          <p class="fx-hero-intro">Fresh fades. Clean lines. Your own point of view. Find your barber at The Tribe Studio 1 Maverick.</p>
+          <a class="fx-btn fx-btn-lime fx-hero-cta" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span>Book your chair</span><span class="fx-arrow" aria-hidden="true">↗</span></a>
         </div>
-
-        <div class="hero-art" aria-hidden="true">
-          <div class="arch">
-            <div class="arch-stripes"></div>
-            <svg class="seal" viewBox="0 0 200 200">
-              <defs><path id="seal-path" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
-              <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" stroke-width="1"/>
-              <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="1"/>
-              <text font-size="13" letter-spacing="4.2" fill="currentColor"><textPath href="#seal-path">THE TRIBE STUDIO · 1 MAVERICK · EAST BOSTON ·</textPath></text>
-              <use href="#i-scissors" x="70" y="70" width="60" height="60"/>
-            </svg>
+        <figure class="fx-hero-photo">
+          <img class="fx-hero-main" src="img/fx/studio.webp" width="640" height="427" alt="Inside The Tribe Studio: gold and black barber chairs under hexagon ceiling lights" fetchpriority="high">
+          <div class="fx-hero-inset">
+            <img src="img/fx/work-1.webp" width="960" height="960" alt="A fresh fade seen from behind" loading="lazy">
+            <span>THE DETAILS MAKE THE DIFFERENCE.</span>
           </div>
-          <div class="hero-tools">
-            <svg><use href="#i-razor"/></svg>
-            <svg><use href="#i-comb"/></svg>
-          </div>
-        </div>
-        <figure class="photo-slot hero-photo has-photo">
-          <img src="img/tribe-studio-barbershop-interior-east-boston-800w.webp" srcset="img/tribe-studio-barbershop-interior-east-boston-480w.webp 480w, img/tribe-studio-barbershop-interior-east-boston-800w.webp 800w, img/tribe-studio-barbershop-interior-east-boston.webp 1086w" sizes="(max-width: 1100px) 86vw, 300px" width="1200" height="1600" loading="eager" fetchpriority="high" decoding="async" alt="Inside The Tribe Studio barbershop in East Boston: black and gold barber chairs under a hexagon light ceiling" data-i18n-attr="alt:alt.interior">
+          <figcaption class="fx-hero-photo-id">THE STUDIO / 01 MAVERICK</figcaption>
         </figure>
       </div>
-    </section>
-
-    <div class="band" aria-hidden="true">
-      <div class="band-inner">
-        <span data-i18n="band.haircut">Haircut</span><svg><use href="#i-scissors"/></svg>
-        <span data-i18n="band.beard">Beard</span><svg><use href="#i-razor"/></svg>
-        <span data-i18n="band.lineup">Line up</span><svg><use href="#i-comb"/></svg>
-        <span data-i18n="band.color">Color</span><svg><use href="#i-scissors"/></svg>
-        <span>VIP</span>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <section class="section" id="services" aria-labelledby="services-title">
-      <div class="wrap">
-        <header class="section-head">
-          <p class="kicker" data-i18n="services.kicker">The menu</p>
-          <h2 id="services-title" class="section-title" data-i18n="services.title">Services &amp; prices</h2>
-          <p class="section-lede" data-i18n="services.lede">Men’s haircuts and fades, beard grooming, line ups and color in East Boston. Prices and times as listed on Booksy. Times depend on your barber.</p>
-        </header>
-
-        <ol class="menu-list">
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name" data-i18n="svc.haircut">Haircut</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price">$40</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.haircut.desc">Includes steam and a hair wash. Keven uses ozone steam.</p>
-            <p class="menu-time"><span class="time-pill">45 min – 1 h</span> <span data-i18n="svc.haircut.time">45 min with Keven · 1 h with Dumar, Jean Carlos, Santi or Kevin T.</span></p>
-          </li>
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name" data-i18n="svc.haircutAndres">Haircut with Andres</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price">$60</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.haircutAndres.desc">Includes facial steam and styling.</p>
-            <p class="menu-time"><span class="time-pill">1 h</span></p>
-          </li>
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name" data-i18n="svc.beard">Haircut &amp; Beard</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price">$50</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.beard.desc">Includes beard steam, a wash and a facial.</p>
-            <p class="menu-time"><span class="time-pill">1 h – 1 h 15</span> <span data-i18n="svc.beard.time">1 h with Keven · 1 h 15 with Dumar, Jean Carlos, Santi or Kevin T.</span></p>
-          </li>
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name" data-i18n="svc.beardAndres">Haircut &amp; Beard with Andres</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price">$70</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.beardAndres.desc">Includes steamed beard, facial cleansing and styling.</p>
-            <p class="menu-time"><span class="time-pill">1 h 20</span></p>
-          </li>
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name">VIP</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price">$70</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.vip.desc">See what's included on Booksy.</p>
-            <p class="menu-time"><span class="time-pill">1 h 30</span></p>
-          </li>
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name" data-i18n="svc.lineup">Line up</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price">$25</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.lineup.desc">Edge-up and outline.</p>
-            <p class="menu-time"><span class="time-pill">30 min</span></p>
-          </li>
-          <li class="menu-item reveal">
-            <div class="menu-row">
-              <h3 class="menu-name" data-i18n="svc.color">Hair color</h3>
-              <span class="menu-dots" aria-hidden="true"></span>
-              <span class="menu-price"><span class="from" data-i18n="svc.from">from</span> $150</span>
-            </div>
-            <p class="menu-desc" data-i18n="svc.color.desc">For men and women.</p>
-            <p class="menu-time"><span class="time-pill">3 h</span></p>
-          </li>
-        </ol>
-
-        <div class="section-cta">
-          <a class="btn btn-gold btn-lg" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-            <span data-i18n="cta.pickTime">Pick a service &amp; time</span>
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-          <p class="fine" data-i18n="services.note">Prices can change. Booksy always shows the current price.</p>
-        </div>
+      <div class="fx-hero-foot">
+        <a class="fx-rating" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span class="fx-stars" aria-hidden="true">★★★★★</span><span>5.0 on Booksy · 462 reviews</span></a>
+        <a class="fx-scroll" href="#services">GOOD HAIR STARTS HERE ↓</a>
       </div>
     </section>
 
-    <!-- BARBERS -->
-    <section class="section section-alt" id="barbers" aria-labelledby="barbers-title">
-      <div class="wrap">
-        <header class="section-head">
-          <p class="kicker" data-i18n="barbers.kicker">The tribe</p>
-          <h2 id="barbers-title" class="section-title" data-i18n="barbers.title">Meet the barbers</h2>
-          <p class="section-lede" data-i18n="barbers.lede">Six friendly barbers under one roof. Pick yours when you book.</p>
-        </header>
-
-        <ul class="barber-grid">
-          <li class="barber reveal">
-            <span class="monogram" aria-hidden="true">AO</span>
-            <h3 class="barber-name">Andres Ospina</h3>
-            <p class="barber-note" data-i18n="barber.andres">Haircut $60 · Haircut &amp; Beard $70</p>
-          </li>
-          <li class="barber reveal">
-            <span class="monogram" aria-hidden="true">K</span>
-            <h3 class="barber-name">Keven</h3>
-            <p class="barber-note" data-i18n="barber.keven">Haircut $40 (45 min) · Haircut &amp; Beard $50</p>
-          </li>
-          <li class="barber reveal">
-            <span class="monogram" aria-hidden="true">DG</span>
-            <h3 class="barber-name">Dumar Gomez</h3>
-            <p class="barber-note" data-i18n="barber.std">Haircut $40 · Haircut &amp; Beard $50</p>
-          </li>
-          <li class="barber reveal">
-            <span class="monogram" aria-hidden="true">JC</span>
-            <h3 class="barber-name">Jean Carlos</h3>
-            <p class="barber-note" data-i18n="barber.std">Haircut $40 · Haircut &amp; Beard $50</p>
-          </li>
-          <li class="barber reveal">
-            <span class="monogram" aria-hidden="true">KT</span>
-            <h3 class="barber-name">Kevin Tabares</h3>
-            <p class="barber-note" data-i18n="barber.std">Haircut $40 · Haircut &amp; Beard $50</p>
-          </li>
-          <li class="barber reveal">
-            <span class="monogram" aria-hidden="true">SV</span>
-            <h3 class="barber-name">Santi Vélez</h3>
-            <p class="barber-note" data-i18n="barber.std">Haircut $40 · Haircut &amp; Beard $50</p>
-          </li>
-        </ul>
-
-        <div class="section-cta">
-          <a class="btn btn-ghost btn-lg" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-            <span data-i18n="cta.chooseBarber">Choose your barber on Booksy</span>
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
+    <!-- 01 Services -->
+    <section class="fx-light fx-section" id="services" aria-labelledby="fx-services-title">
+      <div class="fx-intro">
+        <div>
+          <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>01 / The menu</p>
+          <h2 id="fx-services-title" class="fx-title">A FRESH START. ANY STYLE.</h2>
         </div>
+        <p class="fx-aside">Choose the service. Find your barber. Final pricing and availability are on Booksy.</p>
       </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section class="section" id="reviews" aria-labelledby="reviews-title">
-      <div class="wrap reviews-grid">
-        <div class="score reveal">
-          <p class="score-num">5.0</p>
-          <span class="stars stars-lg" aria-hidden="true">
-            <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
-          </span>
-          <p class="score-sub" data-i18n="reviews.count">456 reviews on Booksy</p>
+      <div class="fx-menu-grid">
+        <div>
+          <ul class="fx-menu">
+            <li><div><h3>HAIRCUT</h3><p>Your cut, your finish. Price varies by barber.</p></div><div class="fx-price"><b>from $40</b><span>45 min–1h</span></div></li>
+            <li><div><h3>HAIRCUT &amp; BEARD</h3><p>One appointment. A complete refresh.</p></div><div class="fx-price"><b>from $50</b><span>1h–1h20</span></div></li>
+            <li><div><h3>VIP</h3><p>A longer appointment on the menu.</p></div><div class="fx-price"><b>$70</b><span>1h30</span></div></li>
+            <li><div><h3>LINE UP</h3><p>Keep the edges sharp.</p></div><div class="fx-price"><b>$25</b><span>30 min</span></div></li>
+            <li><div><h3>HAIR COLOR</h3><p>Make a different kind of statement.</p></div><div class="fx-price"><b>$150+</b><span>3h</span></div></li>
+          </ul>
+          <a class="fx-btn fx-btn-ink" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span>Find your appointment</span><span class="fx-arrow" aria-hidden="true">↗</span></a>
         </div>
-        <div class="reviews-copy reveal">
-          <p class="kicker" data-i18n="reviews.kicker">Reviews</p>
-          <h2 id="reviews-title" class="section-title" data-i18n="reviews.title">Rated 5.0 by our clients</h2>
-          <p class="section-lede" data-i18n="reviews.lede">Our clients leave their reviews on Booksy, in English and in Spanish. Read them there, straight from the people in the chair.</p>
-          <a class="btn btn-gold btn-lg" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-            <span data-i18n="cta.readReviews">Read reviews on Booksy</span>
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY / INSTAGRAM -->
-    <section class="section section-alt" id="gallery" aria-labelledby="gallery-title">
-      <div class="wrap">
-        <header class="section-head">
-          <p class="kicker" data-i18n="gallery.kicker">Gallery</p>
-          <h2 id="gallery-title" class="section-title" data-i18n="gallery.title">Inside the shop</h2>
-          <p class="section-lede" data-i18n="gallery.lede">Real photos of The Tribe Studio at 55 Chelsea St. For the latest cuts, see our Instagram.</p>
-        </header>
-        <div class="gallery">
-          <figure class="photo-slot has-photo reveal"><img src="img/tribe-studio-storefront-55-chelsea-st-800w.webp" srcset="img/tribe-studio-storefront-55-chelsea-st-480w.webp 480w, img/tribe-studio-storefront-55-chelsea-st-800w.webp 800w, img/tribe-studio-storefront-55-chelsea-st.webp 1200w" sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="The Tribe Studio storefront at 55 Chelsea St, East Boston, with a barber pole beside the door" data-i18n-attr="alt:alt.storefront"></figure>
-          <figure class="photo-slot has-photo reveal"><img src="img/tribe-studio-barber-chair-station-800w.webp" srcset="img/tribe-studio-barber-chair-station-480w.webp 480w, img/tribe-studio-barber-chair-station-800w.webp 800w, img/tribe-studio-barber-chair-station.webp 1200w" sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="A black and gold barber chair at one of the stations inside The Tribe Studio" data-i18n-attr="alt:alt.station"></figure>
-          <figure class="photo-slot has-photo reveal"><img src="img/tribe-studio-barber-station-tools-800w.webp" srcset="img/tribe-studio-barber-station-tools-480w.webp 480w, img/tribe-studio-barber-station-tools-800w.webp 800w, img/tribe-studio-barber-station-tools.webp 1200w" sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1200" height="1600" loading="lazy" decoding="async" alt="A barber at work behind a station of clippers and products at The Tribe Studio" data-i18n-attr="alt:alt.tools"></figure>
-        </div>
-        <div class="section-cta">
-          <a class="btn btn-ghost btn-lg" href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-            <svg class="icon" aria-hidden="true"><use href="#i-insta"/></svg>
-            <span>@thetribestudiobarbershop</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- VISIT -->
-    <section class="section" id="visit" aria-labelledby="visit-title">
-      <div class="wrap visit-grid">
-        <div class="visit-card reveal">
-          <p class="kicker" data-i18n="visit.kicker">Visit</p>
-          <h2 id="visit-title" class="section-title" data-i18n="visit.title">Find the shop</h2>
-          <address class="address">
-            <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
-            <span>55 Chelsea St<br>East Boston, MA 02128</span>
-          </address>
-          <div class="visit-ctas">
-            <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&amp;query=55+Chelsea+St+East+Boston+MA+02128" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-              <span data-i18n="cta.directions">Get directions</span>
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-            <a class="btn btn-ghost" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab" data-i18n="cta.book">Book now</a>
-            <a class="btn btn-ghost" href="tel:+18573349508" data-track="phone"><span data-i18n="cta.call">Call</span>&nbsp;(857) 334-9508</a>
-          </div>
-        </div>
-
-        <div class="hours reveal">
-          <h3 class="hours-title" data-i18n="hours.title">Opening hours</h3>
-          <table class="hours-table">
-            <caption class="visually-hidden" data-i18n="hours.caption">Opening hours by day</caption>
+        <div class="fx-providers">
+          <h3 class="fx-table-title">YOUR BARBER. YOUR BOOKING.</h3>
+          <table>
+            <thead><tr><th scope="col">BARBER</th><th scope="col">HAIRCUT</th><th scope="col">CUT &amp; BEARD</th></tr></thead>
             <tbody>
-              <tr data-day="1"><th scope="row" data-i18n="day.mon">Monday</th><td data-i18n="hours.week">9 AM – 8 PM</td></tr>
-              <tr data-day="2"><th scope="row" data-i18n="day.tue">Tuesday</th><td data-i18n="hours.week">9 AM – 8 PM</td></tr>
-              <tr data-day="3"><th scope="row" data-i18n="day.wed">Wednesday</th><td data-i18n="hours.week">9 AM – 8 PM</td></tr>
-              <tr data-day="4"><th scope="row" data-i18n="day.thu">Thursday</th><td data-i18n="hours.week">9 AM – 8 PM</td></tr>
-              <tr data-day="5"><th scope="row" data-i18n="day.fri">Friday</th><td data-i18n="hours.week">9 AM – 8 PM</td></tr>
-              <tr data-day="6"><th scope="row" data-i18n="day.sat">Saturday</th><td data-i18n="hours.week">9 AM – 8 PM</td></tr>
-              <tr data-day="0"><th scope="row" data-i18n="day.sun">Sunday</th><td data-i18n="hours.sun">10 AM – 4 PM</td></tr>
+              <tr><th scope="row">Keven</th><td>$40 / 45 min</td><td>$50 / 1h</td></tr>
+              <tr><th scope="row">Dumar Gomez</th><td>$40 / 1h</td><td>$50 / 1h15</td></tr>
+              <tr><th scope="row">Jean Carlos</th><td>$40 / 1h</td><td>$50 / 1h15</td></tr>
+              <tr><th scope="row">Andres</th><td>$60 / 1h</td><td>$70 / 1h20</td></tr>
+              <tr><th scope="row">Santi Vélez</th><td>$40 / 1h</td><td>$50 / 1h15</td></tr>
+              <tr><th scope="row">Kevin Tabares</th><td>$40 / 1h</td><td>$50 / 1h15</td></tr>
+              <tr><th scope="row">Ricardo</th><td>$40 / 1h</td><td>$50 / 1h</td></tr>
             </tbody>
           </table>
-          <p class="fine" data-i18n="hours.note">Holiday hours may differ, so check Booksy before you come.</p>
-        </div>
-      </div>
-
-      <!-- From Logan Airport: live Google map (no API key; route colours and drive time follow live traffic) -->
-      <div class="wrap airport reveal">
-        <div class="airport-copy">
-          <p class="kicker" data-i18n="airport.kicker">From Logan Airport</p>
-          <h3 class="airport-title" data-i18n="airport.title">2.2 miles from the airport</h3>
-          <p class="section-lede" data-i18n="airport.lede">Flying into Boston? The shop is a short drive from Logan. The map shows the route with live traffic, and the drive time updates with it.</p>
-          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;origin=Boston+Logan+International+Airport&amp;destination=55+Chelsea+St+East+Boston+MA+02128&amp;travelmode=driving" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-            <span data-i18n="airport.cta">Directions from the airport</span>
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
-        <div class="airport-map">
-          <iframe
-            src="https://maps.google.com/maps?saddr=Boston+Logan+International+Airport&amp;daddr=55+Chelsea+St,+East+Boston,+MA+02128&amp;layer=t&amp;hl=en&amp;output=embed"
-            data-i18n-attr="src:airport.mapSrc;title:airport.mapTitle"
-            title="Live map: driving route from Logan Airport to the shop, with traffic"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <p class="fx-note">Keven’s haircut includes a fade, ozone steam and hair wash. Dumar Gomez and Jean Carlos include wash and steam. Andres includes facial vaporization and styling.</p>
         </div>
       </div>
     </section>
 
-    <!-- FINAL CTA -->
-    <section class="final" aria-labelledby="final-title">
-      <div class="wrap final-inner">
-        <svg class="final-mark" aria-hidden="true"><use href="#i-scissors"/></svg>
-        <h2 id="final-title" class="final-title" data-i18n="final.title">Your chair is ready.</h2>
-        <a class="btn btn-gold btn-lg" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">
-          <span data-i18n="cta.bookBooksy">Book on Booksy</span>
-          <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-        </a>
+    <!-- 02 The studio -->
+    <section class="fx-light fx-studio" id="studio" aria-labelledby="fx-studio-title">
+      <figure class="fx-studio-photo">
+        <img src="img/fx/studio.webp" width="640" height="427" alt="The real studio at 55 Chelsea St" loading="lazy">
+        <figcaption><span>INSIDE THE TRIBE / 55 CHELSEA ST</span><span>EAST BOSTON, MA</span></figcaption>
+      </figure>
+      <div class="fx-studio-copy">
+        <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>02 / More than the cut</p>
+        <h2 id="fx-studio-title" class="fx-studio-title">A CHAIR.<br>A RESET.<br>YOUR SPACE.</h2>
+        <p class="fx-studio-text">Come in for the cut. Take a little time for yourself. From a clean fade to a full haircut and beard, make your next appointment your own.</p>
+        <ul class="fx-notes">
+          <li><span aria-hidden="true">↗</span>Seven barbers. Find your fit.</li>
+          <li><span aria-hidden="true">↗</span>Wash and steam with selected haircuts.</li>
+          <li><span aria-hidden="true">↗</span>Choose your service and time on Booksy.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 03 Our work -->
+    <section class="fx-dark fx-section" id="work" aria-labelledby="fx-work-title">
+      <div class="fx-intro">
+        <div>
+          <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>03 / Straight from the chair</p>
+          <h2 id="fx-work-title" class="fx-title fx-title-work">THE WORK SPEAKS.</h2>
+        </div>
+        <div class="fx-social">
+          <p>Real cuts from The Tribe. Find the inspiration for your next appointment.</p>
+          <a href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">FOLLOW THE TRIBE ON INSTAGRAM ↗</a>
+        </div>
+      </div>
+      <div class="fx-gallery">
+        <figure class="fx-work fx-work-1"><img src="img/fx/work-1.webp" width="960" height="960" alt="Fresh fade from behind, The Tribe" loading="lazy"><figcaption><span>THE CUT / THE TRIBE</span><span class="fx-lime" aria-hidden="true">↗</span></figcaption></figure>
+        <figure class="fx-work fx-work-2"><img src="img/fx/work-2.webp" width="960" height="960" alt="Close detail of a skin fade" loading="lazy"><figcaption><span>DETAIL STUDY</span><span class="fx-lime" aria-hidden="true">↗</span></figcaption></figure>
+        <figure class="fx-work fx-work-3"><img src="img/fx/work-3.webp" width="960" height="960" alt="Textured top with a low fade, straight from the chair" loading="lazy"><figcaption><span>FROM THE CHAIR</span><span class="fx-lime" aria-hidden="true">↗</span></figcaption></figure>
+        <figure class="fx-work fx-work-4"><img src="img/fx/work-4.webp" width="899" height="899" alt="A young client and his barber after the finish" loading="lazy"><figcaption><span>THE FINISH</span><span class="fx-lime" aria-hidden="true">↗</span></figcaption></figure>
+      </div>
+      <div class="fx-work-foot">
+        <p>NO STOCK CUTS. JUST TRIBE WORK.</p>
+        <a href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">@THETRIBESTUDIOBARBERSHOP ↗</a>
+      </div>
+    </section>
+
+    <!-- 04 Barbers -->
+    <section class="fx-light fx-section" id="barbers" aria-labelledby="fx-barbers-title">
+      <div class="fx-intro">
+        <div>
+          <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>04 / Meet your barber</p>
+          <h2 id="fx-barbers-title" class="fx-title">SEVEN BARBERS. ONE TRIBE.</h2>
+        </div>
+        <p class="fx-aside">Meet the people behind the cuts. Pick your barber and see their next available appointments on Booksy.</p>
+      </div>
+      <ul class="fx-team">
+        <li class="fx-barber"><img src="img/fx/barber-andres.webp" width="720" height="720" alt="Andres Ospina" loading="lazy"><div><h3>Andres Ospina</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Andres Ospina on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-barber"><img src="img/fx/barber-keven.webp" width="720" height="720" alt="Keven" loading="lazy"><div><h3>Keven</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Keven on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-barber"><img src="img/fx/barber-dumar.webp" width="720" height="720" alt="Dumar Gomez" loading="lazy"><div><h3>Dumar Gomez</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Dumar Gomez on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-barber fx-barber-top"><img src="img/fx/barber-jean.webp" width="720" height="720" alt="Jean Carlos" loading="lazy"><div><h3>Jean Carlos</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Jean Carlos on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-barber"><img src="img/fx/barber-kevin.webp" width="720" height="720" alt="Kevin Tabares" loading="lazy"><div><h3>Kevin Tabares</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Kevin Tabares on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-barber"><img src="img/fx/barber-rick.webp" width="720" height="720" alt="Rick" loading="lazy"><div><h3>Rick</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Rick on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-barber"><img src="img/fx/barber-santi.webp" width="720" height="720" alt="Santi Vélez" loading="lazy"><div><h3>Santi Vélez</h3><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-label="Book with Santi Vélez on Booksy (opens in a new tab)">BOOK ↗</a></div></li>
+        <li class="fx-goto">
+          <span class="fx-goto-mark" aria-hidden="true">✳</span>
+          <h3>FIND YOUR<br>GO-TO.</h3>
+          <p>New here? Explore the team and book your first visit.</p>
+          <a class="fx-btn fx-btn-lime" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span>Choose a barber</span><span class="fx-arrow" aria-hidden="true">↗</span></a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 05 Reviews -->
+    <section class="fx-dark fx-reviews" id="reviews" aria-labelledby="fx-reviews-title">
+      <div class="fx-score">
+        <p class="fx-label" id="fx-reviews-title"><span class="fx-mark" aria-hidden="true">✳</span>05 / Word from the chair</p>
+        <p class="fx-score-num"><span>5.0</span><span class="fx-score-scale">/ 5</span></p>
+        <p class="fx-score-stars" aria-hidden="true">★★★★★</p>
+        <p class="fx-score-count">Based on 462 reviews on Booksy</p>
+        <a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">READ THE REVIEWS ↗</a>
+      </div>
+      <figure class="fx-quote">
+        <span class="fx-quote-mark" aria-hidden="true">“</span>
+        <blockquote>Not even going to lie when I say this was the best haircut I’ve ever gotten! Highly recommend!</blockquote>
+        <figcaption><span>CONFIRMED CLIENT / BOOKSY</span><span>Service: Haircut Jean Carlos</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- 06 Visit -->
+    <section class="fx-light fx-visit" id="visit" aria-labelledby="fx-visit-title">
+      <div class="fx-visit-head">
+        <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>06 / In the neighborhood</p>
+        <h2 id="fx-visit-title" class="fx-visit-title">EAST BOSTON.<br>ALL YOURS.</h2>
+      </div>
+      <div class="fx-visit-info">
+        <p class="fx-visit-name"><span aria-hidden="true">↗</span>THE TRIBE STUDIO 1 MAVERICK</p>
+        <address class="fx-visit-addr">55 Chelsea St<br>East Boston, 02128</address>
+        <p class="fx-visit-links">
+          <a class="fx-underline" href="https://www.google.com/maps/search/?api=1&amp;query=55+Chelsea+St+East+Boston+02128" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">GET DIRECTIONS ↗</a>
+          <a href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">INSTAGRAM ↗</a>
+        </p>
+        <!-- Hours added to the Figma layout so visitors still see when the shop is open -->
+        <h3 class="fx-hours-title">OPENING HOURS</h3>
+        <dl class="fx-hours">
+          <div><dt>Monday – Saturday</dt><dd>9 AM – 8 PM</dd></div>
+          <div><dt>Sunday</dt><dd>10 AM – 4 PM</dd></div>
+        </dl>
+        <p class="fx-visit-note">Plan your visit on Booksy. Choose a service, select your barber and find a time that works for you.</p>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
+  <!-- Booking + footer -->
+  <footer class="site-footer fx-foot" lang="en">
+    <div class="fx-book">
       <div>
-        <p class="footer-brand">The Tribe Studio <span class="footer-sub">1 Maverick</span></p>
-        <p class="footer-addr">55 Chelsea St, East Boston, MA 02128 · <a href="tel:+18573349508" data-track="phone">(857) 334-9508</a></p>
+        <p class="fx-label"><span class="fx-mark" aria-hidden="true">✳</span>Your next cut is calling</p>
+        <p class="fx-book-title">TAKE YOUR SEAT.</p>
       </div>
-      <ul class="footer-links">
-        <li><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Booksy</a></li>
-        <li><a href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Instagram</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=55+Chelsea+St+East+Boston+MA+02128" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Google Maps</a></li>
-        <li><a href="#top" data-i18n="footer.top">Back to top</a></li>
-      </ul>
+      <div class="fx-book-action">
+        <a class="fx-btn fx-btn-lime" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span>Book on Booksy</span><span class="fx-arrow" aria-hidden="true">↗</span></a>
+        <p>Your barber. Your time. Your Tribe.</p>
+      </div>
+    </div>
+    <div class="fx-foot-info">
+      <div>
+        <p class="fx-foot-brand">THE TRIBE STUDIO</p>
+        <p class="fx-foot-branch">1 MAVERICK / EAST BOSTON</p>
+      </div>
+      <div>
+        <p class="fx-foot-head">FIND THE STUDIO</p>
+        <p class="fx-foot-text">55 Chelsea St<br>East Boston, 02128</p>
+      </div>
+      <div>
+        <p class="fx-foot-head">STAY IN THE LOOP</p>
+        <p class="fx-foot-text"><a href="https://www.instagram.com/thetribestudiobarbershop/" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Instagram ↗</a><br><a href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston?do=invite#ba_s=dl_1" target="_blank" rel="noopener noreferrer" aria-describedby="newtab">Booksy ↗</a></p>
+      </div>
+    </div>
+    <div class="fx-foot-base">
+      <p>© The Tribe Studio 1 Maverick</p>
+      <p>INDIVIDUAL STYLE. SHARED ENERGY.</p>
     </div>
   </footer>
-
-  <!-- Sticky booking bar (phones only) -->
-  <div class="mobile-bar">
-    <span class="mobile-bar-rating"><svg aria-hidden="true"><use href="#i-star"/></svg> <strong>5.0</strong> <span data-i18n="rating.mobile">· 456 on Booksy</span></span>
-    <a class="btn btn-gold" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab" data-i18n="cta.book">Book now</a>
-  </div>
 
   <script src="main.js" defer></script>
   <script src="shop.js" defer></script>

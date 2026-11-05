@@ -45,8 +45,8 @@
     after.insertAdjacentElement("afterend", p);
     pills.push(p);
   }
-  addPill(document.querySelector(".hero-ctas"), "open-status-hero");
-  addPill(document.querySelector(".hours-title"), "open-status-hours");
+  addPill(document.querySelector(".fx-hero-cta"), "open-status-hero");
+  addPill(document.querySelector(".fx-hours-title"), "open-status-hours");
 
   function paint() {
     var s = statusText();
