@@ -1,0 +1,131 @@
+/* The Tribe Studio: "at home" theme for the full site (Jean, 2026-11-05: white with gold, compact and friendly).
+   Loaded after styles.css. Only the full site changes; the storefront entrance, the shop scene, the chair
+   stations and the assistant keep their own dark, photo-led look.
+
+   Palette (contrast checked):
+     linen  #FBF7EF  page            espresso #2B241C  text   14.3:1 on linen, 12.9:1 on cream
+     cream  #F3EBDC  alt sections    walnut   #6A5D4D  muted   6.0:1 on linen,  5.4:1 on cream
+     paper  #FFFFFF  cards           gold     #7A5B27  gold text 5.9:1 on linen, 5.3:1 on cream
+     honey  #C9A35C  gold fills (buttons, badges) with espresso text, 6.5:1 */
+
+body { background: #FBF7EF; }
+body::before { display: none; } /* the film grain belongs to the dark look */
+
+.site-header, main, .site-footer, .mobile-bar, .skip-link {
+  --ink: #FBF7EF;
+  --ink-2: #F3EBDC;
+  --ink-3: #FFFFFF;
+  --bone: #2B241C;
+  --muted: #6A5D4D;
+  --gold: #7A5B27;
+  --gold-2: #5F461C;
+  --honey: #C9A35C;
+  --honey-2: #D8B672;
+  --line: rgba(43, 36, 28, 0.12);
+  --line-strong: rgba(43, 36, 28, 0.24);
+  --focus: #7A5B27;
+  --shadow-sm: 0 1px 2px rgba(43, 36, 28, 0.06), 0 2px 6px rgba(43, 36, 28, 0.05);
+  --shadow-md: 0 2px 4px rgba(43, 36, 28, 0.05), 0 10px 24px -8px rgba(43, 36, 28, 0.14);
+  --section-y: clamp(44px, 6vw, 84px);
+  --radius: 20px;
+  color: var(--bone);
+}
+
+/* Gold fills: honey background, espresso text */
+.skip-link { background: var(--honey); color: var(--bone); }
+.btn-gold { background: var(--honey); color: var(--bone); box-shadow: var(--shadow-sm); }
+.btn-gold:hover { background: var(--honey-2); }
+.btn-ghost { background: #FFFFFF; border-color: var(--line-strong); color: var(--bone); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.hours-table tr.is-today th::after { background: var(--honey); color: var(--bone); }
+.lang-btn[aria-pressed="true"] { background: var(--bone); color: #FBF7EF; }
+
+/* Header: frosted linen instead of frosted black */
+.site-header { background: rgba(251, 247, 239, 0.88); }
+.site-nav a:hover { background: rgba(122, 91, 39, 0.08); }
+@media (max-width: 860px) {
+  .site-nav { background: rgba(251, 247, 239, 0.98); box-shadow: var(--shadow-md); }
+}
+
+/* Hero: warm and lighter, tighter */
+.hero { padding-block: clamp(32px, 5vw, 72px) clamp(40px, 5vw, 80px); }
+.hero::after { background: radial-gradient(closest-side, rgba(201, 163, 92, 0.22), transparent 70%); }
+.hero-ctas { margin-top: 24px; }
+.rating-chip { margin-top: 20px; background: #FFFFFF; box-shadow: var(--shadow-sm); }
+.arch {
+  border-color: rgba(122, 91, 39, 0.28);
+  background: linear-gradient(180deg, #FFFFFF, #F3EBDC);
+  box-shadow: var(--shadow-md);
+}
+.arch::before { border-color: rgba(122, 91, 39, 0.35); }
+.arch-stripes {
+  background: repeating-linear-gradient(
+    -38deg,
+    rgba(201, 163, 92, 0.28) 0 22px,
+    rgba(255, 255, 255, 0.6) 22px 44px,
+    rgba(255, 255, 255, 0) 44px 66px
+  );
+}
+.hero-tools { box-shadow: var(--shadow-md); }
+.hero-photo { box-shadow: var(--shadow-md); }
+.photo-slot {
+  background:
+    repeating-linear-gradient(45deg, rgba(43, 36, 28, 0.03) 0 10px, transparent 10px 20px),
+    var(--ink-2);
+}
+
+/* Sections: closer together, softer edges */
+.section-head { margin-bottom: clamp(24px, 3.5vw, 44px); }
+.section-lede { margin-top: 10px; }
+.section-cta { margin-top: clamp(24px, 3.5vw, 40px); }
+.section-alt { border-block-color: transparent; }
+
+/* Services: a light card instead of loose rows */
+.menu-list {
+  padding: clamp(8px, 2vw, 16px) clamp(20px, 3vw, 36px);
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  column-gap: clamp(28px, 4vw, 64px);
+}
+.menu-item { padding-block: 16px; }
+.menu-list > .menu-item:first-child,
+.menu-list > .menu-item:nth-child(2) { border-top: 0; }
+.menu-desc { margin-top: 4px; }
+.menu-time { margin-top: 8px; }
+.time-pill { background: #F3EBDC; border-color: transparent; }
+
+/* Barbers, hours, reviews: white cards with a soft lift */
+.barber { padding: 22px; box-shadow: var(--shadow-sm); }
+.barber:hover { border-color: rgba(122, 91, 39, 0.45); box-shadow: var(--shadow-md); }
+.barber::after {
+  background: repeating-linear-gradient(180deg, #C9A35C 0 14px, #FFFFFF 14px 20px, #2B241C 20px 34px);
+  opacity: 0.45;
+}
+.monogram { margin-bottom: 16px; background: #FBF7EF; }
+.hours { box-shadow: var(--shadow-sm); }
+.hours-table th, .hours-table td { padding: 9px 0; }
+.score {
+  background: radial-gradient(120% 80% at 50% 0%, rgba(201, 163, 92, 0.24), transparent 60%), #FFFFFF;
+  border-color: var(--line);
+  box-shadow: var(--shadow-md);
+}
+.score-num { font-weight: 400; }
+.reviews-copy .btn { margin-top: 20px; }
+
+/* Closing call and footer */
+.final { background: radial-gradient(60% 80% at 50% 100%, rgba(201, 163, 92, 0.22), transparent 70%), #FBF7EF; }
+.final-inner { gap: 20px; }
+.site-footer { padding-block: 28px; }
+
+/* Phones: the booking bar turns linen too */
+@media (max-width: 767px) {
+  .mobile-bar { background: rgba(255, 253, 248, 0.96); box-shadow: 0 -6px 20px -10px rgba(43, 36, 28, 0.25); }
+  .barber { padding: 16px; }
+  .hero { padding-top: 24px; }
+}
+
+@media (forced-colors: active) {
+  .menu-list, .barber, .hours, .score { box-shadow: none; }
+}
