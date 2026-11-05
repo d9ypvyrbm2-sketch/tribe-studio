@@ -267,3 +267,12 @@ html.shop-open #tribe-assistant .ta-launcher { width: 68px; height: 82px; }
 @media (forced-colors: active) {
   #tribe-assistant .ta-panel, #tribe-assistant .ta-msg, #tribe-assistant .ta-btn, #tribe-assistant .ta-chip { border: 1px solid CanvasText; }
 }
+
+/* Jean, 2026-11-05: the robot sits at the same height, centred across the page; its chat opens centred above it. */
+#tribe-assistant { left: 50%; right: auto; translate: -50% 0; }
+#tribe-assistant .ta-panel { right: auto; left: 50%; translate: -50% 0; transform-origin: bottom center; }
+@media (max-width: 767px) { #tribe-assistant { right: auto; } }
+@media (max-width: 520px) {
+  #tribe-assistant.is-open { left: 0; right: 0; translate: none; }
+  #tribe-assistant .ta-panel { left: 0; translate: none; }
+}
