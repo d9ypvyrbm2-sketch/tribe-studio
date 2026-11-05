@@ -71,11 +71,9 @@
     0 0 6px rgb(255 255 255 / .95),
     0 0 14px rgb(255 255 255 / .7),
     0 0 24px rgb(255 246 220 / .5);
-  /* dark label with a gold edge, so the glowing white letters stand out */
-  background: rgb(14 13 11 / .82);
+  /* black label with a gold edge, so the glowing white letters stand out */
+  background: #000;
   border: 1.5px solid var(--gold);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
   padding: 8px 12px;
   border-radius: 999px;
   box-shadow: 0 8px 20px -6px rgb(0 0 0 / .7);
@@ -84,7 +82,7 @@
 /* near the edges the label grows inward from the dot, so phones never cut it off */
 .chair[data-side="left"] { justify-items: start; translate: -17px -50%; }
 .chair[data-side="right"] { justify-items: end; translate: calc(-100% + 17px) -50%; }
-.chair:hover .chair-label { background: rgb(31 28 24 / .92); border-color: var(--gold-2); transform: translateY(-2px); }
+.chair:hover .chair-label { background: #000; border-color: var(--gold-2); transform: translateY(-2px); }
 .shop:focus { outline: none; }
 .chair:focus-visible { outline: none; }
 .chair:focus-visible .chair-label { outline: 3px solid var(--focus); outline-offset: 3px; }
