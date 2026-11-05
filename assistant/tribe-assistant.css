@@ -30,6 +30,8 @@
 
 /* Inside the shop scene: sit above its "See the full site" button */
 html.shop-open #tribe-assistant { --ta-bottom: 64px; }
+/* A little smaller inside the shop scene */
+html.shop-open #tribe-assistant .ta-launcher { width: 68px; height: 82px; }
 
 /* Hidden while the storefront entrance plays */
 .entrance-open #tribe-assistant { display: none; }
@@ -39,6 +41,7 @@ html.shop-open #tribe-assistant { --ta-bottom: 64px; }
   html:not(.shop-open) #tribe-assistant { --ta-bottom: 80px; }
   /* Phones: a slightly smaller robot */
   #tribe-assistant .ta-launcher { width: 62px; height: 76px; }
+  html.shop-open #tribe-assistant .ta-launcher { width: 52px; height: 64px; }
   html.shop-open #tribe-assistant { --ta-bottom: 64px; } /* just clears the "See the full site" button */
   #tribe-assistant { right: 14px; }
 }
