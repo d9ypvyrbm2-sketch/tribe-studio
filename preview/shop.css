@@ -117,7 +117,7 @@
   background: none; /* no dark fade at the bottom */
 }
 .shop.is-focused .shop-top, .shop.is-focused .shop-bottom { opacity: 0; pointer-events: none; }
-/* Shop name: set a little lower, in Cinzel (Roman capitals), with a warm gold glow like a lit sign */
+/* Shop name: Cinzel capitals with a black outline, a red outline and a warm gold glow */
 .shop-name {
   margin-top: clamp(24px, 3.5vh, 36px);
   font-family: "Cinzel", "Trajan Pro", "Times New Roman", serif;
@@ -129,14 +129,44 @@
   text-align: center;
   white-space: nowrap;
   padding: .35em .9em;
+  /* black outline next to the letters, then a red outline, then the gold glow */
   text-shadow:
-    0 0 2px #fff1c9,
-    0 0 8px rgb(233 194 122 / .95),
-    0 0 18px rgb(220 185 120 / .8),
-    0 0 36px rgb(201 163 92 / .65),
-    0 0 64px rgb(201 163 92 / .4),
-    0 1px 2px rgb(0 0 0 / .95),
-    0 2px 8px rgb(0 0 0 / .85);
+    1.5px 0.0px 0 #000,
+    1.3px 0.75px 0 #000,
+    0.75px 1.3px 0 #000,
+    0.0px 1.5px 0 #000,
+    -0.75px 1.3px 0 #000,
+    -1.3px 0.75px 0 #000,
+    -1.5px 0.0px 0 #000,
+    -1.3px -0.75px 0 #000,
+    -0.75px -1.3px 0 #000,
+    -0.0px -1.5px 0 #000,
+    0.75px -1.3px 0 #000,
+    1.3px -0.75px 0 #000,
+    3.2px 0.0px 0 #c8102e,
+    3.04px 0.99px 0 #c8102e,
+    2.59px 1.88px 0 #c8102e,
+    1.88px 2.59px 0 #c8102e,
+    0.99px 3.04px 0 #c8102e,
+    0.0px 3.2px 0 #c8102e,
+    -0.99px 3.04px 0 #c8102e,
+    -1.88px 2.59px 0 #c8102e,
+    -2.59px 1.88px 0 #c8102e,
+    -3.04px 0.99px 0 #c8102e,
+    -3.2px 0.0px 0 #c8102e,
+    -3.04px -0.99px 0 #c8102e,
+    -2.59px -1.88px 0 #c8102e,
+    -1.88px -2.59px 0 #c8102e,
+    -0.99px -3.04px 0 #c8102e,
+    -0.0px -3.2px 0 #c8102e,
+    0.99px -3.04px 0 #c8102e,
+    1.88px -2.59px 0 #c8102e,
+    2.59px -1.88px 0 #c8102e,
+    3.04px -0.99px 0 #c8102e,
+    0 0 10px rgb(233 194 122 / .85),
+    0 0 22px rgb(220 185 120 / .65),
+    0 0 42px rgb(201 163 92 / .5),
+    0 0 70px rgb(201 163 92 / .3);
 }
 @media (max-width: 480px) { .shop-name { margin-top: 40px; font-size: 1.3rem; letter-spacing: .08em; } } /* stays clear of EN/ES */
 @media (prefers-reduced-motion: no-preference) {
