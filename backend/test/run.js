@@ -179,7 +179,7 @@ const say = (text, lang = "en", extra = []) => call("/api/chat", { messages: [..
   await test("System prompt contains every price, barber and hour, and the no-invent rule", () => {
     const p = systemPrompt("en");
     for (const s of ["$40", "$50", "$60", "$70", "$25", "from $150", "Andres Ospina", "Keven", "Dumar Gomez", "Jean Carlos",
-      "Kevin Tabares", "Santi Vélez", "9 AM – 9 PM", "10 AM – 6 PM", "55 Chelsea St", "(857) 334-9508", "Never invent"]) {
+      "Kevin Tabares", "Santi Vélez", "9 AM – 8 PM", "10 AM – 4 PM", "55 Chelsea St", "(857) 334-9508", "Never invent"]) {
       assert.ok(p.includes(s), "missing " + s);
     }
     assert.ok(systemPrompt("es").includes("use Spanish"));
@@ -191,7 +191,7 @@ const say = (text, lang = "en", extra = []) => call("/api/chat", { messages: [..
   });
   await test("Facts match the website's preview page", () => {
     const html = fs.readFileSync(path.resolve(__dirname, "../../preview/index.html"), "utf8");
-    for (const s of ["Andres Ospina", "Santi Vélez", "$150", "9 AM – 9 PM", "10 AM – 6 PM", "(857) 334-9508", "456"]) {
+    for (const s of ["Andres Ospina", "Santi Vélez", "$150", "9 AM – 8 PM", "10 AM – 4 PM", "(857) 334-9508", "456"]) {
       assert.ok(html.includes(s), "website no longer says " + s);
     }
   });
