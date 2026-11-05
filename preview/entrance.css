@@ -15,7 +15,7 @@
   content: "";
   position: absolute;
   inset: -40px;
-  background: url("img/tribe-studio-storefront-55-chelsea-st.webp") center / cover no-repeat;
+  background: url("img/tribe-studio-storefront-entrance-color.webp") center / cover no-repeat;
   filter: blur(28px) brightness(.45);
 }
 .js.entrance-open { overflow: hidden; }
@@ -32,7 +32,7 @@
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
-  background: url("img/tribe-studio-storefront-55-chelsea-st.webp") center / 100% 100% no-repeat;
+  background: url("img/tribe-studio-storefront-entrance-color.webp") center / 100% 100% no-repeat;
   perspective: 1400px;
   transform-origin: 51.6% 53%;
 }
@@ -65,7 +65,7 @@
 .door-panel {
   position: absolute;
   left: 42.13%; top: 37.1%; width: 19%; height: 31.8%;
-  background: url("img/tribe-studio-storefront-55-chelsea-st.webp") 52.016% 54.399% / 526.3% 314.47% no-repeat;
+  background: url("img/tribe-studio-storefront-entrance-color.webp") 52.016% 54.399% / 526.3% 314.47% no-repeat;
   transform-origin: 100% 50%;
   backface-visibility: hidden;
   box-shadow: 0 0 0 rgb(0 0 0 / 0);
