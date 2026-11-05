@@ -16,7 +16,7 @@
   --ta-display: var(--f-display, "Fraunces", Georgia, serif);
   --ta-body: var(--f-body, "Manrope", system-ui, sans-serif);
   --ta-ease: var(--ease, cubic-bezier(.2, .7, .2, 1));
-  --ta-bottom: 20px;
+  --ta-bottom: 12px;
   position: fixed;
   right: 20px;
   bottom: calc(var(--ta-bottom) + env(safe-area-inset-bottom));
@@ -29,17 +29,17 @@
 #tribe-assistant [hidden] { display: none !important; }
 
 /* Inside the shop scene: sit above its "See the full site" button */
-html.shop-open #tribe-assistant { --ta-bottom: 84px; }
+html.shop-open #tribe-assistant { --ta-bottom: 64px; }
 
 /* Hidden while the storefront entrance plays */
 .entrance-open #tribe-assistant { display: none; }
 
 /* On phones the full site has a sticky booking bar at the bottom: sit above it. */
 @media (max-width: 767px) {
-  html:not(.shop-open) #tribe-assistant { --ta-bottom: 88px; }
+  html:not(.shop-open) #tribe-assistant { --ta-bottom: 80px; }
   /* Phones: a slightly smaller robot */
   #tribe-assistant .ta-launcher { width: 62px; height: 76px; }
-  html.shop-open #tribe-assistant { --ta-bottom: 84px; } /* clear the "See the full site" button */
+  html.shop-open #tribe-assistant { --ta-bottom: 64px; } /* just clears the "See the full site" button */
   #tribe-assistant { right: 14px; }
 }
 
