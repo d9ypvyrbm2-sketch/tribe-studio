@@ -129,3 +129,79 @@ body::before { display: none; } /* the film grain belongs to the dark look */
 @media (forced-colors: active) {
   .menu-list, .barber, .hours, .score { box-shadow: none; }
 }
+
+/* ---------- Round 2 (Jean, 2026-11-05): robot chat, shorter phone top, friendly touches ---------- */
+
+/* Robot chat in the same white and gold (the robot button itself is unchanged) */
+#tribe-assistant {
+  --ta-ink: #FBF7EF;
+  --ta-ink-2: #FFFFFF;
+  --ta-ink-3: #F3EBDC;
+  --ta-line: rgba(43, 36, 28, 0.12);
+  --ta-line-strong: rgba(43, 36, 28, 0.24);
+  --ta-bone: #2B241C;
+  --ta-muted: #6A5D4D;
+  --ta-gold: #7A5B27;
+  --ta-gold-2: #5F461C;
+  --ta-focus: #7A5B27;
+}
+#tribe-assistant .ta-panel { box-shadow: 0 24px 60px -12px rgba(43, 36, 28, 0.35); }
+#tribe-assistant .ta-user,
+#tribe-assistant .ta-btn-gold,
+#tribe-assistant .ta-lang[aria-pressed="true"] { background: #C9A35C; color: #2B241C; }
+#tribe-assistant .ta-btn-gold:hover { background: #D8B672; }
+#tribe-assistant .ta-typing span { background: #C9A35C; }
+#tribe-assistant .ta-icon-btn:hover { background: rgba(43, 36, 28, 0.06); }
+#tribe-assistant .ta-form-err { color: #A3352B; }
+
+/* Open now / Closed */
+.open-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #F3EBDC;
+  color: var(--muted);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.open-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #B4A48C; }
+.open-status.is-open { background: #E7F3E4; color: #2F5A2A; }
+.open-status.is-open::before { background: #3E8E3A; }
+.open-status-hero { display: flex; width: fit-content; }
+.open-status-hours { margin: -6px 0 14px; }
+
+/* Robot greeting bubble */
+.robot-hello {
+  position: fixed;
+  z-index: 175;
+  max-width: min(260px, calc(100vw - 32px));
+  padding: 10px 14px;
+  border: 1px solid rgba(43, 36, 28, 0.12);
+  border-radius: 16px;
+  background: #FFFFFF;
+  color: #2B241C;
+  font: 600 0.9rem/1.35 var(--f-body);
+  text-align: start;
+  box-shadow: 0 12px 30px -10px rgba(43, 36, 28, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  translate: 0 6px;
+  transition: opacity .25s cubic-bezier(0.23, 1, 0.32, 1), translate .25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.robot-hello.is-centre { transform: translateX(-50%); border-bottom-left-radius: 16px; }
+.robot-hello.is-right { border-bottom-right-radius: 6px; }
+.robot-hello.is-in { opacity: 1; translate: 0 0; }
+.robot-hello:focus-visible { outline: 3px solid #7A5B27; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .robot-hello { transition: none; } }
+
+/* Phones: a smaller round logo so prices and booking come sooner */
+@media (max-width: 767px) {
+  .hero-grid { row-gap: 20px; }
+  .hero-art { width: min(58%, 230px); }
+  .hero-photo { margin-top: -40px; width: min(72%, 260px); }
+  .hero-tools { display: none; }
+}
