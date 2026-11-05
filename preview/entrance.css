@@ -46,7 +46,7 @@
   /* the inside of the shop, seen through the open door */
   background:
     radial-gradient(ellipse 90% 70% at 50% 45%, rgb(242 208 138 / .25), rgb(14 13 11 / .35) 100%),
-    url("img/tribe-studio-barbershop-interior-east-boston.webp") center / cover no-repeat;
+    url("img/tribe-studio-doorway-view.webp") center / cover no-repeat;
   filter: brightness(.85);
   transition: filter 1.6s;
   overflow: hidden;
