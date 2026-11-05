@@ -80,10 +80,16 @@
   cursor: pointer;
   border-radius: 4px;
 }
-/* No lines on the door (Jean's request). The "Tap the door" hint carries the invitation;
-   keyboard users still get a soft, non-yellow light on the glass when the door has focus. */
-.door-hotspot:focus { outline: none; }
-.door-hotspot:focus-visible { background: rgb(255 255 255 / .06); }
+.door-hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 6% 9%;
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px rgb(242 208 138 / .0), 0 0 28px 6px rgb(242 208 138 / .0);
+}
+.door-hotspot:hover::after,
+.door-hotspot:focus-visible::after { box-shadow: 0 0 0 2px rgb(242 208 138 / .9), 0 0 36px 10px rgb(242 208 138 / .45); }
+.door-hotspot:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
 
 .entrance-hint {
   position: absolute;
@@ -125,13 +131,19 @@
 .entrance-skip:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: no-preference) {
+  .door-hotspot::after { animation: door-glow 2.4s ease-in-out infinite; }
   .entrance-hint span { animation: hint-bob 2.4s ease-in-out infinite; }
   .storefront { animation: arrive 1.2s cubic-bezier(.2, .7, .2, 1) backwards; }
+}
+@keyframes door-glow {
+  0%, 100% { box-shadow: 0 0 0 2px rgb(242 208 138 / .15), 0 0 20px 4px rgb(242 208 138 / .1); }
+  50% { box-shadow: 0 0 0 2px rgb(242 208 138 / .7), 0 0 34px 10px rgb(242 208 138 / .35); }
 }
 @keyframes hint-bob { 50% { translate: 0 -4px; } }
 @keyframes arrive { from { scale: 1.06; filter: brightness(.6); } }
 
 /* Opening sequence, driven by classes from entrance.js */
+.entrance.is-opening .door-hotspot::after,
 .entrance.is-opening .entrance-hint span { animation: none; opacity: 0; }
 .entrance.is-opening .door-hotspot { outline: none; cursor: default; }
 .entrance.is-opening .entrance-hint,
