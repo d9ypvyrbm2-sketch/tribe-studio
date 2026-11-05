@@ -63,7 +63,14 @@
   font: 700 .82rem / 1.1 var(--f-body);
   letter-spacing: .04em;
   white-space: nowrap;
-  color: var(--ink);
+  color: #fff;
+  /* glowing white letters, with a thin dark edge so they stay readable on the gold */
+  text-shadow:
+    0 0 1px rgb(0 0 0 / .55),
+    0 1px 2px rgb(0 0 0 / .45),
+    0 0 6px rgb(255 255 255 / .95),
+    0 0 14px rgb(255 255 255 / .7),
+    0 0 24px rgb(255 246 220 / .5);
   background: var(--gold);
   padding: 8px 12px;
   border-radius: 999px;
