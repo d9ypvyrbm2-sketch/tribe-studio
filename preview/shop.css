@@ -16,7 +16,7 @@
   position: absolute;
   inset: -40px;
   background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / cover no-repeat;
-  filter: blur(28px) brightness(.6);
+  filter: blur(28px); /* natural brightness: no dark vignette at the sides */
 }
 .js.shop-open { overflow: hidden; }
 .shop.is-away { display: none; }
@@ -94,7 +94,7 @@
 .shop-top {
   top: 0;
   padding-block: calc(14px + env(safe-area-inset-top, 0px)) 28px;
-  background: linear-gradient(rgb(14 13 11 / .6), transparent);
+  background: none; /* no dark fade at the top */
   justify-content: center;
 }
 .shop-top .lang-switch {
@@ -105,7 +105,7 @@
 .shop-bottom {
   bottom: 0;
   padding-block: 28px calc(18px + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(transparent, rgb(14 13 11 / .7));
+  background: none; /* no dark fade at the bottom */
 }
 .shop.is-focused .shop-top, .shop.is-focused .shop-bottom { opacity: 0; pointer-events: none; }
 /* Shop name: set a little lower, in Cinzel (Roman capitals), with a warm gold glow like a lit sign */
@@ -120,14 +120,14 @@
   text-align: center;
   white-space: nowrap;
   padding: .35em .9em;
-  background: radial-gradient(closest-side, rgb(14 13 11 / .62), rgb(14 13 11 / .3) 70%, transparent);
   text-shadow:
     0 0 2px #fff1c9,
     0 0 8px rgb(233 194 122 / .95),
     0 0 18px rgb(220 185 120 / .8),
     0 0 36px rgb(201 163 92 / .65),
     0 0 64px rgb(201 163 92 / .4),
-    0 2px 6px rgb(0 0 0 / .9);
+    0 1px 2px rgb(0 0 0 / .95),
+    0 2px 8px rgb(0 0 0 / .85);
 }
 @media (max-width: 480px) { .shop-name { margin-top: 40px; font-size: 1.3rem; letter-spacing: .08em; } } /* stays clear of EN/ES */
 @media (prefers-reduced-motion: no-preference) {
@@ -143,6 +143,7 @@
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--gold-2);
+  text-shadow: 0 1px 2px rgb(0 0 0 / .95), 0 0 10px rgb(0 0 0 / .8);
 }
 .shop-more {
   font: 600 var(--t-sm) / 1 var(--f-body);
