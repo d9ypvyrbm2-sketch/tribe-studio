@@ -108,15 +108,35 @@
   background: linear-gradient(transparent, rgb(14 13 11 / .7));
 }
 .shop.is-focused .shop-top, .shop.is-focused .shop-bottom { opacity: 0; pointer-events: none; }
+/* Shop name: set a little lower, in Cinzel (Roman capitals), with a warm gold glow like a lit sign */
 .shop-name {
-  font-family: var(--f-display);
-  font-size: 1.6rem;
+  margin-top: clamp(40px, 7vh, 72px);
+  font-family: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.3rem);
   font-weight: 600;
-  color: var(--gold-2, var(--gold));
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff4d6;
   text-align: center;
-  text-shadow: 0 2px 4px rgb(0 0 0 / .9), 0 0 22px rgb(0 0 0 / .85);
+  white-space: nowrap;
+  padding: .35em .9em;
+  background: radial-gradient(closest-side, rgb(14 13 11 / .62), rgb(14 13 11 / .3) 70%, transparent);
+  text-shadow:
+    0 0 2px #fff1c9,
+    0 0 8px rgb(233 194 122 / .95),
+    0 0 18px rgb(220 185 120 / .8),
+    0 0 36px rgb(201 163 92 / .65),
+    0 0 64px rgb(201 163 92 / .4),
+    0 2px 6px rgb(0 0 0 / .9);
 }
-@media (max-width: 480px) { .shop-name { font-size: 1.25rem; } }
+@media (max-width: 480px) { .shop-name { font-size: 1.3rem; letter-spacing: .08em; } }
+@media (prefers-reduced-motion: no-preference) {
+  .shop-name { animation: name-glow 3.6s ease-in-out infinite; }
+}
+@keyframes name-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.18) drop-shadow(0 0 10px rgb(233 194 122 / .45)); }
+}
 .shop-hint {
   margin: 0;
   font: 600 var(--t-sm) / 1.2 var(--f-body);
