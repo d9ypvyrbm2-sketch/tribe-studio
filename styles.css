@@ -1,4 +1,4 @@
-/* The Tribe Studio 1 Maverick — test site styles
+/* The Tribe Studio — site styles
    Static CSS, no framework. Colour contrast notes are in ../design-direction.md */
 
 :root {
@@ -404,6 +404,18 @@ address { font-style: normal; }
   text-align: center;
 }
 .photo-slot figcaption { display: grid; gap: 4px; }
+/* Real shop photos in the photo frames */
+.photo-slot.has-photo { padding: 0; overflow: hidden; border-style: solid; border-color: var(--line); }
+.photo-slot.has-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-photo.has-photo { aspect-ratio: 4 / 3; min-height: 0; }
+.hero-photo.has-photo img { object-position: 50% 30%; }
 .photo-label {
   font-size: 0.78rem;
   font-weight: 700;
@@ -699,13 +711,9 @@ address { font-style: normal; }
   font-weight: 600;
 }
 .footer-links a:hover { color: var(--gold-2); text-decoration-color: currentColor; }
-.test-note {
-  grid-column: 1 / -1;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  font-size: 0.82rem;
-  color: var(--muted);
-}
+.footer-sub { color: var(--muted); font-weight: 400; }
+.footer-addr a { color: inherit; text-underline-offset: 3px; }
+.footer-addr a:hover { color: var(--gold-2); }
 
 /* Sticky mobile booking bar */
 .mobile-bar { display: none; }

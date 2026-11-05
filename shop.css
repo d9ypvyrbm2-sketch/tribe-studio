@@ -15,8 +15,8 @@
   content: "";
   position: absolute;
   inset: -40px;
-  background: url("img/inside.jpg") center / cover no-repeat;
-  filter: blur(28px) brightness(.4);
+  background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / cover no-repeat;
+  filter: blur(28px); /* natural brightness: no dark vignette at the sides */
 }
 .js.shop-open { overflow: hidden; }
 .shop.is-away { display: none; }
@@ -29,7 +29,7 @@
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
-  background: url("img/inside.jpg") center / 100% 100% no-repeat;
+  background: url("img/tribe-studio-barbershop-interior-east-boston.webp") center / 100% 100% no-repeat;
   transition: scale 1s cubic-bezier(.5, 0, .25, 1);
 }
 .shop.is-focused .shop-scene { scale: 2.4; }
@@ -63,8 +63,17 @@
   font: 700 .82rem / 1.1 var(--f-body);
   letter-spacing: .04em;
   white-space: nowrap;
-  color: var(--ink);
-  background: var(--gold);
+  color: #fff;
+  /* glowing white letters, with a thin dark edge so they stay readable on the gold */
+  text-shadow:
+    0 0 1px rgb(0 0 0 / .55),
+    0 1px 2px rgb(0 0 0 / .45),
+    0 0 6px rgb(255 255 255 / .95),
+    0 0 14px rgb(255 255 255 / .7),
+    0 0 24px rgb(255 246 220 / .5);
+  /* black label with a gold edge, so the glowing white letters stand out */
+  background: #000;
+  border: 1.5px solid var(--gold);
   padding: 8px 12px;
   border-radius: 999px;
   box-shadow: 0 8px 20px -6px rgb(0 0 0 / .7);
@@ -73,7 +82,7 @@
 /* near the edges the label grows inward from the dot, so phones never cut it off */
 .chair[data-side="left"] { justify-items: start; translate: -17px -50%; }
 .chair[data-side="right"] { justify-items: end; translate: calc(-100% + 17px) -50%; }
-.chair:hover .chair-label { background: var(--gold-2); transform: translateY(-2px); }
+.chair:hover .chair-label { background: #000; border-color: var(--gold-2); transform: translateY(-2px); }
 .shop:focus { outline: none; }
 .chair:focus-visible { outline: none; }
 .chair:focus-visible .chair-label { outline: 3px solid var(--focus); outline-offset: 3px; }
@@ -94,21 +103,66 @@
 .shop-top {
   top: 0;
   padding-block: calc(14px + env(safe-area-inset-top, 0px)) 28px;
-  background: linear-gradient(rgb(14 13 11 / .85), transparent);
+  background: none; /* no dark fade at the top */
+  justify-content: center;
+}
+.shop-top .lang-switch {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  top: calc(14px + env(safe-area-inset-top, 0px));
 }
 .shop-bottom {
   bottom: 0;
   padding-block: 28px calc(18px + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(transparent, rgb(14 13 11 / .9));
+  background: none; /* no dark fade at the bottom */
 }
 .shop.is-focused .shop-top, .shop.is-focused .shop-bottom { opacity: 0; pointer-events: none; }
-.shop-name { font-family: var(--f-display); font-size: 1.35rem; color: var(--bone); }
+/* Shop name: Cinzel capitals with a black outline and a warm gold glow */
+.shop-name {
+  margin-top: clamp(24px, 3.5vh, 36px);
+  font-family: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff4d6;
+  text-align: center;
+  white-space: nowrap;
+  padding: .35em .9em;
+  /* black outline next to the letters, then the gold glow */
+  text-shadow:
+    1.5px 0.0px 0 #000,
+    1.3px 0.75px 0 #000,
+    0.75px 1.3px 0 #000,
+    0.0px 1.5px 0 #000,
+    -0.75px 1.3px 0 #000,
+    -1.3px 0.75px 0 #000,
+    -1.5px 0.0px 0 #000,
+    -1.3px -0.75px 0 #000,
+    -0.75px -1.3px 0 #000,
+    -0.0px -1.5px 0 #000,
+    0.75px -1.3px 0 #000,
+    1.3px -0.75px 0 #000,
+    0 0 10px rgb(233 194 122 / .85),
+    0 0 22px rgb(220 185 120 / .65),
+    0 0 42px rgb(201 163 92 / .5),
+    0 0 70px rgb(201 163 92 / .3);
+}
+@media (max-width: 480px) { .shop-name { margin-top: 40px; font-size: 1.3rem; letter-spacing: .08em; } } /* stays clear of EN/ES */
+@media (prefers-reduced-motion: no-preference) {
+  .shop-name { animation: name-glow 3.6s ease-in-out infinite; }
+}
+@keyframes name-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.18) drop-shadow(0 0 10px rgb(233 194 122 / .45)); }
+}
 .shop-hint {
   margin: 0;
   font: 600 var(--t-sm) / 1.2 var(--f-body);
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--gold-2);
+  text-shadow: 0 1px 2px rgb(0 0 0 / .95), 0 0 10px rgb(0 0 0 / .8);
 }
 .shop-more {
   font: 600 var(--t-sm) / 1 var(--f-body);
@@ -284,3 +338,22 @@
 
 /* touch: no double-tap zoom delay or grey tap flash on chairs and controls */
 .chair, .shop-more, .station-back, .air-link { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* Soft glow on the white headings (homepage and chair screens) */
+.hero-name,
+.section-title,
+.final-title,
+.air-title,
+.score-num {
+  text-shadow:
+    0 0 6px rgb(255 244 226 / .35),
+    0 0 18px rgb(255 236 205 / .22),
+    0 0 36px rgb(237 230 218 / .12);
+}
+.air-title {
+  text-shadow:
+    0 2px 4px rgb(0 0 0 / .75),
+    0 0 6px rgb(255 244 226 / .4),
+    0 0 20px rgb(255 236 205 / .25),
+    0 0 40px rgb(237 230 218 / .14);
+}
