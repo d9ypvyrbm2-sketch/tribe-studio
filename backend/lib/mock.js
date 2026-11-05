@@ -26,8 +26,8 @@ function reply(messages, siteLang) {
       booking: null, escalate: { summary: "Customer asks about parking." } };
   }
   if (/hour|open|horario|abren|abierto/i.test(last)) {
-    return { text: L("We're open Monday to Saturday 9 AM – 9 PM, and Sunday 10 AM – 6 PM.",
-      "Abrimos de lunes a sábado de 9 a. m. a 9 p. m., y el domingo de 10 a. m. a 6 p. m."), booking: null, escalate: null };
+    return { text: L("We're open Monday to Saturday 9 AM – 8 PM, and Sunday 10 AM – 4 PM.",
+      "Abrimos de lunes a sábado de 9 a. m. a 8 p. m., y el domingo de 10 a. m. a 4 p. m."), booking: null, escalate: null };
   }
   if (/how much|price|cuánto|cuanto|precio/i.test(last) && !/book|reserv/i.test(last)) {
     return { text: beard

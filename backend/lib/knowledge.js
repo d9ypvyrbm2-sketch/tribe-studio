@@ -20,10 +20,10 @@ const SHOP = {
   rating: "5.0 on Booksy from 456 reviews",
   languages: ["English", "Spanish"],
   hours: [
-    { days: "Monday to Saturday", hours: "9 AM – 9 PM" },
-    { days: "Sunday", hours: "10 AM – 6 PM" },
+    { days: "Monday to Saturday", hours: "9 AM – 8 PM" },
+    { days: "Sunday", hours: "10 AM – 4 PM" },
   ],
-  hoursNote: "Hours come from Booksy. Holiday hours may differ, so check Booksy before coming.",
+  hoursNote: "Hours confirmed by the shop (Nov 2026). Holiday hours may differ, so check Booksy before coming.",
 };
 
 const SERVICES = [
