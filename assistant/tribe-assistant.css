@@ -276,3 +276,12 @@ html.shop-open #tribe-assistant .ta-launcher { width: 68px; height: 82px; }
   #tribe-assistant.is-open { left: 0; right: 0; translate: none; }
   #tribe-assistant .ta-panel { left: 0; translate: none; }
 }
+/* Accessibility review, 2026-11-05: on the full site the centred robot covered the "Book on Booksy" button on phones,
+   so outside the shop it goes back to the right corner (it stays centred inside the shop). */
+html:not(.shop-open) #tribe-assistant { left: auto; right: 20px; translate: none; }
+html:not(.shop-open) #tribe-assistant .ta-panel { left: auto; right: 0; translate: none; transform-origin: bottom right; }
+@media (max-width: 767px) { html:not(.shop-open) #tribe-assistant { right: 14px; } }
+@media (max-width: 520px) {
+  html:not(.shop-open) #tribe-assistant.is-open { left: 0; right: 0; }
+  html:not(.shop-open) #tribe-assistant .ta-panel { right: auto; left: 0; }
+}
