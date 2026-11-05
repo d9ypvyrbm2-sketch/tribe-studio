@@ -83,6 +83,8 @@
 .chair[data-side="left"] { justify-items: start; translate: -17px -50%; }
 .chair[data-side="right"] { justify-items: end; translate: calc(-100% + 17px) -50%; }
 .chair:hover .chair-label { background: #000; border-color: var(--gold-2); transform: translateY(-2px); }
+/* press feedback: the label dips slightly the moment it is tapped (improve-animations audit, 2026-11-05) */
+.chair:active .chair-label { transform: scale(.96); transition-duration: .12s; }
 .shop:focus { outline: none; }
 .chair:focus-visible { outline: none; }
 .chair:focus-visible .chair-label { outline: 3px solid var(--focus); outline-offset: 3px; }
