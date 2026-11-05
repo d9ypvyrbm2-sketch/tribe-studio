@@ -28,55 +28,60 @@
 #tribe-assistant *, #tribe-assistant *::before, #tribe-assistant *::after { box-sizing: border-box; }
 #tribe-assistant [hidden] { display: none !important; }
 
+/* Inside the shop scene: sit above its "See the full site" button */
+html.shop-open #tribe-assistant { --ta-bottom: 84px; }
+
 /* Hidden while the storefront entrance plays */
 .entrance-open #tribe-assistant { display: none; }
 
 /* On phones the full site has a sticky booking bar at the bottom: sit above it. */
 @media (max-width: 767px) {
   html:not(.shop-open) #tribe-assistant { --ta-bottom: 88px; }
-  /* Full site on a phone: a small round button, so it never hides the page's own "Book" buttons */
-  html:not(.shop-open) #tribe-assistant .ta-launcher { padding: 0 8px; width: 56px; justify-content: center; }
-  html:not(.shop-open) #tribe-assistant .ta-launcher-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  /* Phones: a slightly smaller robot */
+  #tribe-assistant .ta-launcher { width: 62px; height: 76px; }
   html.shop-open #tribe-assistant { --ta-bottom: 84px; } /* clear the "See the full site" button */
   #tribe-assistant { right: 14px; }
 }
 
-/* ---------- Launcher ---------- */
+/* ---------- Launcher: a small floating robot ---------- */
 #tribe-assistant .ta-launcher {
-  display: inline-flex; align-items: center; gap: 10px;
-  height: 56px; padding: 0 20px 0 8px;
-  border: 1.5px solid var(--ta-gold); border-radius: 999px;
-  background: rgba(14, 13, 11, .92);
-  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-  color: var(--ta-bone);
-  font: 700 .95rem/1 var(--ta-body); letter-spacing: .02em;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 0 0 rgba(201, 163, 92, .5);
-  transition: transform .25s var(--ta-ease), background-color .25s var(--ta-ease), box-shadow .25s var(--ta-ease);
+  position: relative; display: block;
+  width: 84px; height: 102px; padding: 0;
+  border: 0; background: transparent; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .3s var(--ta-ease), opacity .25s var(--ta-ease);
 }
-#tribe-assistant .ta-launcher:hover { transform: translateY(-2px); background: rgba(31, 28, 24, .96); }
-#tribe-assistant .ta-launcher-mark {
-  display: grid; place-items: center;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--ta-gold); color: var(--ta-ink);
-  font: 600 1.25rem/1 var(--ta-display);
+#tribe-assistant .ta-launcher-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+#tribe-assistant .ta-robot { position: absolute; inset: 0; display: block; }
+#tribe-assistant .ta-bot-svg {
+  position: absolute; left: 0; top: 0; width: 100%; height: 86%; overflow: visible;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 0 14px rgba(201,163,92,.25));
+  transition: filter .3s var(--ta-ease), transform .3s var(--ta-ease);
 }
-#tribe-assistant .ta-launcher { position: relative; }
-#tribe-assistant .ta-launcher-dot {
-  position: absolute; top: 6px; left: 38px;
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #6fcf7f; border: 2px solid var(--ta-ink);
+#tribe-assistant .ta-bot-shadow {
+  position: absolute; left: 50%; bottom: 0; width: 46px; height: 8px; margin-left: -23px;
+  border-radius: 50%; background: rgba(0,0,0,.55); filter: blur(4px);
 }
-#tribe-assistant.is-open .ta-launcher { opacity: 0; pointer-events: none; transform: scale(.8); }
+#tribe-assistant .ta-bot-eyes { transform-origin: 40px 28.5px; }
+#tribe-assistant .ta-launcher:hover .ta-bot-svg,
+#tribe-assistant .ta-launcher:focus-visible .ta-bot-svg {
+  transform: scale(1.06);
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.5)) drop-shadow(0 0 20px rgba(201,163,92,.5));
+}
+#tribe-assistant .ta-launcher:focus-visible { outline-offset: 4px; border-radius: 20px; }
+#tribe-assistant.is-open .ta-launcher { opacity: 0; pointer-events: none; transform: scale(.7) translateY(10px); }
 
 @media (prefers-reduced-motion: no-preference) {
-  #tribe-assistant .ta-launcher.is-new { animation: ta-pulse 2.4s var(--ta-ease) 1.2s 2; }
+  #tribe-assistant .ta-bot-svg { animation: ta-float 3.2s ease-in-out infinite; }
+  #tribe-assistant .ta-bot-shadow { animation: ta-shadow 3.2s ease-in-out infinite; }
+  #tribe-assistant .ta-bot-eyes { animation: ta-blink 5s infinite; }
+  #tribe-assistant .ta-bot-core, #tribe-assistant .ta-bot-antenna { animation: ta-glow 2.4s ease-in-out infinite; }
+  #tribe-assistant .ta-launcher:hover .ta-bot-svg { animation-play-state: paused; }
 }
-@keyframes ta-pulse {
-  0% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 0 rgba(201,163,92,.55); }
-  70% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 16px rgba(201,163,92,0); }
-  100% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 0 rgba(201,163,92,0); }
-}
+@keyframes ta-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+@keyframes ta-shadow { 0%, 100% { transform: scale(1); opacity: .9; } 50% { transform: scale(.72); opacity: .5; } }
+@keyframes ta-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes ta-glow { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 
 /* ---------- Panel ---------- */
 #tribe-assistant .ta-panel {
@@ -124,6 +129,8 @@
   border: 1.5px solid var(--ta-gold); color: var(--ta-gold);
   font: 600 1.2rem/1 var(--ta-display);
 }
+#tribe-assistant .ta-head-mark svg { width: 26px; height: 22px; display: block; }
+#tribe-assistant .ta-head-eyes { transform-origin: 24px 19px; }
 #tribe-assistant .ta-head-text { flex: 1; min-width: 0; }
 #tribe-assistant .ta-title { margin: 0; font: 600 1.15rem/1.2 var(--ta-display); color: var(--ta-bone); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #tribe-assistant .ta-sub { margin: 2px 0 0; font-size: .8rem; white-space: nowrap; color: var(--ta-muted); display: flex; align-items: center; gap: 6px; }
@@ -255,5 +262,5 @@
 #tribe-assistant :focus-visible { outline: 3px solid var(--ta-focus); outline-offset: 2px; }
 
 @media (forced-colors: active) {
-  #tribe-assistant .ta-launcher, #tribe-assistant .ta-panel, #tribe-assistant .ta-msg, #tribe-assistant .ta-btn, #tribe-assistant .ta-chip { border: 1px solid CanvasText; }
+  #tribe-assistant .ta-panel, #tribe-assistant .ta-msg, #tribe-assistant .ta-btn, #tribe-assistant .ta-chip { border: 1px solid CanvasText; }
 }

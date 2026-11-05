@@ -107,10 +107,31 @@
   var wrap = el("div"); wrap.id = "tribe-assistant";
   var launcher = el("button", "ta-launcher"); launcher.type = "button";
   launcher.setAttribute("aria-haspopup", "dialog"); launcher.setAttribute("aria-expanded", "false");
-  var lMark = el("span", "ta-launcher-mark", "T"); lMark.setAttribute("aria-hidden", "true");
-  var lDot = el("span", "ta-launcher-dot"); lDot.setAttribute("aria-hidden", "true");
-  var lText = el("span", "ta-launcher-text");
-  launcher.append(lMark, lDot, lText);
+  // The launcher is a small floating robot (inline SVG, no text, no image file).
+  var BOT_SVG =
+    '<svg class="ta-bot-svg" viewBox="0 0 80 96" aria-hidden="true" focusable="false">' +
+    '<defs>' +
+    '<radialGradient id="ta-shell" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#ece8e1"/><stop offset="1" stop-color="#b9b3a9"/></radialGradient>' +
+    '<linearGradient id="ta-visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2722"/><stop offset="1" stop-color="#0b0a09"/></linearGradient>' +
+    '<radialGradient id="ta-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3d2"/><stop offset=".45" stop-color="#e9c27a"/><stop offset="1" stop-color="#c9a35c" stop-opacity="0"/></radialGradient>' +
+    '</defs>' +
+    '<line x1="40" y1="12" x2="40" y2="4" stroke="#b9b3a9" stroke-width="2.2" stroke-linecap="round"/>' +
+    '<circle class="ta-bot-antenna" cx="40" cy="4" r="3" fill="#c9a35c"/>' +
+    '<ellipse cx="13" cy="66" rx="6" ry="10" fill="url(#ta-shell)"/>' +
+    '<ellipse cx="67" cy="66" rx="6" ry="10" fill="url(#ta-shell)"/>' +
+    '<path d="M18 62c0-12 10-20 22-20s22 8 22 20c0 13-9 22-22 22S18 75 18 62z" fill="url(#ta-shell)"/>' +
+    '<circle cx="40" cy="64" r="8.5" fill="#15130f" stroke="#c9a35c" stroke-width="1.6"/>' +
+    '<circle class="ta-bot-core" cx="40" cy="64" r="4.2" fill="url(#ta-glow)"/>' +
+    '<rect x="17" y="12" width="46" height="34" rx="17" fill="url(#ta-shell)"/>' +
+    '<rect x="22" y="18" width="36" height="21" rx="10.5" fill="url(#ta-visor)"/>' +
+    '<g class="ta-bot-eyes"><rect x="29" y="22.5" width="7" height="12" rx="3.5" fill="#e9c27a"/><rect x="44" y="22.5" width="7" height="12" rx="3.5" fill="#e9c27a"/></g>' +
+    '<path d="M25 20.5c3-1.6 6-2.2 10-2.2" stroke="#fff" stroke-opacity=".35" stroke-width="1.5" fill="none" stroke-linecap="round"/>' +
+    '</svg>' +
+    '<span class="ta-bot-shadow" aria-hidden="true"></span>';
+  var lBot = el("span", "ta-robot"); lBot.setAttribute("aria-hidden", "true");
+  lBot.innerHTML = BOT_SVG; // static markup written above, no user data
+  var lText = el("span", "ta-launcher-text"); // screen-reader name only
+  launcher.append(lBot, lText);
   try { if (!sessionStorage.getItem(STORE)) launcher.classList.add("is-new"); } catch (e) { launcher.classList.add("is-new"); }
 
   var panel = el("div", "ta-panel");
@@ -118,7 +139,12 @@
   launcher.setAttribute("aria-controls", "ta-panel");
 
   var head = el("div", "ta-head");
-  var hMark = el("span", "ta-head-mark", "T"); hMark.setAttribute("aria-hidden", "true");
+  var hMark = el("span", "ta-head-mark"); hMark.setAttribute("aria-hidden", "true");
+  hMark.innerHTML = '<svg viewBox="0 0 48 40" aria-hidden="true" focusable="false">' +
+    '<rect x="3" y="4" width="42" height="32" rx="16" fill="#ece8e1"/>' +
+    '<rect x="8" y="10" width="32" height="19" rx="9.5" fill="#12110e"/>' +
+    '<g class="ta-bot-eyes ta-head-eyes"><rect x="15" y="13.5" width="6" height="11" rx="3" fill="#e9c27a"/><rect x="27" y="13.5" width="6" height="11" rx="3" fill="#e9c27a"/></g>' +
+    '</svg>';
   var hText = el("div", "ta-head-text");
   var title = el("h2", "ta-title"); title.id = "ta-title"; panel.setAttribute("aria-labelledby", "ta-title");
   var sub = el("p", "ta-sub");
