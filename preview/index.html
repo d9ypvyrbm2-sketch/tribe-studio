@@ -40,6 +40,7 @@
   <link rel="preload" as="image" href="img/tribe-studio-storefront-entrance-film.webp" type="image/webp" fetchpriority="high">
   <link rel="preload" as="image" href="img/tribe-studio-barbershop-interior-east-boston.webp" type="image/webp">
   <link rel="stylesheet" href="shop.css">
+  <link rel="stylesheet" href="../assistant/tribe-assistant.css">
 
   <!-- Structured data (validated with schema.org vocabulary; see SEO-REPORT.md).
        schema.org has no "BarberShop" type, so HairSalon (a LocalBusiness subtype Google supports) is the most specific valid type.
@@ -740,5 +741,7 @@
   <script src="main.js" defer></script>
   <script src="shop.js" defer></script>
   <script src="entrance.js" defer></script>
+  <!-- Tribe Assistant (AI receptionist). data-api = the Vercel backend URL. Empty = assistant shows "not switched on yet". -->
+  <script src="../assistant/tribe-assistant.js" data-api="" defer></script>
 </body>
 </html>

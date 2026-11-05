@@ -1,0 +1,259 @@
+/* Tribe Assistant: the website's chat receptionist.
+   Everything is scoped under #tribe-assistant so nothing on the existing site changes.
+   Uses the site's own colour and type tokens (styles.css), with fallbacks. */
+
+#tribe-assistant {
+  --ta-ink: var(--ink, #0e0d0b);
+  --ta-ink-2: var(--ink-2, #161411);
+  --ta-ink-3: var(--ink-3, #1f1c18);
+  --ta-line: var(--line, rgba(237, 230, 218, .14));
+  --ta-line-strong: var(--line-strong, rgba(237, 230, 218, .28));
+  --ta-bone: var(--bone, #ede6da);
+  --ta-muted: var(--muted, #a79f92);
+  --ta-gold: var(--gold, #c9a35c);
+  --ta-gold-2: var(--gold-2, #dcb978);
+  --ta-focus: var(--focus, #f2d08a);
+  --ta-display: var(--f-display, "Fraunces", Georgia, serif);
+  --ta-body: var(--f-body, "Manrope", system-ui, sans-serif);
+  --ta-ease: var(--ease, cubic-bezier(.2, .7, .2, 1));
+  --ta-bottom: 20px;
+  position: fixed;
+  right: 20px;
+  bottom: calc(var(--ta-bottom) + env(safe-area-inset-bottom));
+  z-index: 170; /* above the shop scene (150) and chair stations (160), below the entrance (200) */
+  font-family: var(--ta-body);
+  color: var(--ta-bone);
+  line-height: 1.5;
+}
+#tribe-assistant *, #tribe-assistant *::before, #tribe-assistant *::after { box-sizing: border-box; }
+#tribe-assistant [hidden] { display: none !important; }
+
+/* Hidden while the storefront entrance plays */
+.entrance-open #tribe-assistant { display: none; }
+
+/* On phones the full site has a sticky booking bar at the bottom: sit above it. */
+@media (max-width: 767px) {
+  html:not(.shop-open) #tribe-assistant { --ta-bottom: 88px; }
+  /* Full site on a phone: a small round button, so it never hides the page's own "Book" buttons */
+  html:not(.shop-open) #tribe-assistant .ta-launcher { padding: 0 8px; width: 56px; justify-content: center; }
+  html:not(.shop-open) #tribe-assistant .ta-launcher-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  html.shop-open #tribe-assistant { --ta-bottom: 84px; } /* clear the "See the full site" button */
+  #tribe-assistant { right: 14px; }
+}
+
+/* ---------- Launcher ---------- */
+#tribe-assistant .ta-launcher {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 20px 0 8px;
+  border: 1.5px solid var(--ta-gold); border-radius: 999px;
+  background: rgba(14, 13, 11, .92);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  color: var(--ta-bone);
+  font: 700 .95rem/1 var(--ta-body); letter-spacing: .02em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), 0 0 0 0 rgba(201, 163, 92, .5);
+  transition: transform .25s var(--ta-ease), background-color .25s var(--ta-ease), box-shadow .25s var(--ta-ease);
+}
+#tribe-assistant .ta-launcher:hover { transform: translateY(-2px); background: rgba(31, 28, 24, .96); }
+#tribe-assistant .ta-launcher-mark {
+  display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ta-gold); color: var(--ta-ink);
+  font: 600 1.25rem/1 var(--ta-display);
+}
+#tribe-assistant .ta-launcher { position: relative; }
+#tribe-assistant .ta-launcher-dot {
+  position: absolute; top: 6px; left: 38px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #6fcf7f; border: 2px solid var(--ta-ink);
+}
+#tribe-assistant.is-open .ta-launcher { opacity: 0; pointer-events: none; transform: scale(.8); }
+
+@media (prefers-reduced-motion: no-preference) {
+  #tribe-assistant .ta-launcher.is-new { animation: ta-pulse 2.4s var(--ta-ease) 1.2s 2; }
+}
+@keyframes ta-pulse {
+  0% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 0 rgba(201,163,92,.55); }
+  70% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 16px rgba(201,163,92,0); }
+  100% { box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 0 rgba(201,163,92,0); }
+}
+
+/* ---------- Panel ---------- */
+#tribe-assistant .ta-panel {
+  position: absolute; right: 0; bottom: 0;
+  width: min(400px, calc(100vw - 28px));
+  height: min(640px, calc(100dvh - var(--ta-bottom) - 40px));
+  display: flex; flex-direction: column;
+  background: var(--ta-ink-2);
+  border: 1px solid var(--ta-line-strong); border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .6);
+  overflow: hidden;
+  transform-origin: bottom right;
+  opacity: 0; transform: translateY(16px) scale(.96); visibility: hidden;
+  transition: opacity .28s var(--ta-ease), transform .32s var(--ta-ease), visibility 0s linear .32s;
+}
+#tribe-assistant.is-open .ta-panel {
+  opacity: 1; transform: none; visibility: visible;
+  transition: opacity .28s var(--ta-ease), transform .32s var(--ta-ease), visibility 0s;
+}
+@media (max-width: 520px) {
+  #tribe-assistant .ta-head { gap: 8px; padding-left: 14px; padding-right: 8px; }
+  #tribe-assistant .ta-head-mark { width: 36px; height: 36px; }
+  #tribe-assistant .ta-title { font-size: 1rem; }
+  #tribe-assistant .ta-icon-btn { width: 36px; }
+  #tribe-assistant.is-open { right: 0; bottom: 0; left: 0; top: 0; }
+  #tribe-assistant .ta-panel {
+    position: fixed; inset: auto 0 0 0;
+    width: 100%; height: min(100dvh, 100%);
+    border-radius: 0; border: 0;
+  }
+  #tribe-assistant.is-open .ta-panel { height: 100dvh; }
+}
+
+/* Header */
+#tribe-assistant .ta-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 14px 14px 18px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  border-bottom: 1px solid var(--ta-line);
+  background: linear-gradient(180deg, rgba(201,163,92,.10), rgba(201,163,92,0));
+}
+#tribe-assistant .ta-head-mark {
+  flex: none; display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--ta-gold); color: var(--ta-gold);
+  font: 600 1.2rem/1 var(--ta-display);
+}
+#tribe-assistant .ta-head-text { flex: 1; min-width: 0; }
+#tribe-assistant .ta-title { margin: 0; font: 600 1.15rem/1.2 var(--ta-display); color: var(--ta-bone); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#tribe-assistant .ta-sub { margin: 2px 0 0; font-size: .8rem; white-space: nowrap; color: var(--ta-muted); display: flex; align-items: center; gap: 6px; }
+#tribe-assistant .ta-sub::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #6fcf7f; }
+#tribe-assistant .ta-langs { display: inline-flex; border: 1px solid var(--ta-line-strong); border-radius: 999px; padding: 2px; }
+#tribe-assistant .ta-lang {
+  min-width: 36px; height: 30px; border: 0; border-radius: 999px;
+  background: transparent; color: var(--ta-muted);
+  font: 700 .75rem/1 var(--ta-body); letter-spacing: .06em; cursor: pointer;
+}
+#tribe-assistant .ta-lang[aria-pressed="true"] { background: var(--ta-gold); color: var(--ta-ink); }
+#tribe-assistant .ta-icon-btn {
+  flex: none; display: grid; place-items: center;
+  width: 40px; height: 40px; border: 0; border-radius: 50%;
+  background: transparent; color: var(--ta-bone); cursor: pointer;
+}
+#tribe-assistant .ta-icon-btn:hover { background: rgba(237,230,218,.08); }
+#tribe-assistant .ta-icon-btn svg { width: 20px; height: 20px; }
+
+/* Messages */
+#tribe-assistant .ta-log {
+  flex: 1; overflow-y: auto; overscroll-behavior: contain;
+  padding: 18px 16px 8px;
+  display: flex; flex-direction: column; gap: 10px;
+  scrollbar-width: thin; scrollbar-color: var(--ta-line-strong) transparent;
+}
+#tribe-assistant .ta-msg {
+  max-width: 86%; padding: 10px 14px;
+  border-radius: 18px; font-size: .95rem;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+#tribe-assistant .ta-msg a { color: var(--ta-gold-2); }
+#tribe-assistant .ta-bot { align-self: flex-start; background: var(--ta-ink-3); border: 1px solid var(--ta-line); border-bottom-left-radius: 6px; }
+#tribe-assistant .ta-user { align-self: flex-end; background: var(--ta-gold); color: var(--ta-ink); border-bottom-right-radius: 6px; font-weight: 600; }
+#tribe-assistant .ta-error { align-self: flex-start; background: transparent; border: 1px dashed var(--ta-line-strong); color: var(--ta-muted); font-size: .88rem; }
+@media (prefers-reduced-motion: no-preference) {
+  #tribe-assistant .ta-msg, #tribe-assistant .ta-card { animation: ta-in .3s var(--ta-ease) both; }
+}
+@keyframes ta-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Typing indicator */
+#tribe-assistant .ta-typing { align-self: flex-start; display: inline-flex; gap: 5px; padding: 14px 16px; background: var(--ta-ink-3); border: 1px solid var(--ta-line); border-radius: 18px; border-bottom-left-radius: 6px; }
+#tribe-assistant .ta-typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--ta-gold); opacity: .4; }
+@media (prefers-reduced-motion: no-preference) {
+  #tribe-assistant .ta-typing span { animation: ta-dot 1.1s infinite ease-in-out; }
+  #tribe-assistant .ta-typing span:nth-child(2) { animation-delay: .15s; }
+  #tribe-assistant .ta-typing span:nth-child(3) { animation-delay: .3s; }
+}
+@keyframes ta-dot { 0%, 80%, 100% { opacity: .3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+/* Booking card */
+#tribe-assistant .ta-card {
+  align-self: stretch;
+  padding: 16px; border-radius: 16px;
+  border: 1px solid rgba(201,163,92,.55);
+  background: linear-gradient(160deg, rgba(201,163,92,.14), rgba(201,163,92,.03) 60%), var(--ta-ink);
+}
+#tribe-assistant .ta-card-kicker { margin: 0 0 8px; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ta-gold); }
+#tribe-assistant .ta-card dl { margin: 0 0 14px; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: .92rem; }
+#tribe-assistant .ta-card dt { color: var(--ta-muted); }
+#tribe-assistant .ta-card dd { margin: 0; color: var(--ta-bone); font-weight: 600; }
+#tribe-assistant .ta-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  width: 100%; min-height: 48px; padding: .7em 1.2em;
+  border: 1.5px solid transparent; border-radius: 999px;
+  font: 700 .95rem/1.1 var(--ta-body); letter-spacing: .02em;
+  text-decoration: none; cursor: pointer;
+  transition: background-color .2s var(--ta-ease), border-color .2s var(--ta-ease), color .2s var(--ta-ease);
+}
+#tribe-assistant .ta-btn-gold { background: var(--ta-gold); color: var(--ta-ink); }
+#tribe-assistant .ta-btn-gold:hover { background: var(--ta-gold-2); }
+#tribe-assistant .ta-btn-ghost { background: transparent; border-color: var(--ta-line-strong); color: var(--ta-bone); }
+#tribe-assistant .ta-btn-ghost:hover { border-color: var(--ta-gold); color: var(--ta-gold-2); }
+#tribe-assistant .ta-card-note { margin: 10px 0 0; font-size: .78rem; color: var(--ta-muted); }
+
+/* Inquiry form */
+#tribe-assistant .ta-form { display: grid; gap: 10px; }
+#tribe-assistant .ta-form label { display: grid; gap: 4px; font-size: .8rem; color: var(--ta-muted); }
+#tribe-assistant .ta-form input, #tribe-assistant .ta-form textarea {
+  width: 100%; padding: 10px 12px;
+  background: var(--ta-ink-2); color: var(--ta-bone);
+  border: 1px solid var(--ta-line-strong); border-radius: 12px;
+  font: 500 .95rem/1.4 var(--ta-body);
+}
+#tribe-assistant .ta-form textarea { min-height: 76px; resize: vertical; }
+#tribe-assistant .ta-form input:focus, #tribe-assistant .ta-form textarea:focus { outline: 2px solid var(--ta-gold); outline-offset: 0; border-color: transparent; }
+#tribe-assistant .ta-form .ta-check { display: flex; gap: 10px; align-items: flex-start; font-size: .8rem; color: var(--ta-bone); }
+#tribe-assistant .ta-form .ta-check input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--ta-gold); }
+#tribe-assistant .ta-form .ta-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+#tribe-assistant .ta-form-err { margin: 0; font-size: .82rem; color: #f0a99f; }
+#tribe-assistant .ta-row { display: flex; gap: 8px; }
+
+/* Suggestions */
+#tribe-assistant .ta-suggest { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 16px 10px; }
+#tribe-assistant .ta-chip {
+  padding: 8px 13px; min-height: 36px;
+  border: 1px solid var(--ta-line-strong); border-radius: 999px;
+  background: transparent; color: var(--ta-bone);
+  font: 600 .84rem/1.2 var(--ta-body); cursor: pointer; text-align: left;
+  transition: border-color .2s var(--ta-ease), color .2s var(--ta-ease);
+}
+#tribe-assistant .ta-chip:hover { border-color: var(--ta-gold); color: var(--ta-gold-2); }
+
+/* Composer */
+#tribe-assistant .ta-compose {
+  display: flex; align-items: flex-end; gap: 8px;
+  padding: 10px 12px; padding-bottom: max(10px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--ta-line);
+  background: var(--ta-ink-2);
+}
+#tribe-assistant .ta-input {
+  flex: 1; min-height: 46px; max-height: 120px; padding: 12px 14px;
+  background: var(--ta-ink); color: var(--ta-bone);
+  border: 1px solid var(--ta-line-strong); border-radius: 16px;
+  font: 500 16px/1.35 var(--ta-body); /* 16px stops iOS from zooming in */
+  resize: none;
+}
+#tribe-assistant .ta-input::placeholder { color: var(--ta-muted); }
+#tribe-assistant .ta-input:focus { outline: 2px solid var(--ta-gold); outline-offset: 0; border-color: transparent; }
+#tribe-assistant .ta-send {
+  flex: none; display: grid; place-items: center;
+  width: 46px; height: 46px; border: 0; border-radius: 50%;
+  background: var(--ta-gold); color: var(--ta-ink); cursor: pointer;
+}
+#tribe-assistant .ta-send:disabled { opacity: .45; cursor: default; }
+#tribe-assistant .ta-send svg { width: 20px; height: 20px; }
+#tribe-assistant .ta-fine { margin: 0; padding: 0 16px 10px; font-size: .7rem; color: var(--ta-muted); text-align: center; background: var(--ta-ink-2); }
+
+#tribe-assistant :focus-visible { outline: 3px solid var(--ta-focus); outline-offset: 2px; }
+
+@media (forced-colors: active) {
+  #tribe-assistant .ta-launcher, #tribe-assistant .ta-panel, #tribe-assistant .ta-msg, #tribe-assistant .ta-btn, #tribe-assistant .ta-chip { border: 1px solid CanvasText; }
+}
