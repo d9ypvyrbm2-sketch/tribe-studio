@@ -398,3 +398,15 @@
   60% { filter: blur(0) brightness(1.03); }
   to { scale: 1; filter: none; }
 }
+
+/* Scissors: the gold outline glows (Jean, 2026-11-05) */
+.chair-dot {
+  filter: drop-shadow(0 0 2px rgb(242 208 138 / 1)) drop-shadow(0 0 7px rgb(226 190 118 / .85)) drop-shadow(0 3px 6px rgb(0 0 0 / .6));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chair-dot { animation: scissors-glow-strong 2.4s ease-in-out infinite; }
+}
+@keyframes scissors-glow-strong {
+  0%, 100% { filter: drop-shadow(0 0 2px rgb(242 208 138 / .9)) drop-shadow(0 0 6px rgb(226 190 118 / .6)) drop-shadow(0 3px 6px rgb(0 0 0 / .6)); }
+  50% { filter: drop-shadow(0 0 3px rgb(255 226 160 / 1)) drop-shadow(0 0 14px rgb(226 190 118 / 1)) drop-shadow(0 3px 6px rgb(0 0 0 / .6)); }
+}
