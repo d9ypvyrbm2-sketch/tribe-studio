@@ -11,9 +11,11 @@
                es: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"] };
   var TEXT = {
     en: { open: "Open now", until: "until", closed: "Closed now", opens: "opens", today: "today", tomorrow: "tomorrow",
-          hello: "Welcome to the shop! Ask me anything." },
+          hello: "Welcome to the shop! Ask me anything.",
+          inside: "Welcome to the shop! Tap a chair to look around, or ask me anything." },
     es: { open: "Abierto ahora", until: "hasta las", closed: "Cerrado ahora", opens: "abre", today: "hoy", tomorrow: "mañana",
-          hello: "¡Bienvenido a la barbería! Pregúntame lo que quieras." }
+          hello: "¡Bienvenido a la barbería! Pregúntame lo que quieras.",
+          inside: "¡Bienvenido a la barbería! Toca una silla para mirar, o pregúntame lo que quieras." }
   };
 
   function lang() { return (root.lang || "en").slice(0, 2) === "es" ? "es" : "en"; }
@@ -62,16 +64,18 @@
   function greeted() { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return true; } }
   function markGreeted() { try { sessionStorage.setItem(KEY, "1"); } catch (e) { /* ignore */ } }
 
-  function greet() {
+  // Show one speech bubble above the robot; tapping it opens the chat.
+  function say(text) {
     var launcher = document.querySelector("#tribe-assistant .ta-launcher");
     var box = document.getElementById("tribe-assistant");
-    if (!launcher || greeted() || box.classList.contains("is-open")) return;
-    markGreeted();
+    if (!launcher || box.classList.contains("is-open")) return;
+    var old = document.querySelector(".robot-hello");
+    if (old) old.remove();
     var r = launcher.getBoundingClientRect();
     var b = document.createElement("button");
     b.type = "button";
     b.className = "robot-hello";
-    b.textContent = TEXT[lang()].hello;
+    b.textContent = text;
     b.style.bottom = Math.round(window.innerHeight - r.top + 8) + "px";
     var centre = r.left + r.width / 2;
     if (centre > window.innerWidth * 0.66) { b.style.right = Math.round(window.innerWidth - r.right) + "px"; b.classList.add("is-right"); }
@@ -84,6 +88,20 @@
     launcher.addEventListener("click", hide, { once: true });
     setTimeout(hide, 7000);
   }
+
+  function greet() {
+    if (greeted()) return;
+    markGreeted();
+    say(TEXT[lang()].hello);
+  }
+
+  // Jean, 2026-11-05: every time a visitor taps "Inside the shop", the robot welcomes them in
+  // (after the shop has appeared and the robot has moved to the centre).
+  var inside = document.getElementById("nav-inside");
+  if (inside) inside.addEventListener("click", function () {
+    markGreeted();
+    setTimeout(function () { say(TEXT[lang()].inside); }, 900);
+  });
 
   // Wait until the entrance has finished (the robot is hidden while it plays).
   var timer = setInterval(function () {
