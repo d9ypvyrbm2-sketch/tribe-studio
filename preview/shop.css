@@ -381,3 +381,8 @@
   50% { filter: drop-shadow(0 3px 6px rgb(0 0 0 / .7)) drop-shadow(0 0 12px rgb(226 190 118 / .9)); }
 }
 @media (max-width: 480px) { .chair-dot { width: 30px; height: 30px; } }
+
+/* Scissors point down-left, toward 7 o'clock (blades up = 12 o'clock, so turn 210deg) */
+.chair-dot { transform: rotate(210deg); }
+.chair:hover .chair-dot,
+.chair:focus-visible .chair-dot { transform: rotate(198deg) scale(1.12); }
