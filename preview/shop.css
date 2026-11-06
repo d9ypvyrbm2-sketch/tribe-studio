@@ -447,3 +447,8 @@
   padding: .2em .5em;
 }
 @media (max-width: 480px) { .shop-name { font-size: 2.35rem; } }
+
+/* Arrival order (Jean, 2026-11-05): the robot pops up first, then the scissors and labels one by one */
+@media (prefers-reduced-motion: no-preference) {
+  .shop.is-arriving .chair { animation-delay: calc(var(--i, 0) * 160ms + 1s); }
+}

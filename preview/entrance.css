@@ -310,3 +310,7 @@
 
 /* The door opens by itself now, so the "Tap the door" hint is not shown */
 .entrance-hint { display: none; }
+
+/* No lines on the door: it opens by itself, so the gold outline and focus ring are off (Jean, 2026-11-05) */
+.door-hotspot::after { display: none; }
+.door-hotspot:focus, .door-hotspot:focus-visible { outline: none; }
