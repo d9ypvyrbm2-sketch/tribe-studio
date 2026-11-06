@@ -273,7 +273,8 @@ body::before { display: none; }
   color: #F3E3BF;
   font: 600 13px/1.35 var(--fx-body);
   text-align: start;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .55), 0 0 14px rgba(201, 163, 92, .25);
+  /* burgundy glow around the black-and-gold box (Jean, 2026-11-05) */
+  box-shadow: 0 0 0 1px rgb(128 18 40 / .6), 0 0 14px rgb(128 18 40 / .95), 0 0 28px rgb(140 22 48 / .6), 0 12px 30px -10px rgba(0, 0, 0, .55);
   cursor: pointer;
   opacity: 0;
   translate: 0 6px;
