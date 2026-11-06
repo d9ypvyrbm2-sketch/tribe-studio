@@ -449,3 +449,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .shop.is-arriving .chair { animation-delay: calc(var(--i, 0) * 160ms + 2.2s); } /* after the robot and its welcome message */
 }
+
+/* Name back on one line, as big as fits (Jean, 2026-11-06) */
+.shop-name { white-space: nowrap; font-size: clamp(2rem, 1rem + 2.6vw, 3.6rem); }
+@media (max-width: 480px) { .shop-name { margin-top: 54px; font-size: 1.75rem; letter-spacing: .05em; padding: .2em .3em; } } /* sits just below EN/ES */
