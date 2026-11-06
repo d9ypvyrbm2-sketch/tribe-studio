@@ -307,3 +307,6 @@
 
 /* Natural photo: no film grain over the storefront */
 .film-grain { display: none; }
+
+/* The door opens by itself now, so the "Tap the door" hint is not shown */
+.entrance-hint { display: none; }

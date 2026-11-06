@@ -76,4 +76,10 @@
     if (e.key === "Escape") enter(false);
   });
   door.focus({ preventScroll: true });
+
+  // The door opens by itself (Jean, 2026-11-05): once the page and storefront photo have loaded,
+  // a short pause to take in the storefront, then the walk-in plays. Tapping the door still opens it sooner.
+  function autoOpen() { setTimeout(function () { enter(true); }, calm ? 1200 : 2200); }
+  if (document.readyState === "complete") autoOpen();
+  else window.addEventListener("load", autoOpen, { once: true });
 })();
