@@ -27,6 +27,8 @@
   }
 
   function finish() {
+    var shopEl = document.getElementById("shop");
+    if (shopEl) shopEl.classList.remove("is-dolly");
     entrance.classList.add("is-gone");
     entrance.setAttribute("aria-hidden", "true");
     root.classList.remove("entrance-open");
@@ -52,7 +54,13 @@
     }
     entrance.classList.add("is-opening");
     setTimeout(function () { entrance.classList.add("is-walking"); }, calm ? 50 : 900);
-    setTimeout(finish, calm ? 400 : 3000);
+    // One continuous camera move: while the doorway fills the screen, the inside of the shop is
+    // already gliding toward the viewer underneath it, so the two blend instead of cutting.
+    var shopEl = document.getElementById("shop");
+    if (!calm && shopEl && !(window.TribeShop && window.TribeShop.isAway())) {
+      setTimeout(function () { shopEl.classList.add("is-dolly"); }, 2200);
+    }
+    setTimeout(finish, calm ? 400 : 3600);
   }
 
   if (location.hash && location.hash !== "#top") {

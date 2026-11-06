@@ -386,3 +386,15 @@
 .chair-dot { transform: rotate(210deg); }
 .chair:hover .chair-dot,
 .chair:focus-visible .chair-dot { transform: rotate(198deg) scale(1.12); }
+
+/* Walk-in from the door (entrance.js adds .is-dolly): the shop starts close and soft, as if the
+   camera is still moving through the doorway, then glides back into focus. No cut. */
+@media (prefers-reduced-motion: no-preference) {
+  .shop.is-dolly .shop-scene { animation: dolly-in 1.4s cubic-bezier(.16, .7, .25, 1) both; }
+  .shop.is-dolly .chair { opacity: 0; }
+}
+@keyframes dolly-in {
+  from { scale: 1.55; filter: blur(6px) brightness(1.12); }
+  60% { filter: blur(0) brightness(1.03); }
+  to { scale: 1; filter: none; }
+}
