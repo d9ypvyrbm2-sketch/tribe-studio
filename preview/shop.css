@@ -359,3 +359,25 @@
     0 0 20px rgb(255 236 205 / .25),
     0 0 40px rgb(237 230 218 / .14);
 }
+
+/* Chair markers: gold scissors instead of a dot (Jean, 2026-11-05) */
+.chair-dot {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 0;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20stroke%3D%22%230e0d0b%22%20stroke-width%3D%225%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2224%22%20r%3D%224%22/%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%224%22/%3E%3Cpath%20d%3D%22M10.8%2021.2%20L22%204%22/%3E%3Cpath%20d%3D%22M21.2%2021.2%20L10%204%22/%3E%3C/g%3E%3Cg%20stroke%3D%22%23E2BE76%22%20stroke-width%3D%222.4%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%2224%22%20r%3D%224%22/%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2224%22%20r%3D%224%22/%3E%3Cpath%20d%3D%22M10.8%2021.2%20L22%204%22/%3E%3Cpath%20d%3D%22M21.2%2021.2%20L10%204%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2212.6%22%20r%3D%221.4%22%20fill%3D%22%230e0d0b%22/%3E%3C/svg%3E") center / contain no-repeat;
+  box-shadow: none;
+  filter: drop-shadow(0 3px 6px rgb(0 0 0 / .7)) drop-shadow(0 0 6px rgb(226 190 118 / .45));
+  transition: transform .25s cubic-bezier(.2, .7, .2, 1);
+}
+.chair:hover .chair-dot,
+.chair:focus-visible .chair-dot { transform: rotate(-12deg) scale(1.12); }
+@media (prefers-reduced-motion: no-preference) {
+  .chair-dot { animation: scissors-glow 2.2s ease-in-out infinite; }
+}
+@keyframes scissors-glow {
+  0%, 100% { filter: drop-shadow(0 3px 6px rgb(0 0 0 / .7)) drop-shadow(0 0 4px rgb(226 190 118 / .35)); }
+  50% { filter: drop-shadow(0 3px 6px rgb(0 0 0 / .7)) drop-shadow(0 0 12px rgb(226 190 118 / .9)); }
+}
+@media (max-width: 480px) { .chair-dot { width: 30px; height: 30px; } }
