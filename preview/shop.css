@@ -131,7 +131,7 @@
   text-align: center;
   white-space: nowrap;
   padding: .35em .9em;
-  /* black outline next to the letters, then the gold glow */
+  /* black outline next to the letters, then a burgundy glow, then the gold glow */
   text-shadow:
     1.5px 0.0px 0 #000,
     1.3px 0.75px 0 #000,
@@ -145,7 +145,10 @@
     -0.0px -1.5px 0 #000,
     0.75px -1.3px 0 #000,
     1.3px -0.75px 0 #000,
-    0 0 10px rgb(233 194 122 / .85),
+    0 0 4px rgb(128 18 40 / 1),
+    0 0 9px rgb(128 18 40 / .95),
+    0 0 16px rgb(140 22 48 / .8),
+    0 0 26px rgb(201 163 92 / .55),
     0 0 22px rgb(220 185 120 / .65),
     0 0 42px rgb(201 163 92 / .5),
     0 0 70px rgb(201 163 92 / .3);
