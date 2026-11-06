@@ -410,3 +410,15 @@
   0%, 100% { filter: drop-shadow(0 0 2px rgb(242 208 138 / .9)) drop-shadow(0 0 6px rgb(226 190 118 / .6)) drop-shadow(0 3px 6px rgb(0 0 0 / .6)); }
   50% { filter: drop-shadow(0 0 3px rgb(255 226 160 / 1)) drop-shadow(0 0 14px rgb(226 190 118 / 1)) drop-shadow(0 3px 6px rgb(0 0 0 / .6)); }
 }
+
+/* Chair labels: the gold outline glows too (Jean, 2026-11-05) */
+.chair-label {
+  box-shadow: 0 0 0 1px rgb(242 208 138 / .35), 0 0 10px rgb(226 190 118 / .55), 0 4px 14px rgb(0 0 0 / .55);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chair-label { animation: label-glow 2.4s ease-in-out infinite; }
+}
+@keyframes label-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgb(242 208 138 / .3), 0 0 8px rgb(226 190 118 / .45), 0 4px 14px rgb(0 0 0 / .55); }
+  50% { box-shadow: 0 0 0 1px rgb(255 226 160 / .6), 0 0 18px rgb(226 190 118 / .9), 0 4px 14px rgb(0 0 0 / .55); }
+}
