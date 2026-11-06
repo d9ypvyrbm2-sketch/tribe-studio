@@ -181,7 +181,7 @@ body::before { display: none; } /* the film grain belongs to the dark look */
   max-width: min(260px, calc(100vw - 32px));
   padding: 10px 14px;
   /* black and gold, like the shop's chair labels */
-  border: 1.5px solid #C9A35C;
+  border: 1.5px solid #9A1E36; /* burgundy edge instead of gold (Jean, 2026-11-06) */
   border-radius: 16px;
   background: #000000;
   color: #F3E3BF;

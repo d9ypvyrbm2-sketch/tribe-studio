@@ -342,3 +342,16 @@ html #tribe-assistant .ta-typing span { background: var(--ta-gold); }
 html #tribe-assistant .ta-icon-btn:hover { background: rgb(122 20 40 / .4); }
 html #tribe-assistant .ta-form-err { color: #f0a99f; }
 html #tribe-assistant .ta-input:focus { outline-color: var(--ta-gold); }
+
+/* Burgundy edges instead of gold on the chat (Jean, 2026-11-06) */
+html #tribe-assistant { --ta-line-strong: rgb(154 30 54 / .7); }
+html #tribe-assistant .ta-panel { border-color: #9A1E36; }
+html #tribe-assistant .ta-head { border-bottom-color: rgb(154 30 54 / .8); }
+html #tribe-assistant .ta-head-mark { border-color: #9A1E36; }
+html #tribe-assistant .ta-langs { border-color: rgb(154 30 54 / .8); }
+html #tribe-assistant .ta-user { border-color: rgb(190 50 78 / .8); }
+html #tribe-assistant .ta-bot { border-color: rgb(154 30 54 / .55); }
+html #tribe-assistant .ta-card { border-color: #9A1E36; }
+html #tribe-assistant .ta-input { border-color: rgb(154 30 54 / .8); }
+html #tribe-assistant .ta-input:focus { outline-color: #B8304C; }
+html #tribe-assistant .ta-form input, html #tribe-assistant .ta-form textarea { border-color: rgb(154 30 54 / .7); }
