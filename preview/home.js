@@ -11,11 +11,11 @@
                es: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"] };
   var TEXT = {
     en: { open: "Open now", until: "until", closed: "Closed now", opens: "opens", today: "today", tomorrow: "tomorrow",
-          hello: "Welcome to the shop! Ask me anything.",
-          inside: "Welcome to the shop! Tap a chair to look around, or ask me anything." },
+          hello: "Hi, I’m Brayan. How can I assist you?",
+          inside: "Hi, I’m Brayan. How can I assist you?" },
     es: { open: "Abierto ahora", until: "hasta las", closed: "Cerrado ahora", opens: "abre", today: "hoy", tomorrow: "mañana",
-          hello: "¡Bienvenido a la barbería! Pregúntame lo que quieras.",
-          inside: "¡Bienvenido a la barbería! Toca una silla para mirar, o pregúntame lo que quieras." }
+          hello: "Hola, soy Brayan. ¿En qué te puedo ayudar?",
+          inside: "Hola, soy Brayan. ¿En qué te puedo ayudar?" }
   };
 
   function lang() { return (root.lang || "en").slice(0, 2) === "es" ? "es" : "en"; }
