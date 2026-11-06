@@ -422,3 +422,17 @@
   0%, 100% { box-shadow: 0 0 0 1px rgb(242 208 138 / .3), 0 0 8px rgb(226 190 118 / .45), 0 4px 14px rgb(0 0 0 / .55); }
   50% { box-shadow: 0 0 0 1px rgb(255 226 160 / .6), 0 0 18px rgb(226 190 118 / .9), 0 4px 14px rgb(0 0 0 / .55); }
 }
+
+/* Brighter glow on labels and scissors (Jean, 2026-11-05) */
+.chair-label {
+  border-color: #F2D08A;
+  box-shadow: 0 0 0 1px rgb(255 226 160 / .6), 0 0 16px rgb(242 208 138 / .9), 0 0 30px rgb(226 190 118 / .55), 0 4px 14px rgb(0 0 0 / .55);
+}
+@keyframes label-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgb(255 226 160 / .55), 0 0 14px rgb(242 208 138 / .8), 0 0 26px rgb(226 190 118 / .45), 0 4px 14px rgb(0 0 0 / .55); }
+  50% { box-shadow: 0 0 0 1px rgb(255 236 190 / .95), 0 0 24px rgb(255 220 150 / 1), 0 0 44px rgb(226 190 118 / .8), 0 4px 14px rgb(0 0 0 / .55); }
+}
+@keyframes scissors-glow-strong {
+  0%, 100% { filter: drop-shadow(0 0 3px rgb(255 226 160 / 1)) drop-shadow(0 0 10px rgb(242 208 138 / .85)) drop-shadow(0 3px 6px rgb(0 0 0 / .6)); }
+  50% { filter: drop-shadow(0 0 4px rgb(255 236 190 / 1)) drop-shadow(0 0 20px rgb(255 220 150 / 1)) drop-shadow(0 3px 6px rgb(0 0 0 / .6)); }
+}
