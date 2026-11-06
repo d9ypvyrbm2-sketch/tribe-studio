@@ -285,3 +285,13 @@ html:not(.shop-open) #tribe-assistant .ta-panel { left: auto; right: 0; translat
   html:not(.shop-open) #tribe-assistant.is-open { left: 0; right: 0; }
   html:not(.shop-open) #tribe-assistant .ta-panel { right: auto; left: 0; }
 }
+
+/* Arriving in the shop: the robot pops up first, before the chairs (Jean, 2026-11-05) */
+@media (prefers-reduced-motion: no-preference) {
+  html.shop-open #tribe-assistant:not(.is-open) .ta-launcher { animation: ta-robot-pop .7s cubic-bezier(.3, 1.6, .5, 1) .15s both; }
+}
+@keyframes ta-robot-pop {
+  0% { opacity: 0; transform: translateY(24px) scale(.4); }
+  70% { opacity: 1; }
+  100% { opacity: 1; transform: none; }
+}
