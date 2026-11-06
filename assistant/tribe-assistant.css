@@ -295,3 +295,50 @@ html:not(.shop-open) #tribe-assistant .ta-panel { left: auto; right: 0; translat
   70% { opacity: 1; }
   100% { opacity: 1; transform: none; }
 }
+
+/* ---------- Chat theme: black, gold and burgundy (Jean, 2026-11-05) ----------
+   "html #tribe-assistant" outranks the live site's white-and-gold override in home-theme.css. */
+html #tribe-assistant {
+  --ta-ink: #0e0d0b;
+  --ta-ink-2: #141110;
+  --ta-ink-3: #1d1715;
+  --ta-line: rgba(237, 230, 218, .12);
+  --ta-line-strong: rgba(201, 163, 92, .45);
+  --ta-bone: #F3E3BF;
+  --ta-muted: #B9A98F;
+  --ta-gold: #C9A35C;
+  --ta-gold-2: #E2BE76;
+  --ta-focus: #F2D08A;
+  --ta-burgundy: #7A1428;
+  --ta-burgundy-2: #9A1E36;
+}
+html #tribe-assistant .ta-panel {
+  border: 1.5px solid var(--ta-gold);
+  box-shadow: 0 0 0 1px rgb(128 18 40 / .5), 0 0 22px rgb(128 18 40 / .75), 0 24px 70px rgb(0 0 0 / .6);
+}
+html #tribe-assistant .ta-head {
+  background: linear-gradient(180deg, rgb(122 20 40 / .85), rgb(122 20 40 / .35) 70%, rgb(122 20 40 / .15));
+  border-bottom: 1px solid rgb(201 163 92 / .4);
+}
+html #tribe-assistant .ta-head-mark { border-color: var(--ta-gold); background: #0e0d0b; }
+html #tribe-assistant .ta-user {
+  background: var(--ta-burgundy);
+  color: #FBEFD6;
+  border: 1px solid rgb(201 163 92 / .55);
+  box-shadow: 0 0 10px rgb(128 18 40 / .55);
+}
+html #tribe-assistant .ta-bot { background: var(--ta-ink-3); border-color: rgb(201 163 92 / .25); color: var(--ta-bone); }
+html #tribe-assistant .ta-btn-gold,
+html #tribe-assistant .ta-lang[aria-pressed="true"],
+html #tribe-assistant .ta-send { background: var(--ta-gold); color: #0e0d0b; }
+html #tribe-assistant .ta-btn-gold:hover { background: var(--ta-gold-2); }
+html #tribe-assistant .ta-chip { border-color: rgb(154 30 54 / .8); }
+html #tribe-assistant .ta-chip:hover { background: rgb(122 20 40 / .35); border-color: var(--ta-gold); color: var(--ta-gold-2); }
+html #tribe-assistant .ta-card {
+  border-color: rgb(201 163 92 / .55);
+  background: linear-gradient(160deg, rgb(122 20 40 / .45), rgb(122 20 40 / .1) 60%), #0e0d0b;
+}
+html #tribe-assistant .ta-typing span { background: var(--ta-gold); }
+html #tribe-assistant .ta-icon-btn:hover { background: rgb(122 20 40 / .4); }
+html #tribe-assistant .ta-form-err { color: #f0a99f; }
+html #tribe-assistant .ta-input:focus { outline-color: var(--ta-gold); }
