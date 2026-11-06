@@ -355,3 +355,9 @@ html #tribe-assistant .ta-card { border-color: #9A1E36; }
 html #tribe-assistant .ta-input { border-color: rgb(154 30 54 / .8); }
 html #tribe-assistant .ta-input:focus { outline-color: #B8304C; }
 html #tribe-assistant .ta-form input, html #tribe-assistant .ta-form textarea { border-color: rgb(154 30 54 / .7); }
+
+/* Gold line on top of the burgundy edges (Jean, 2026-11-06) */
+html #tribe-assistant .ta-panel { box-shadow: 0 0 0 1.5px #C9A35C, 0 0 12px 2px rgb(128 18 40 / .9), 0 0 26px rgb(140 22 48 / .55), 0 24px 70px rgb(0 0 0 / .6); }
+html #tribe-assistant .ta-card { box-shadow: 0 0 0 1.5px #C9A35C, 0 0 10px rgb(128 18 40 / .7); }
+html #tribe-assistant .ta-user { box-shadow: 0 0 0 1px #C9A35C, 0 0 10px rgb(128 18 40 / .6); }
+html #tribe-assistant .ta-head-mark { box-shadow: 0 0 0 1.5px #C9A35C; }
