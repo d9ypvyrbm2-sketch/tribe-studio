@@ -453,3 +453,14 @@
 /* Name back on one line, as big as fits (Jean, 2026-11-06) */
 .shop-name { white-space: nowrap; font-size: clamp(2rem, 1rem + 2.6vw, 3.6rem); }
 @media (max-width: 480px) { .shop-name { margin-top: 54px; font-size: 1.75rem; letter-spacing: .05em; padding: .2em .3em; } } /* sits just below EN/ES */
+
+/* Chair labels dimmed so the robot's message stands out (Jean, 2026-11-06) */
+.chair-label {
+  border-color: rgb(201 163 92 / .7);
+  box-shadow: 0 0 6px rgb(226 190 118 / .25), 0 4px 12px rgb(0 0 0 / .5);
+}
+@keyframes label-glow {
+  0%, 100% { box-shadow: 0 0 4px rgb(226 190 118 / .18), 0 4px 12px rgb(0 0 0 / .5); }
+  50% { box-shadow: 0 0 9px rgb(226 190 118 / .35), 0 4px 12px rgb(0 0 0 / .5); }
+}
+.chair-label { text-shadow: 0 0 1px rgb(0 0 0 / .55), 0 1px 2px rgb(0 0 0 / .45), 0 0 5px rgb(255 255 255 / .45); }
