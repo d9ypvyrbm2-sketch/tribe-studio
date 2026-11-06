@@ -448,7 +448,7 @@
 }
 @media (max-width: 480px) { .shop-name { font-size: 2.35rem; } }
 
-/* Arrival order (Jean, 2026-11-05): the robot pops up first, then the scissors and labels one by one */
+/* Arrival order (Jean, 2026-11-05): the robot pops up, then its welcome message, then the scissors and labels one by one */
 @media (prefers-reduced-motion: no-preference) {
-  .shop.is-arriving .chair { animation-delay: calc(var(--i, 0) * 160ms + 1s); }
+  .shop.is-arriving .chair { animation-delay: calc(var(--i, 0) * 160ms + 2.2s); } /* after the robot and its welcome message */
 }

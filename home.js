@@ -89,6 +89,6 @@
   var timer = setInterval(function () {
     if (root.classList.contains("entrance-open")) return;
     clearInterval(timer);
-    setTimeout(greet, 2600); // after the robot and the chairs have appeared
+    setTimeout(greet, 400); // right after the robot pops up, before the chairs
   }, 500);
 })();
