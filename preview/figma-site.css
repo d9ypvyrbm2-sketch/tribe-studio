@@ -266,12 +266,14 @@ body::before { display: none; }
   z-index: 175;
   max-width: min(260px, calc(100vw - 32px));
   padding: 10px 14px;
-  border: 0;
-  background: var(--fx-lime);
-  color: var(--fx-ink);
+  /* black and gold, like the shop's chair labels */
+  border: 1.5px solid #C9A35C;
+  border-radius: 16px;
+  background: #000000;
+  color: #F3E3BF;
   font: 600 13px/1.35 var(--fx-body);
   text-align: start;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .5);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .55), 0 0 14px rgba(201, 163, 92, .25);
   cursor: pointer;
   opacity: 0;
   translate: 0 6px;
@@ -279,7 +281,7 @@ body::before { display: none; }
 }
 .robot-hello.is-centre { transform: translateX(-50%); }
 .robot-hello.is-in { opacity: 1; translate: 0 0; }
-.robot-hello:focus-visible { outline: 3px solid var(--fx-cream); outline-offset: 3px; }
+.robot-hello:focus-visible { outline: 3px solid #F2D08A; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   .fx-btn, .robot-hello { transition: none; }

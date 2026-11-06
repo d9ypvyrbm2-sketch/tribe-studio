@@ -180,13 +180,14 @@ body::before { display: none; } /* the film grain belongs to the dark look */
   z-index: 175;
   max-width: min(260px, calc(100vw - 32px));
   padding: 10px 14px;
-  border: 1px solid rgba(43, 36, 28, 0.12);
+  /* black and gold, like the shop's chair labels */
+  border: 1.5px solid #C9A35C;
   border-radius: 16px;
-  background: #FFFFFF;
-  color: #2B241C;
+  background: #000000;
+  color: #F3E3BF;
   font: 600 0.9rem/1.35 var(--f-body);
   text-align: start;
-  box-shadow: 0 12px 30px -10px rgba(43, 36, 28, 0.35);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55), 0 0 14px rgba(201, 163, 92, 0.25);
   cursor: pointer;
   opacity: 0;
   translate: 0 6px;
@@ -195,7 +196,7 @@ body::before { display: none; } /* the film grain belongs to the dark look */
 .robot-hello.is-centre { transform: translateX(-50%); border-bottom-left-radius: 16px; }
 .robot-hello.is-right { border-bottom-right-radius: 6px; }
 .robot-hello.is-in { opacity: 1; translate: 0 0; }
-.robot-hello:focus-visible { outline: 3px solid #7A5B27; outline-offset: 3px; }
+.robot-hello:focus-visible { outline: 3px solid #F2D08A; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .robot-hello { transition: none; } }
 
 /* Phones: a smaller round logo so prices and booking come sooner */
