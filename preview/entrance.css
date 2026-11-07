@@ -27,8 +27,8 @@
   left: 50%;
   top: 50%;
   /* phones: fills the screen; wide screens: the whole storefront, centred, with a blurred copy behind */
-  /* zoomed in a little (x1.12) on the storefront */
-  width: calc(max(min(100vw, 86dvh), 75dvh) * 1.12);
+  /* original framing (zoom removed, Jean 2026-11-07) */
+  width: max(min(100vw, 86dvh), 75dvh);
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
