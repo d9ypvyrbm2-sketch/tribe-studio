@@ -27,8 +27,8 @@
   left: 50%;
   top: 50%;
   /* phones: fills the screen; wide screens: the whole storefront, centred, with a blurred copy behind */
-  /* original framing (zoom removed, Jean 2026-11-07) */
-  width: max(min(100vw, 86dvh), 75dvh);
+  /* the whole photo always fits on screen, nothing cropped (Jean 2026-11-07); the blurred backdrop fills the rest */
+  width: min(100vw, calc((100dvh - 2 * var(--bar, 0px)) * .75)); /* fits between the film bars */
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
@@ -154,7 +154,7 @@
 .entrance.is-opening .doorway-name { opacity: 1; transition: opacity .6s .5s; }
 /* a slow walk through the open door: the doorway grows until its light fills the screen */
 .entrance.is-walking .storefront {
-  scale: 4.6;
+  scale: 5.8; /* the photo is smaller now, so the camera travels further to fill the screen with the doorway */
   filter: blur(5px);
   transition: scale 2.1s cubic-bezier(.45, 0, .25, 1), filter .8s ease-in 1.2s;
 }
