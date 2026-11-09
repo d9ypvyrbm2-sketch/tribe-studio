@@ -25,7 +25,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: max(100vw, 75dvh); /* always covers the screen: full width on computers, full height on phones */
+  width: min(100vw, 75dvh); /* the whole photo fits on screen, nothing cropped (Jean 2026-11-09); the blurred backdrop fills the rest */
   aspect-ratio: 3 / 4;
   max-width: none;
   translate: -50% -50%;
@@ -464,3 +464,6 @@
   50% { box-shadow: 0 0 9px rgb(226 190 118 / .35), 0 4px 12px rgb(0 0 0 / .5); }
 }
 .chair-label { text-shadow: 0 0 1px rgb(0 0 0 / .55), 0 1px 2px rgb(0 0 0 / .45), 0 0 5px rgb(255 255 255 / .45); }
+
+/* Smaller chair labels on phones, now that the whole inside photo fits on screen (Jean 2026-11-09) */
+@media (max-width: 480px) { .chair-label { font-size: .8rem; padding: .42em .85em; } }
