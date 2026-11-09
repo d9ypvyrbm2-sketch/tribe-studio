@@ -490,3 +490,7 @@
 .shop.is-dolly .chair-shapes { opacity: 0; }
 @media (max-width: 480px) { .chair-label { font-size: .72rem; padding: .36em .72em; } }
 @media (prefers-reduced-motion: reduce) { .chair-shapes polygon, .chair-label { transition: none; } }
+
+/* No outline: the chair just glows softly and brightens */
+.chair-shapes polygon { stroke: none; filter: url(#chair-soft); mix-blend-mode: screen; transition: fill .35s ease; }
+.chair-shapes polygon.is-hot { stroke: none; fill: rgb(255 214 140 / .42); filter: url(#chair-soft); }
