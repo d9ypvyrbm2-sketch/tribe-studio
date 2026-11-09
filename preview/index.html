@@ -270,6 +270,13 @@
   <!-- Inside the shop: the homepage. Each chair opens one part of the site (shop.js). Hidden without JavaScript. -->
   <div class="shop" id="shop" role="region" data-i18n-attr="aria-label:shop.label" aria-label="Inside The Tribe Studio">
     <div class="shop-scene" id="shop-scene">
+      <!-- Chair outlines traced on the photo (percent of the picture). They light up on hover/tap and click their chair (shop.js). -->
+      <svg class="chair-shapes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <polygon data-for="booksy" points="63,58 70,56 80,58 85,61 87,66 85,72 93,71 99,74 99,82 94,84 85,83 82,86 73,88 64,86 61,81 65,75 64,68 62,62"/>
+        <polygon data-for="services" points="51,46 55,46 57,49 62,50 66,52 67,55 64,57 63,61 59,65 53,65 52,61 55,58 55,55 53,53 51,50"/>
+        <polygon data-for="barbers" points="21,50 26,48 29,50 28,57 23,60 22,66 17,70 14,75 4,74 1,70 2,62 4,57 8,53 17,53 20,55"/>
+        <polygon data-for="visit" points="25,43 29,41 33,40 36,42 36,48 33,50 31,54 27,55 23,53 22,48 23,44"/>
+      </svg>
       <button type="button" class="chair" data-chair="booksy" data-side="right" style="--x: 73%; --y: 61%;">
         <span class="chair-dot" aria-hidden="true"></span>
         <span class="chair-label" data-i18n="chair.booksy">Book on Booksy</span>

@@ -467,3 +467,26 @@
 
 /* Smaller chair labels on phones, now that the whole inside photo fits on screen (Jean 2026-11-09) */
 @media (max-width: 480px) { .chair-label { font-size: .8rem; padding: .42em .85em; } }
+
+/* ---- Chairs light up instead of scissors (preview) ---- */
+.chair-dot { display: none; }
+.chair-shapes { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; overflow: visible; pointer-events: none; }
+.chair-shapes polygon {
+  pointer-events: all; cursor: pointer;
+  fill: rgb(226 190 118 / 0); stroke: rgb(226 190 118 / 0); stroke-width: 2.2px; stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  transition: fill .35s ease, stroke .35s ease, filter .35s ease;
+}
+.chair-shapes polygon.is-hot {
+  fill: rgb(255 226 160 / .16); stroke: rgb(240 205 130 / .95);
+  filter: drop-shadow(0 0 4px rgb(226 190 118 / .9)) drop-shadow(0 0 12px rgb(226 190 118 / .6));
+}
+.chair { z-index: 2; }
+.chair-label { font-size: .82rem; padding: .38em .8em; transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease; }
+.chair.is-hot .chair-label {
+  border-color: #F0CD82; transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 0 0 1px #F0CD82, 0 0 14px rgb(226 190 118 / .85), 0 0 28px rgb(226 190 118 / .45);
+}
+.shop.is-dolly .chair-shapes { opacity: 0; }
+@media (max-width: 480px) { .chair-label { font-size: .72rem; padding: .36em .72em; } }
+@media (prefers-reduced-motion: reduce) { .chair-shapes polygon, .chair-label { transition: none; } }

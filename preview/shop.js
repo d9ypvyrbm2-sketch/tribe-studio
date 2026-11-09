@@ -27,6 +27,38 @@
   var today = new Date().getDay();
   document.querySelectorAll('.air-hours > div[data-day="' + today + '"]').forEach(function (row) { row.classList.add("is-today"); });
 
+  // Chairs light up: the traced outline and the label glow together on hover, touch or keyboard focus.
+  var shapes = {};
+  shop.querySelectorAll(".chair-shapes polygon").forEach(function (poly) { shapes[poly.getAttribute("data-for")] = poly; });
+  function hot(chair, on) {
+    var poly = shapes[chair.dataset.chair];
+    chair.classList.toggle("is-hot", on);
+    if (poly) poly.classList.toggle("is-hot", on);
+  }
+  chairs.forEach(function (chair) {
+    var poly = shapes[chair.dataset.chair];
+    var on = function () { hot(chair, true); }, off = function () { hot(chair, false); };
+    chair.addEventListener("pointerenter", on); chair.addEventListener("pointerleave", off);
+    chair.addEventListener("focus", on); chair.addEventListener("blur", off);
+    if (poly) {
+      poly.addEventListener("pointerenter", on); poly.addEventListener("pointerleave", off);
+      poly.addEventListener("pointerdown", on);
+      poly.addEventListener("click", function () { chair.click(); });
+    }
+  });
+  // Once on arrival, a gold glow sweeps across the chairs so phone visitors see they can be tapped.
+  var swept = false;
+  function sweep() {
+    if (swept || calm) return;
+    swept = true;
+    ["visit", "barbers", "services", "booksy"].forEach(function (name, n) {
+      var chair = shop.querySelector('.chair[data-chair="' + name + '"]');
+      if (!chair) return;
+      setTimeout(function () { if (!current) hot(chair, true); }, n * 450);
+      setTimeout(function () { if (document.activeElement !== chair) hot(chair, false); }, n * 450 + 900);
+    });
+  }
+
   function show() {
     shop.classList.remove("is-away");
     root.classList.add("shop-open");
@@ -35,6 +67,7 @@
     shop.classList.add("is-arriving");
     shop.setAttribute("tabindex", "-1");
     shop.focus({ preventScroll: true });
+    setTimeout(sweep, calm ? 0 : 3400);
   }
 
   function leave() {
