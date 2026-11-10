@@ -523,3 +523,30 @@
 }
 /* while a barber is open, Brayan steps aside to the bottom-right so he never covers the booking button */
 html:has(.station.is-in) #tribe-assistant { left: auto; right: 14px; translate: none; --ta-bottom: 14px; }
+
+/* Shop name like Jean's Figma frame (2026-11-09): heavy wide letters on two lines, top left of the photo */
+.shop-top { justify-content: flex-start; }
+.shop-name {
+  margin: clamp(26px, 4vh, 44px) 0 0 calc((100vw - min(100vw, 75dvh)) / 2 + 4px);
+  padding: 0;
+  font-family: "Unbounded", "Archivo Black", "Arial Black", sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 1.2rem + 2.2vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: .02em;
+  text-align: left;
+  white-space: normal;
+  text-transform: uppercase;
+  color: #fff6e2;
+  /* thin gold rim, a darker gold step under it for depth, then a soft dark shadow and warm glow */
+  text-shadow:
+    0 0 1px #E2BE76,
+    0 1px 0 #C9A35C,
+    0 2px 0 #8a6a2f,
+    0 3px 0 #5a431b,
+    0 6px 10px rgb(0 0 0 / .75),
+    0 0 18px rgb(226 190 118 / .45);
+  animation: none;
+  filter: none;
+}
+@media (max-width: 480px) { .shop-name { margin-top: 56px; font-size: 2.05rem; } }
