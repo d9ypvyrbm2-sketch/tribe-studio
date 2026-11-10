@@ -1,0 +1,84 @@
+/* The Tribe Studio: storefront entrance.
+   Click (or press Enter on) the door: it swings open, the view walks through, and the homepage appears.
+   A link straight to a section (#services, #visit...) skips the entrance. */
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var entrance = document.getElementById("entrance");
+  if (!entrance) return;
+  var door = document.getElementById("door-hotspot");
+  var skip = document.getElementById("entrance-skip");
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var leaving = false;
+
+  // Opening title: one span per letter so each can blur into focus in turn.
+  var filmName = document.getElementById("film-name");
+  if (filmName) {
+    var text = filmName.textContent;
+    filmName.textContent = "";
+    text.split("").forEach(function (ch, i) {
+      var s = document.createElement("span");
+      s.className = "char";
+      s.style.setProperty("--index", String(i));
+      s.textContent = ch;
+      filmName.appendChild(s);
+    });
+  }
+
+  function finish() {
+    var shopEl = document.getElementById("shop");
+    if (shopEl) shopEl.classList.remove("is-dolly");
+    entrance.classList.add("is-gone");
+    entrance.setAttribute("aria-hidden", "true");
+    root.classList.remove("entrance-open");
+    // Through the door: the inside of the shop is the homepage (shop.js).
+    if (window.TribeShop && !window.TribeShop.isAway()) {
+      window.TribeShop.show();
+      return;
+    }
+    var main = document.getElementById("main");
+    if (main) {
+      main.setAttribute("tabindex", "-1");
+      main.focus({ preventScroll: true });
+    }
+  }
+
+  function enter(walkThrough) {
+    if (leaving) return;
+    leaving = true;
+    if (!walkThrough) {
+      entrance.classList.add("is-skipping");
+      setTimeout(finish, 300);
+      return;
+    }
+    entrance.classList.add("is-opening");
+    setTimeout(function () { entrance.classList.add("is-walking"); }, calm ? 50 : 900);
+    // One continuous camera move: while the doorway fills the screen, the inside of the shop is
+    // already gliding toward the viewer underneath it, so the two blend instead of cutting.
+    var shopEl = document.getElementById("shop");
+    if (!calm && shopEl && !(window.TribeShop && window.TribeShop.isAway())) {
+      setTimeout(function () { shopEl.classList.add("is-dolly"); }, 2200);
+    }
+    setTimeout(finish, calm ? 400 : 3600);
+  }
+
+  if (location.hash && location.hash !== "#top") {
+    finish();
+    return;
+  }
+
+  root.classList.add("entrance-open");
+  window.scrollTo(0, 0);
+  door.addEventListener("click", function () { enter(true); });
+  skip.addEventListener("click", function () { enter(false); });
+  entrance.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") enter(false);
+  });
+  door.focus({ preventScroll: true });
+
+  // The door opens by itself (Jean, 2026-11-05): a moment after the page appears,
+  // the walk-in plays. Tapping the door still opens it sooner.
+  // Opens about a second after the page appears; it no longer waits for every image on the page.
+  setTimeout(function () { enter(true); }, calm ? 600 : 1000);
+})();
