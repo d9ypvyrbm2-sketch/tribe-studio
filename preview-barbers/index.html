@@ -276,9 +276,9 @@
         <defs><filter id="chair-soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.3"/></filter></defs>
         <polygon data-for="keven" points="63,58 70,56 80,58 85,61 87,66 85,72 93,71 99,74 99,82 94,84 85,83 82,86 73,88 64,86 61,81 65,75 64,68 62,62"/>
         <polygon data-for="kevin" points="51,46 55,46 57,49 62,50 66,52 67,55 64,57 63,61 59,65 53,65 52,61 55,58 55,55 53,53 51,50"/>
-        <polygon data-for="dumar" points="44,43 48,42 53,44 54,47 52,52 50,55 46,55 45,51 44,47"/>
+        <polygon data-for="rick" points="44,43 48,42 53,44 54,47 52,52 50,55 46,55 45,51 44,47"/>
         <polygon data-for="santi" points="30,41 33,40 36,41 37,44 36,49 31,49 30,46"/>
-        <polygon data-for="rick" points="22,44 27,43 32,44 33,47 32,50 33,54 30,55 26,55 23,52 14,52 14,49 20,49 21,47"/>
+        <polygon data-for="dumar" points="22,44 27,43 32,44 33,47 32,50 33,54 30,55 26,55 23,52 14,52 14,49 20,49 21,47"/>
         <polygon data-for="jean" points="21,50 26,48 29,50 28,57 23,60 22,66 17,70 14,72 4,72 1,70 2,62 4,57 8,53 17,53 20,55"/>
         <polygon data-for="andres" points="0,74 12,75 15,70 22,69 27,71 28,78 27,90 22,100 0,100"/>
       </svg>
@@ -290,17 +290,17 @@
         <span class="chair-dot" aria-hidden="true"></span>
         <span class="chair-label" translate="no">Kevin</span>
       </button>
-      <button type="button" class="chair" data-chair="dumar" style="--x: 48%; --y: 46%;" aria-label="Dumar Gomez: services and booking">
+      <button type="button" class="chair" data-chair="rick" style="--x: 48%; --y: 46%;" aria-label="Rick: services and booking">
         <span class="chair-dot" aria-hidden="true"></span>
-        <span class="chair-label" translate="no">Dumar</span>
+        <span class="chair-label" translate="no">Rick</span>
       </button>
       <button type="button" class="chair" data-chair="santi" style="--x: 34%; --y: 41%;" aria-label="Santi Vélez: services and booking">
         <span class="chair-dot" aria-hidden="true"></span>
         <span class="chair-label" translate="no">Santi</span>
       </button>
-      <button type="button" class="chair" data-chair="rick" style="--x: 25%; --y: 47%;" aria-label="Rick: services and booking">
+      <button type="button" class="chair" data-chair="dumar" style="--x: 25%; --y: 47%;" aria-label="Dumar Gomez: services and booking">
         <span class="chair-dot" aria-hidden="true"></span>
-        <span class="chair-label" translate="no">Rick</span>
+        <span class="chair-label" translate="no">Dumar</span>
       </button>
       <button type="button" class="chair" data-chair="jean" data-side="left" style="--x: 10%; --y: 58%;" aria-label="Jean Carlos: services and booking">
         <span class="chair-dot" aria-hidden="true"></span>
@@ -370,25 +370,21 @@
     </div>
   </div>
 
-  <div class="station station-barber" id="station-dumar" data-chair="dumar" role="dialog" aria-modal="true" aria-labelledby="st-dumar-title" hidden>
+  <div class="station station-barber" id="station-rick" data-chair="rick" role="dialog" aria-modal="true" aria-labelledby="st-rick-title" hidden>
     <div class="station-photo" style="--photo: url('img/tribe-studio-barbershop-interior-east-boston.webp'); --pos: 48% 46%; --zoom: 280%;"></div>
     <button type="button" class="station-back" data-i18n="shop.back">Back to the shop</button>
     <div class="station-air">
-      <img class="air-face" src="img/fx/barber-dumar.webp" width="720" height="720" alt="Dumar Gomez">
+      <img class="air-face" src="img/fx/barber-rick.webp" width="720" height="720" alt="Rick">
       <p class="air-kicker"><span data-i18n="bb.chair">Chair</span> 3 · <span data-i18n="bb.kicker">Your barber</span></p>
-      <h2 class="air-title" id="st-dumar-title" translate="no">Dumar Gomez</h2>
-      <ul class="air-menu">
-        <li><span><span data-i18n="svc.haircut">Haircut</span> <small>· 1 h</small><br><small class="air-inc" data-i18n="inc.haircut.std">Steam and a hair wash</small></span><b>$40</b></li>
-        <li><span><span data-i18n="svc.beard">Haircut &amp; Beard</span> <small>· 1 h 15</small><br><small class="air-inc" data-i18n="inc.beard.std">Beard steam, a wash and a facial</small></span><b>$50</b></li>
-      </ul>
-      <p class="air-fine" data-i18n="bb.other">Line ups, VIP and hair color: see the options on Booksy.</p>
+      <h2 class="air-title" id="st-rick-title" translate="no">Rick</h2>
+      <p class="air-text" data-i18n="bb.rick">Rick’s services, prices and open times are listed on Booksy.</p>
       <ol class="air-steps">
         <li data-i18n="bb.step1">Tap the button below to open Booksy.</li>
         <li data-i18n="bb.step2">Choose your service.</li>
-        <li><span data-i18n="bb.step3">Pick</span> <b translate="no">Dumar Gomez</b> <span data-i18n="bb.step3b">as your barber.</span></li>
+        <li><span data-i18n="bb.step3">Pick</span> <b translate="no">Rick</b> <span data-i18n="bb.step3b">as your barber.</span></li>
         <li data-i18n="bb.step4">Choose a time that works for you.</li>
       </ol>
-      <a class="air-link air-link-big" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span data-i18n="bb.book">Book with</span> <span translate="no">Dumar</span> →</a>
+      <a class="air-link air-link-big" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span data-i18n="bb.book">Book with</span> <span translate="no">Rick</span> →</a>
     </div>
   </div>
 
@@ -414,21 +410,25 @@
     </div>
   </div>
 
-  <div class="station station-barber" id="station-rick" data-chair="rick" role="dialog" aria-modal="true" aria-labelledby="st-rick-title" hidden>
+  <div class="station station-barber" id="station-dumar" data-chair="dumar" role="dialog" aria-modal="true" aria-labelledby="st-dumar-title" hidden>
     <div class="station-photo" style="--photo: url('img/tribe-studio-barbershop-interior-east-boston.webp'); --pos: 25% 47%; --zoom: 280%;"></div>
     <button type="button" class="station-back" data-i18n="shop.back">Back to the shop</button>
     <div class="station-air">
-      <img class="air-face" src="img/fx/barber-rick.webp" width="720" height="720" alt="Rick">
+      <img class="air-face" src="img/fx/barber-dumar.webp" width="720" height="720" alt="Dumar Gomez">
       <p class="air-kicker"><span data-i18n="bb.chair">Chair</span> 5 · <span data-i18n="bb.kicker">Your barber</span></p>
-      <h2 class="air-title" id="st-rick-title" translate="no">Rick</h2>
-      <p class="air-text" data-i18n="bb.rick">Rick’s services, prices and open times are listed on Booksy.</p>
+      <h2 class="air-title" id="st-dumar-title" translate="no">Dumar Gomez</h2>
+      <ul class="air-menu">
+        <li><span><span data-i18n="svc.haircut">Haircut</span> <small>· 1 h</small><br><small class="air-inc" data-i18n="inc.haircut.std">Steam and a hair wash</small></span><b>$40</b></li>
+        <li><span><span data-i18n="svc.beard">Haircut &amp; Beard</span> <small>· 1 h 15</small><br><small class="air-inc" data-i18n="inc.beard.std">Beard steam, a wash and a facial</small></span><b>$50</b></li>
+      </ul>
+      <p class="air-fine" data-i18n="bb.other">Line ups, VIP and hair color: see the options on Booksy.</p>
       <ol class="air-steps">
         <li data-i18n="bb.step1">Tap the button below to open Booksy.</li>
         <li data-i18n="bb.step2">Choose your service.</li>
-        <li><span data-i18n="bb.step3">Pick</span> <b translate="no">Rick</b> <span data-i18n="bb.step3b">as your barber.</span></li>
+        <li><span data-i18n="bb.step3">Pick</span> <b translate="no">Dumar Gomez</b> <span data-i18n="bb.step3b">as your barber.</span></li>
         <li data-i18n="bb.step4">Choose a time that works for you.</li>
       </ol>
-      <a class="air-link air-link-big" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span data-i18n="bb.book">Book with</span> <span translate="no">Rick</span> →</a>
+      <a class="air-link air-link-big" href="https://booksy.com/en-us/1023543_the-tribe-studio-1-maverick_barber-shop_22412_boston" target="_blank" rel="noopener noreferrer" aria-describedby="newtab"><span data-i18n="bb.book">Book with</span> <span translate="no">Dumar</span> →</a>
     </div>
   </div>
 
