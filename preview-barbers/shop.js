@@ -46,17 +46,15 @@
       poly.addEventListener("click", function () { chair.click(); });
     }
   });
-  // Once on arrival, a gold glow sweeps across the chairs so phone visitors see they can be tapped.
-  var swept = false;
-  function sweep() {
-    if (swept || calm) return;
-    swept = true;
-    chairs.slice().reverse().forEach(function (chair, n) {
-      if (!chair) return;
-      setTimeout(function () { if (!current) hot(chair, true); }, n * 300);
-      setTimeout(function () { if (document.activeElement !== chair) hot(chair, false); }, n * 300 + 800);
+  // On arrival each barber's name and chair glow together, at the exact moment that name starts
+  // to appear (its chair-in animation starts). Jean, 2026-11-09.
+  chairs.forEach(function (chair) {
+    chair.addEventListener("animationstart", function (e) {
+      if (e.animationName !== "chair-in" || current) return;
+      setTimeout(function () { if (!current) hot(chair, true); }, 120);
+      setTimeout(function () { if (document.activeElement !== chair) hot(chair, false); }, 1300);
     });
-  }
+  });
 
   function show() {
     shop.classList.remove("is-away");
@@ -66,7 +64,6 @@
     shop.classList.add("is-arriving");
     shop.setAttribute("tabindex", "-1");
     shop.focus({ preventScroll: true });
-    setTimeout(sweep, calm ? 0 : 3400);
   }
 
   function leave() {
