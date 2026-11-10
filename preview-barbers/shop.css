@@ -550,3 +550,42 @@ html:has(.station.is-in) #tribe-assistant { left: auto; right: 14px; translate: 
   filter: none;
 }
 @media (max-width: 480px) { .shop-name { margin-top: 56px; font-size: 2.05rem; } }
+
+/* Chat window: white with gold outlines (Jean, 2026-11-10). "html body" outranks the shared black theme. */
+html body #tribe-assistant {
+  --ta-ink: #ffffff; --ta-ink-2: #ffffff; --ta-ink-3: #FBF6EA;
+  --ta-line: rgb(201 163 92 / .35); --ta-line-strong: #C9A35C;
+  --ta-bone: #1d1915; --ta-muted: #7a6c55;
+}
+html body #tribe-assistant .ta-panel {
+  background: #fff; border: 2px solid #C9A35C;
+  box-shadow: 0 0 0 1px #E2BE76, 0 0 18px rgb(226 190 118 / .55), 0 24px 70px rgb(0 0 0 / .45);
+}
+html body #tribe-assistant .ta-head {
+  background: linear-gradient(180deg, #FBF3DF, #fff); border-bottom: 1.5px solid #C9A35C;
+}
+html body #tribe-assistant .ta-title { color: #1d1915; }
+html body #tribe-assistant .ta-head-mark { background: #0e0d0b; border-color: #C9A35C; box-shadow: 0 0 0 1.5px #E2BE76; }
+html body #tribe-assistant .ta-langs { border-color: #C9A35C; }
+html body #tribe-assistant .ta-lang { color: #5a4c36; }
+html body #tribe-assistant .ta-lang[aria-pressed="true"] { color: #0e0d0b; }
+html body #tribe-assistant .ta-icon-btn { color: #1d1915; }
+html body #tribe-assistant .ta-icon-btn:hover { background: rgb(201 163 92 / .15); }
+html body #tribe-assistant .ta-bot { background: #FBF6EA; color: #1d1915; border: 1.5px solid #C9A35C; }
+html body #tribe-assistant .ta-msg a { color: #8a6516; }
+html body #tribe-assistant .ta-user { border: 1.5px solid #C9A35C; box-shadow: 0 0 0 1px #E2BE76; }
+html body #tribe-assistant .ta-card {
+  background: #FBF6EA; border: 1.5px solid #C9A35C; box-shadow: 0 0 0 1px #E2BE76, 0 0 10px rgb(226 190 118 / .4);
+}
+html body #tribe-assistant .ta-card-kicker { color: #8a6516; }
+html body #tribe-assistant .ta-btn-ghost { color: #1d1915; border-color: #C9A35C; }
+html body #tribe-assistant .ta-chip { background: #fff; color: #1d1915; border: 1.5px solid #C9A35C; }
+html body #tribe-assistant .ta-chip:hover { background: #FBF3DF; color: #1d1915; border-color: #A8822F; }
+html body #tribe-assistant .ta-compose, html body #tribe-assistant .ta-fine { background: #fff; border-top-color: #C9A35C; }
+html body #tribe-assistant .ta-input { background: #fff; color: #1d1915; border: 1.5px solid #C9A35C; }
+html body #tribe-assistant .ta-input:focus { outline: 2px solid #E2BE76; }
+html body #tribe-assistant .ta-form input, html body #tribe-assistant .ta-form textarea { background: #fff; color: #1d1915; border: 1.5px solid #C9A35C; }
+html body #tribe-assistant .ta-typing { background: #FBF6EA; border-color: #C9A35C; }
+html body #tribe-assistant .ta-error { color: #7a6c55; }
+html body #tribe-assistant .ta-form-err { color: #a1271c; }
+html body #tribe-assistant .ta-head-text { overflow: hidden; } /* "Receptionist · online" no longer runs under EN/ES on phones */
