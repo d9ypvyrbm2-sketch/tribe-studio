@@ -11,8 +11,10 @@ const path = require("path");
 const assert = require("assert");
 const chat = require("../api/chat");
 const inquiry = require("../api/inquiry");
+const customer = require("../api/customer");
+const customers = require("../lib/customers");
 const { parse } = require("../lib/claude");
-const { systemPrompt, TOOLS } = require("../lib/prompt");
+const { systemPrompt, TOOLS, receptionistPrompt, RECEPTION_TOOLS } = require("../lib/prompt");
 const { validateMessages } = require("../lib/guard");
 
 let pass = 0, fail = 0;
@@ -25,6 +27,7 @@ async function test(name, fn) {
 const server = http.createServer((req, res) => {
   if (req.url === "/api/chat") return chat(req, res);
   if (req.url === "/api/inquiry") return inquiry(req, res);
+  if (req.url === "/api/customer") return customer(req, res);
   res.statusCode = 404; res.end();
 });
 
@@ -95,15 +98,17 @@ const say = (text, lang = "en", extra = []) => call("/api/chat", { messages: [..
   });
   await test("No API key or secret anywhere in the website files", () => {
     const site = path.resolve(__dirname, "../..");
-    const files = ["assistant/tribe-assistant.js", "assistant/tribe-assistant.css", "preview/index.html", "index.html"];
+    const files = ["assistant/tribe-assistant.js", "assistant/tribe-assistant.css", "assistant/tribe-receptionist.js",
+      "assistant/tribe-receptionist.css", "preview/index.html", "preview-barbers/index.html", "index.html"];
     for (const f of files) {
       const s = fs.readFileSync(path.join(site, f), "utf8");
       assert.ok(!/sk-ant-|x-api-key|ANTHROPIC_API_KEY|RESEND_API_KEY/.test(s), f + " mentions a key");
     }
   });
-  await test("Live homepage (index.html) is unchanged by this work", () => {
+  await test("Main homepage (index.html) still uses the old assistant; the receptionist is preview-only", () => {
     const s = fs.readFileSync(path.resolve(__dirname, "../../index.html"), "utf8");
-    assert.ok(!/tribe-assistant/.test(s));
+    assert.ok(/tribe-assistant\.js/.test(s));
+    assert.ok(!/tribe-receptionist/.test(s));
   });
 
   // ---------- Conversation plumbing (mock model) ----------
@@ -187,13 +192,101 @@ const say = (text, lang = "en", extra = []) => call("/api/chat", { messages: [..
   await test("Booking tool only allows the real services and barbers", () => {
     const props = TOOLS[0].input_schema.properties;
     assert.equal(props.service.enum.length, 7);
-    assert.equal(props.barber.enum.length, 7);
+    assert.equal(props.barber.enum.length, 8); // 7 barbers + "Any barber"
   });
   await test("Facts match the website's preview page", () => {
-    const html = fs.readFileSync(path.resolve(__dirname, "../../preview/index.html"), "utf8");
-    for (const s of ["Andres Ospina", "Santi Vélez", "$150", "9 AM – 8 PM", "10 AM – 4 PM", "(857) 334-9508", "456"]) {
+    const html = fs.readFileSync(path.resolve(__dirname, "../../preview-barbers/index.html"), "utf8");
+    for (const s of ["Andres Ospina", "Santi Vélez", "$150", "9 AM – 8 PM", "10 AM – 4 PM", "857-334-9508", "462"]) {
       assert.ok(html.includes(s), "website no longer says " + s);
     }
+  });
+
+  // ---------- Receptionist mode ----------
+  const reception = (text, booking = {}, lang = "en") =>
+    call("/api/chat", { messages: [{ role: "user", content: text }], lang, mode: "receptionist", booking });
+  await test("Receptionist: 'a fade with Santi tomorrow' fills service, barber and a real date", async () => {
+    const r = await reception("I want a fade with Santi tomorrow");
+    assert.equal(r.status, 200);
+    assert.equal(r.data.bookingUpdate.service, "Haircut");
+    assert.equal(r.data.bookingUpdate.barber, "Santi Vélez");
+    assert.match(r.data.bookingUpdate.date, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(!("booking" in r.data), "receptionist mode must not send the old Booksy card");
+  });
+  await test("Receptionist: 'Rick' maps to Ricardo; Spanish works", async () => {
+    const r = await reception("Quiero corte y barba con Rick", {}, "es");
+    assert.equal(r.data.bookingUpdate.service, "Haircut & Beard");
+    assert.equal(r.data.bookingUpdate.barber, "Ricardo");
+  });
+  await test("Receptionist: questions get answers without changing the booking", async () => {
+    const r = await reception("What are your hours?", { service: "Haircut" });
+    assert.match(r.data.reply, /9 AM/); assert.equal(r.data.bookingUpdate, null);
+  });
+  await test("Receptionist: model output is checked (fake service dropped, 'customer' ignored)", () => {
+    const { cleanBooking } = require("../lib/booking");
+    assert.deepEqual(cleanBooking({ service: "Free cut", barber: "Santi Vélez", customer: "returning", date: "soon" }),
+      { barber: "Santi Vélez", customer: "returning" });
+    const out = parse({ content: [{ type: "tool_use", name: "set_booking", input: { service: "VIP" } }] });
+    assert.deepEqual(out.bookingUpdate, { service: "VIP" });
+  });
+  await test("Receptionist prompt: never-say-booked rule, Ricardo, current choices, no phone requests", () => {
+    const p = receptionistPrompt("en", { service: "Haircut", barber: "Keven" });
+    for (const s of ["NEVER say an appointment is booked", "Ricardo", "service: Haircut; barber: Keven", "Never ask for a phone number"]) {
+      assert.ok(p.includes(s), "missing " + s);
+    }
+    assert.ok(!p.includes("call the show_booking tool"), "old booking-card instructions leaked in");
+    assert.deepEqual(RECEPTION_TOOLS.map((t) => t.name), ["set_booking", "escalate_to_shop"]);
+  });
+
+  // ---------- Returning customers ----------
+  const who = { phone: "(617) 555-0101", firstName: "Carlos" };
+  await test("Customer memory: no database configured -> 503 store_off (nothing stored)", async () => {
+    delete process.env.CUSTOMER_STORE;
+    const r = await call("/api/customer", { action: "lookup", ...who });
+    assert.equal(r.status, 503); assert.equal(r.data.error, "store_off");
+  });
+  process.env.CUSTOMER_STORE = "memory";
+  process.env.CUSTOMER_HASH_SECRET = "test-secret";
+  await test("Customer memory: save needs consent", async () => {
+    const r = await call("/api/customer", { action: "save", ...who, service: "Haircut", barber: "Santi Vélez" });
+    assert.equal(r.data.error, "consent_required");
+  });
+  await test("Customer memory: save, then phone + first name finds the favourites", async () => {
+    const s = await call("/api/customer", { action: "save", ...who, service: "Haircut", barber: "Santi Vélez", lang: "en", consent: true });
+    assert.equal(s.status, 200);
+    const r = await call("/api/customer", { action: "lookup", phone: "+1 617 555 0101", firstName: "carlos" });
+    assert.deepEqual(r.data, { found: true, firstName: "Carlos", service: "Haircut", barber: "Santi Vélez" });
+  });
+  await test("Customer memory: right phone + wrong name reveals nothing", async () => {
+    const r = await call("/api/customer", { action: "lookup", phone: who.phone, firstName: "Maria" });
+    assert.deepEqual(r.data, { found: false });
+  });
+  await test("Customer memory: the database holds no phone number in plain text", () => {
+    const dump = JSON.stringify(customers.memoryStore._dump());
+    assert.ok(!/617|5550101/.test(dump), "phone found in storage");
+    assert.match(dump, /cust:[0-9a-f]{64}/);
+  });
+  await test("Customer memory: bad phone, name or action -> 400", async () => {
+    assert.equal((await call("/api/customer", { action: "lookup", phone: "12", firstName: "Carlos" })).status, 400);
+    assert.equal((await call("/api/customer", { action: "lookup", phone: who.phone, firstName: "" })).status, 400);
+    assert.equal((await call("/api/customer", { action: "drop", ...who })).status, 400);
+  });
+  await test("Customer memory: forget with the wrong name keeps it; with the right name deletes it", async () => {
+    await call("/api/customer", { action: "forget", phone: who.phone, firstName: "Maria" });
+    assert.equal((await call("/api/customer", { action: "lookup", ...who })).data.found, true);
+    const f = await call("/api/customer", { action: "forget", ...who });
+    assert.equal(f.data.ok, true);
+    assert.equal((await call("/api/customer", { action: "lookup", ...who })).data.found, false);
+  });
+  await test("Customer memory: 7th lookup in an hour from one visitor -> 429", async () => {
+    let last;
+    for (let i = 0; i < 7; i++) last = await call("/api/customer", { action: "lookup", phone: "617555010" + i, firstName: "Ana" }, { ip: "7.7.7.7" });
+    assert.equal(last.status, 429);
+  });
+  await test("Customer memory: missing hash secret -> 503, nothing stored", async () => {
+    delete process.env.CUSTOMER_HASH_SECRET;
+    const r = await call("/api/customer", { action: "lookup", phone: "6175550199", firstName: "Leo" });
+    assert.equal(r.status, 503);
+    process.env.CUSTOMER_HASH_SECRET = "test-secret";
   });
 
   server.close();

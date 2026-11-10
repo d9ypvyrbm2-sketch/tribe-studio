@@ -17,7 +17,7 @@ const SHOP = {
   instagramHandle: "@thetribestudiobarbershop",
   booksyUrl: BOOKSY_URL,
   phone: "(857) 334-9508",
-  rating: "5.0 on Booksy from 456 reviews",
+  rating: "5.0 on Booksy from 462 reviews",
   languages: ["English", "Spanish"],
   hours: [
     { days: "Monday to Saturday", hours: "9 AM – 8 PM" },
@@ -27,12 +27,12 @@ const SHOP = {
 };
 
 const SERVICES = [
-  { name: "Haircut", price: "$40", duration: "45 min with Keven; 1 h with Dumar, Jean Carlos, Santi or Kevin T.",
-    includes: "Steam and a hair wash. Keven uses ozone steam.", barbers: "Keven, Dumar Gomez, Jean Carlos, Kevin Tabares, Santi Vélez" },
+  { name: "Haircut", price: "$40", duration: "45 min with Keven; 1 h with Dumar, Jean Carlos, Santi, Kevin T. or Ricardo.",
+    includes: "Steam and a hair wash. Keven uses ozone steam.", barbers: "Keven, Dumar Gomez, Jean Carlos, Kevin Tabares, Santi Vélez, Ricardo" },
   { name: "Haircut with Andres", price: "$60", duration: "1 h",
     includes: "Facial steam and styling.", barbers: "Andres Ospina" },
-  { name: "Haircut & Beard", price: "$50", duration: "1 h with Keven; 1 h 15 with Dumar, Jean Carlos, Santi or Kevin T.",
-    includes: "Beard steam, a wash and a facial.", barbers: "Keven, Dumar Gomez, Jean Carlos, Kevin Tabares, Santi Vélez" },
+  { name: "Haircut & Beard", price: "$50", duration: "1 h with Keven; 1 h 15 with Dumar, Jean Carlos, Santi or Kevin T.; 1 h with Ricardo.",
+    includes: "Beard steam, a wash and a facial.", barbers: "Keven, Dumar Gomez, Jean Carlos, Kevin Tabares, Santi Vélez, Ricardo" },
   { name: "Haircut & Beard with Andres", price: "$70", duration: "1 h 20",
     includes: "Steamed beard, facial cleansing and styling.", barbers: "Andres Ospina" },
   { name: "VIP", price: "$70", duration: "1 h 30",
@@ -50,6 +50,7 @@ const BARBERS = [
   { name: "Jean Carlos", prices: "Haircut $40 (1 h) · Haircut & Beard $50 (1 h 15)" },
   { name: "Kevin Tabares", prices: "Haircut $40 (1 h) · Haircut & Beard $50 (1 h 15)" },
   { name: "Santi Vélez", prices: "Haircut $40 (1 h) · Haircut & Beard $50 (1 h 15)" },
+  { name: "Ricardo", prices: "Haircut $40 (1 h) · Haircut & Beard $50 (1 h). Listed on Booksy as Ricardo; the website chair calls him Rick" },
 ];
 
 function knowledgeText() {
@@ -77,7 +78,7 @@ ${hrs}
 SERVICES AND PRICES (prices can change; Booksy always shows the current price)
 ${svc}
 
-THE SIX BARBERS
+THE SEVEN BARBERS
 ${bar}
 Hair color, line ups and VIP are not listed per barber on the website.
 

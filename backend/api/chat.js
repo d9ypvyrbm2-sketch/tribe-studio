@@ -1,8 +1,11 @@
 // POST /api/chat  { messages: [{role, content}], lang: "en"|"es" }
 // -> { reply, booking: {service, barber, date, time, url} | null, escalate: {summary} | null }
+// Receptionist mode: body.mode = "receptionist", body.booking = current choices
+// -> { reply, bookingUpdate: {service?, barber?, date?} | null, escalate } (values checked against lib/booking.js)
 const { cors, rateLimit, dailyCap, clientIp, readJson, validateMessages, send } = require("../lib/guard");
 const { askClaude } = require("../lib/claude");
 const { BOOKSY_URL } = require("../lib/knowledge");
+const { cleanBooking } = require("../lib/booking");
 
 module.exports = async function handler(req, res) {
   if (!cors(req, res)) return;
@@ -23,15 +26,26 @@ module.exports = async function handler(req, res) {
 
   if (!dailyCap()) return send(res, 503, { error: "daily_cap" });
 
+  const mode = body.mode === "receptionist" ? "receptionist" : "assistant";
+  const current = cleanBooking(body.booking);
+
   try {
-    const out = await askClaude(messages, lang);
+    const out = await askClaude(messages, lang, { mode, booking: current });
     const booking = out.booking && out.booking.service
       ? { service: out.booking.service, barber: out.booking.barber || "", date: out.booking.date || "",
           time: out.booking.time || "", url: BOOKSY_URL }
       : null;
     const escalate = out.escalate ? { summary: String(out.escalate.summary || "").slice(0, 300) } : null;
-    if (!out.text && !booking && !escalate) return send(res, 502, { error: "empty_reply" });
-    return send(res, 200, { reply: out.text, booking, escalate });
+    let bookingUpdate = null;
+    if (out.bookingUpdate) {
+      const u = cleanBooking(out.bookingUpdate);
+      delete u.customer; // only the customer decides new/returning, by tapping it
+      if (Object.keys(u).length) bookingUpdate = u;
+    }
+    if (!out.text && !booking && !bookingUpdate && !escalate) return send(res, 502, { error: "empty_reply" });
+    return send(res, 200, mode === "receptionist"
+      ? { reply: out.text, bookingUpdate, escalate }
+      : { reply: out.text, booking, escalate });
   } catch (e) {
     console.error("[chat]", e.message); // never log the conversation itself
     return send(res, e.status || 500, { error: "assistant_unavailable" });

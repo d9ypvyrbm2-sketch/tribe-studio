@@ -41,6 +41,7 @@
   <link rel="preload" as="image" href="img/tribe-studio-doorway-view.webp" type="image/webp">
   <link rel="stylesheet" href="shop.css">
   <link rel="stylesheet" href="../assistant/tribe-assistant.css">
+  <link rel="stylesheet" href="../assistant/tribe-receptionist.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800&family=Unbounded:wght@800;900&family=Inter:wght@400;600&display=swap">
   <link rel="stylesheet" href="figma-site.css">
 
@@ -707,8 +708,9 @@
   <script src="main.js" defer></script>
   <script src="shop.js" defer></script>
   <script src="entrance.js" defer></script>
-  <!-- Tribe Assistant (AI receptionist). data-api = the Vercel backend URL. Empty = assistant shows "not switched on yet". -->
-  <script src="../assistant/tribe-assistant.js" data-api="" defer></script>
+  <!-- Brayan, the AI receptionist + booking assistant. data-api = the Vercel backend URL. Empty = booking steps, quick
+       answers and Booksy's booking window still work; free chat and "remember me" wait for the backend. -->
+  <script src="../assistant/tribe-receptionist.js" data-api="" data-booksy-id="1023543" defer></script>
   <script src="home.js" defer></script>
 </body>
 </html>

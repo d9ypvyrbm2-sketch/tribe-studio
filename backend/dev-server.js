@@ -1,12 +1,13 @@
 // Local test server. Not deployed.
 // Serves the website on :8080 and the API on :8787 (two origins, like GitHub Pages + Vercel), so CORS is tested too.
-//   MOCK_AI=1 MOCK_INQUIRY=1 node dev-server.js
+//   MOCK_AI=1 MOCK_INQUIRY=1 CUSTOMER_STORE=memory CUSTOMER_HASH_SECRET=dev node dev-server.js
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
 process.env.ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS || "http://localhost:8080";
-const routes = { "/api/chat": require("./api/chat"), "/api/inquiry": require("./api/inquiry") };
+const routes = { "/api/chat": require("./api/chat"), "/api/inquiry": require("./api/inquiry"),
+  "/api/customer": require("./api/customer") };
 
 http.createServer((req, res) => {
   const h = routes[req.url.split("?")[0]];

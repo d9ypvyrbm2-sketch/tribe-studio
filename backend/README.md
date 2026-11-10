@@ -21,6 +21,9 @@ No npm packages. Node 18+ (uses built-in `fetch`).
 |---|---|
 | `api/chat.js` | Chat endpoint: CORS, rate limit, validation, calls Claude, returns reply + booking card |
 | `api/inquiry.js` | Sends a customer's question to the shop, only with consent. Stores nothing |
+| `api/customer.js` | Returning-client memory (lookup / save / forget), only with consent |
+| `lib/booking.js` | The receptionist's services and barbers (checked against Booksy's widget). Keep in sync with `assistant/tribe-receptionist.js` |
+| `lib/customers.js` | Stores first name + favourite service/barber under a hashed phone number (Upstash Redis REST, no packages) |
 | `lib/knowledge.js` | **The only facts the assistant knows**: prices, barbers, hours, address, Booksy link. Edit here when anything changes |
 | `lib/prompt.js` | Assistant's instructions and the two tools (booking card, escalate to shop) |
 | `lib/guard.js` | CORS allowlist, per-visitor and daily limits, input cleaning |
@@ -40,6 +43,9 @@ No npm packages. Node 18+ (uses built-in `fetch`).
 | `DAILY_MESSAGE_CAP` | no | `800` messages per day per instance (cost ceiling) |
 | `RESEND_API_KEY`, `INQUIRY_TO`, `INQUIRY_FROM` | for inquiries (option A) | email the shop via resend.com (free tier) |
 | `INQUIRY_WEBHOOK_URL` | for inquiries (option B) | Slack/Discord/Make/Zapier webhook |
+| `KV_REST_API_URL` + `KV_REST_API_TOKEN` | for "remember me" | set automatically by Vercel → Storage → Upstash for Redis (free plan). `UPSTASH_REDIS_REST_URL`/`_TOKEN` also work |
+| `CUSTOMER_HASH_SECRET` | for "remember me" | any long random text; phone numbers are stored only as a hash made with it. Never change it later (saved clients would be lost) |
+| `LOOKUP_PER_HOUR` | no | `6` returning-client lookups per visitor per hour |
 
 Without inquiry delivery set up, the form politely shows the shop's phone and Instagram instead.
 
@@ -64,11 +70,27 @@ npm test                 # 29 backend tests
 npm run dev              # then open http://localhost:8080/preview/ with window.TRIBE_ASSISTANT_API="http://localhost:8787"
 ```
 
+## Receptionist mode (/preview-barbers/)
+
+`assistant/tribe-receptionist.js` replaces the old chat on the barbers preview page only. Brayan walks the customer through
+service → barber → first visit / returning → date, then opens **Booksy's official booking widget inside the chat**
+(`booksy.com/widget/code.js?id=1023543&country=us&mode=inline`). Booksy shows the real open times, takes the customer's
+details and confirms. The visitor never leaves the site. The chat calls `/api/chat` with `mode: "receptionist"`; the
+model fills steps with the `set_booking` tool. Without a backend the steps, quick answers and the Booksy window still work.
+
+Returning clients: after Booksy confirms, the customer can tick a consent box to save first name + phone + favourite
+barber/service. Next time "Book again" + phone + first name brings back "Same again?". Phone + name must both match.
+"Forget me" deletes it. Nothing comes from or goes to Booksy's own client list.
+
 ## Booksy
 
-Booksy has no self-serve public API. Its partner API is invite-only (alpha), so the assistant cannot see availability
-or create bookings. It collects the service, barber, date and time, then sends the customer to the official Booksy page.
-If the shop gets Booksy partner API access later, `show_booking` is the place to plug it in.
+Booksy has no self-serve public API. Its partner API is invite-only, so our code cannot read open times or create
+bookings itself, and Booksy's widget does not tell the page when a booking is confirmed (its only messages are resize,
+close, go-to-URL, send-form and ready; checked in `widget-2021/code.js` on 2026-11-09). So:
+- Real times + real booking happen inside Booksy's official widget, embedded in the chat.
+- Brayan never says "booked": Booksy's own screen and its text/email are the confirmation.
+- Brayan can't pre-select the service inside Booksy's window; it tells the customer which row to tap.
+If the shop gets Booksy partner API access later, `set_booking` + `/api/chat` are where real availability would plug in.
 
 ## Limits to know
 

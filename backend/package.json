@@ -5,7 +5,7 @@
   "description": "Serverless backend for Tribe Assistant (The Tribe Studio website). No dependencies.",
   "engines": { "node": ">=18" },
   "scripts": {
-    "dev": "MOCK_AI=1 MOCK_INQUIRY=1 node dev-server.js",
+    "dev": "MOCK_AI=1 MOCK_INQUIRY=1 CUSTOMER_STORE=memory CUSTOMER_HASH_SECRET=dev-only node dev-server.js",
     "test": "node test/run.js"
   }
 }
