@@ -589,3 +589,7 @@ html body #tribe-assistant .ta-typing { background: #FBF6EA; border-color: #C9A3
 html body #tribe-assistant .ta-error { color: #7a6c55; }
 html body #tribe-assistant .ta-form-err { color: #a1271c; }
 html body #tribe-assistant .ta-head-text { overflow: hidden; } /* "Receptionist · online" no longer runs under EN/ES on phones */
+
+/* Language switch spells the words out: English / Español (Jean, 2026-11-11) */
+.shop-top .lang-btn { padding: 0 14px; letter-spacing: .02em; font-size: .82rem; }
+@media (max-width: 480px) { .shop-top .lang-btn { padding: 0 11px; min-height: 40px; font-size: .78rem; } }
