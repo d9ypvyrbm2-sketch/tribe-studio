@@ -19,6 +19,8 @@
 
   var canvas = document.createElement("canvas");
   canvas.className = "shop-depth";
+  // sizes set here too, so an old cached stylesheet on a phone can't leave the canvas unsized (iPhone bug, 2026-11-12)
+  canvas.style.cssText = "position:absolute;left:0;top:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none";
   canvas.setAttribute("aria-hidden", "true");
   var gl = canvas.getContext("webgl", { alpha: false, antialias: false, premultipliedAlpha: false });
   if (!gl) return;
@@ -91,15 +93,25 @@
 
   // ---- drawing ----
   var running = false, raf = 0;
+  var MAXW = 1600;
   function size() {
-    var r = scene.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var w = Math.round(r.width / (parseFloat(getComputedStyle(scene).scale) || 1) * dpr);
-    var h = Math.round(w * 4 / 3);
-    if (w > 0 && (canvas.width !== w || canvas.height !== h)) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
+    // offsetWidth/Height are the scene's own size, untouched by the arrival zoom or the chair zoom
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = Math.min(Math.round(scene.offsetWidth * dpr), MAXW);
+    var h = Math.round(w * (scene.offsetHeight / Math.max(1, scene.offsetWidth)));
+    if (w > 0 && h > 0 && (canvas.width !== w || canvas.height !== h)) { canvas.width = w; canvas.height = h; }
+    // the browser may give a smaller drawing buffer than asked for; always draw into what it really gave
+    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+    if (debug) debug.textContent = "scene " + scene.offsetWidth + "×" + scene.offsetHeight + " · canvas " + canvas.width + "×" + canvas.height +
+      " · buffer " + gl.drawingBufferWidth + "×" + gl.drawingBufferHeight + " · css " + Math.round(canvas.getBoundingClientRect().width) + " · dpr " + (window.devicePixelRatio || 1);
   }
+  // add ?debug3d to the address to see the sizes on screen
+  var debug = /[?&]debug3d/.test(location.search) ? document.createElement("div") : null;
+  if (debug) { debug.style.cssText = "position:fixed;left:8px;right:8px;bottom:8px;z-index:9999;background:#000;color:#0f0;font:12px/1.4 monospace;padding:6px 8px;border-radius:6px"; document.body.appendChild(debug); }
   function frame(now) {
     raf = 0;
     if (!running) return;
+    size();
     var idle = now - lastInput > 2500;
     if (idle) {                                   // slow figure-eight drift when nobody is moving
       var s = (now - t0) / 1000;
