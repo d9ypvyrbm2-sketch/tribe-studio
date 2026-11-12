@@ -636,3 +636,6 @@ html body #tribe-assistant .ta-card .ta-btn-ghost, html body #tribe-assistant .t
 html body #tribe-assistant .ta-input::placeholder { color: rgb(248 246 240 / .7); }
 /* the note under the gold button sits on the white window, so it stays dark and readable */
 html body #tribe-assistant .ta-log > .ta-card-note, html body #tribe-assistant .tr-review > .ta-card-note { color: #5f5340; }
+
+/* Inside photo in 3D: a depth layer redraws the real photo and shifts near and far parts differently (Jean, 2026-11-12) */
+.shop-depth { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; pointer-events: none; }
