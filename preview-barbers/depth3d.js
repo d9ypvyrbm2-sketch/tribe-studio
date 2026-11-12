@@ -84,12 +84,52 @@
   }
   shop.addEventListener("pointermove", fromPoint, { passive: true });
   shop.addEventListener("touchmove", function (e) { if (e.touches[0]) fromPoint(e.touches[0]); }, { passive: true });
-  var base = null;
-  window.addEventListener("deviceorientation", function (e) {   // Android tilt (iPhone needs a permission prompt, so it uses the drift)
+  var base = null, gotTilt = false;
+  window.addEventListener("deviceorientation", function (e) {   // Android works straight away; iPhone after "Allow" (see tilt button below)
     if (e.beta == null || e.gamma == null) return;
+    gotTilt = true;
     if (!base) base = { b: e.beta, g: e.gamma };
     aim((e.gamma - base.g) / 18, (e.beta - base.b) / 18);
   }, { passive: true });
+
+  // ---- iPhone / iPad: Apple only shares the tilt after the visitor taps "Allow" ----
+  // A small gold button asks once. After that, a later visit asks again silently on the first tap.
+  var askTilt = typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function" &&
+    window.matchMedia && window.matchMedia("(pointer: coarse)").matches;   // phones and tablets only, never a computer
+  var TILT_KEY = "tribe-tilt";
+  function remembered() { try { return localStorage.getItem(TILT_KEY); } catch (e) { return null; } }
+  function remember(v) { try { localStorage.setItem(TILT_KEY, v); } catch (e) {} }
+  function requestTilt() {
+    return DeviceOrientationEvent.requestPermission().then(function (state) {
+      remember(state === "granted" ? "granted" : "denied");
+      if (state === "granted") base = null;          // the way the phone is held right now becomes "straight ahead"
+      return state === "granted";
+    }).catch(function () { return false; });
+  }
+  function tiltButton() {
+    if (!askTilt || remembered() === "denied") return;
+    if (remembered() === "granted") {               // asked before: re-enable on the first tap, no button
+      shop.addEventListener("touchend", function once() { shop.removeEventListener("touchend", once); requestTilt(); }, { passive: true });
+      return;
+    }
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "tilt-btn";
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 9c-1 2-1 4 0 6M21 9c1 2 1 4 0 6"/></svg><span></span>';
+    var label = b.querySelector("span");
+    function text() { label.textContent = document.documentElement.lang === "es" ? "Inclina para mirar" : "Tilt to look around"; }
+    text();
+    new MutationObserver(text).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      requestTilt().then(function (ok) {
+        b.classList.add("is-done");
+        if (!ok) b.remove();
+        else { label.textContent = document.documentElement.lang === "es" ? "¡Listo! Inclina el teléfono" : "Done! Tilt your phone"; setTimeout(function () { b.remove(); }, 2200); }
+      });
+    });
+    shop.appendChild(b);
+  }
 
   // ---- drawing ----
   var running = false, raf = 0;
@@ -138,6 +178,7 @@
     gl.uniform2f(uOff, 0, 0);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     scene.classList.add("has-depth");
+    setTimeout(function () { if (!gotTilt) tiltButton(); }, 900);   // Android already sends tilt, so it never needs the button
     new MutationObserver(update).observe(shop, { attributes: true, attributeFilter: ["class"] });
     new MutationObserver(update).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["class"] });
     document.addEventListener("visibilitychange", update);
