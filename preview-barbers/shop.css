@@ -593,3 +593,28 @@ html body #tribe-assistant .ta-head-text { overflow: hidden; } /* "Receptionist 
 /* Language switch spells the words out: English / Español (Jean, 2026-11-11) */
 .shop-top .lang-btn { padding: 0 14px; letter-spacing: .02em; font-size: .82rem; }
 @media (max-width: 480px) { .shop-top .lang-btn { padding: 0 11px; min-height: 40px; font-size: .78rem; } }
+
+/* Chat window stays white; the text boxes inside it are black with a gold outline (Jean, 2026-11-11) */
+html body #tribe-assistant .ta-bot,
+html body #tribe-assistant .ta-typing,
+html body #tribe-assistant .ta-card,
+html body #tribe-assistant .ta-chip,
+html body #tribe-assistant .tr-chip:not(.is-primary),
+html body #tribe-assistant .ta-input,
+html body #tribe-assistant .ta-form input, html body #tribe-assistant .ta-form textarea,
+html body #tribe-assistant .tr-otherdate input {
+  background: #0b0a09; color: #F6EBD2; border: 1.5px solid #C9A35C;
+  box-shadow: 0 0 0 1px rgb(226 190 118 / .45);
+}
+html body #tribe-assistant .ta-bot a, html body #tribe-assistant .ta-card a:not(.ta-btn) { color: #E2BE76; }
+html body #tribe-assistant .ta-input::placeholder { color: #B9A98F; }
+html body #tribe-assistant .ta-input { caret-color: #E2BE76; }
+html body #tribe-assistant .tr-chip:not(.is-primary) .tr-chip-meta { color: #D9C59A; }
+html body #tribe-assistant .ta-chip:hover,
+html body #tribe-assistant .tr-chip:not(.is-primary):hover { background: #1a1612; color: #fff; border-color: #E2BE76; }
+html body #tribe-assistant .tr-chip.is-selected { box-shadow: 0 0 0 2px #E2BE76; }
+html body #tribe-assistant .ta-card dt, html body #tribe-assistant .ta-card .ta-card-note, html body #tribe-assistant .ta-card label { color: #C9B892; }
+html body #tribe-assistant .ta-card dd { color: #F6EBD2; }
+html body #tribe-assistant .ta-card-kicker { color: #E2BE76; }
+html body #tribe-assistant .ta-card .ta-btn-ghost, html body #tribe-assistant .ta-card .tr-edit, html body #tribe-assistant .ta-card .tr-linkbtn { color: #F6EBD2; }
+html body #tribe-assistant .ta-card .ta-check { color: #F6EBD2; }
